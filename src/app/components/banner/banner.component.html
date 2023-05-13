@@ -1,0 +1,43 @@
+<div *ngIf="images.length <= 0">
+  <!-- <h1>Hình ảnh rỗng ròi</h1> -->
+</div>
+<section class="w-full md:h-[80vh]" *ngIf="images.length > 0">
+  <swiper
+    [slidesPerView]="1"
+    [spaceBetween]="10"
+    [navigation]="false"
+    [autoplay]="{
+      delay: 3500,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    }"
+    [pagination]="{ dynamicBullets: true,  }"
+  >
+    <ng-template swiperSlide *ngFor="let item of images">
+      <div style="width: 100%" class="card-banner cursor-pointer md:relative">
+        <img
+          src="{{ item.url }}"
+          alt=""
+          width="100%"
+          class="object-cover md:h-[80vh]"
+        />
+        <button
+          class="absolute top-[50%] left-[50%] z-0 opacity-0 transition-all"
+          style="transform: translate(-50%, -50%)"
+        >
+          <a class="inline-flex" href="{{ item.linkDetails }}">
+            <span
+              class="h-12 flex items-center justify-center uppercase font-semibold px-8 border border-black hover:bg-black hover:text-white transition duration-500 ease-in-out"
+              >Khám phá</span
+            >
+            <span
+              class="h-12 w-12 flex-shrink-0 flex items-center justify-center border border-l-0 border-black hover:bg-black hover:text-white transition duration-500 ease-in-out"
+            >
+              <i class="fa-solid fa-angle-right"></i>
+            </span>
+          </a>
+        </button>
+      </div>
+    </ng-template>
+  </swiper>
+</section>
