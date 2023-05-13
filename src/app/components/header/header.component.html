@@ -1,81 +1,69 @@
-<header>
-  <nav
-    class="bg-white navbar navbar-expand-md fixed-top scrolling-navbar mainmenu-area py-4"
+<div class="w-full bg-gray-100">
+  <header
+    class="max-w-[1440px] m-auto grid grid-flow-col justify-between items-center auto-cols-max py-4 px-6"
   >
-    <div class="container">
-      <a class="navbar-brand" href="index.html"
-        ><span class="lnr lnr-diamond fw-bolder fs-3">FSHOP</span>
+    <!-- Logo -->
+    <div class="flex-shrink-0">
+      <a href="#">
+        <img
+          width="130px"
+          height="100px"
+          src="https://i.ibb.co/jRBq1Qg/Fstore-logo-ngang.png"
+          alt="Logo"
+        />
       </a>
-      <div class="collapse navbar-collapse" id="main-navbar">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item active px-3">
-            <a class="nav-link fw-bold text-body" href="index.html"
-              >Trang chủ
-            </a>
-          </li>
-
-          <li class="nav-item px-3">
-            <a class="nav-link fw-semibold text-body" href="about.html"
-              >Sản phẩm</a
-            >
-          </li>
-          <li class="nav-item px-3">
-            <a class="nav-link fw-semibold text-body" href="about.html"
-              >Giới thiệu</a
-            >
-          </li>
-          <li class="nav-item px-3">
-            <a class="nav-link fw-semibold text-body" href="contact.html"
-              >Liên hệ</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="d-flex gap-3">
-        <button
-          class="border-0 rounded-5 position-relative"
-          style="height: 40px; width: 40px"
-        >
-          <i
-            class="bi bi-search position-absolute"
-            style="
-              transform: translate(-50%, -50%);
-              top: 50%;
-              left: 50%;
-              font-size: 14px;
-            "
-          ></i>
-        </button>
-        <button
-          class="border-0 rounded-5 position-relative"
-          style="height: 40px; width: 40px"
-        >
-          <i
-            class="bi bi-cart-fill"
-            style="
-              transform: translate(-50%, -50%);
-              top: 50%;
-              left: 50%;
-              font-size: 14px;
-            "
-          ></i>
-        </button>
-        <button
-          class="border-0 rounded-5 position-relative"
-          style="height: 40px; width: 40px"
-        >
-          <i
-            class="bi bi-person-fill"
-            style="
-              transform: translate(-50%, -50%);
-              top: 50%;
-              left: 50%;
-              font-size: 14px;
-            "
-          ></i>
-        </button>
-      </div>
     </div>
-  </nav>
-</header>
-<div style="height: 90px"></div>
+    <!-- Left side menu -->
+    <div
+      class="max-lg:top-0 max-lg:absolute max-lg:right-0 max-lg:w-full max-lg:bg-gray-100 max-lg:mt-16 max-lg:py-3 dark:text-white dark:bg-black max-lg:hidden"
+    >
+      <nav
+        class="grid-rows-1 flex max-lg:w-full max-lg:flex-col max-lg:text-center"
+      >
+        <a
+          href="#"
+          class="text-gray-800 hover:text-gray-700 font-medium px-3 py-2"
+          >Trang chủ</a
+        >
+        <a
+          href="/product"
+          class="text-gray-500 hover:text-gray-600 font-medium px-3 py-2"
+          >Sản phẩm</a
+        >
+        <a
+          href="#"
+          class="text-gray-500 hover:text-gray-600 font-medium px-3 py-2"
+          >Giới thiệu</a
+        >
+        <a
+          href="#"
+          class="text-gray-500 hover:text-gray-600 font-medium px-3 py-2"
+          >Liên hệ</a
+        >
+      </nav>
+    </div>
+
+    <!-- Right side icons -->
+    <div>
+      <nav class="grid-rows-3 flex items-center">
+        <button class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+        <button class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+        <a
+          href="#"
+          class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2"
+        >
+          <i class="fas fa-user"></i>
+        </a>
+        <button
+          class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2 hidden max-lg:block"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+</div>
