@@ -2,9 +2,9 @@
 @import "swiper/less/navigation";
 @import "swiper/less/pagination"; */
 @import "swiper/css";
-@import "swiper/css/navigation";
+/* @import "swiper/css/navigation"; */
 @import "swiper/css/pagination";
-@import "swiper/css/scrollbar";
+/* @import "swiper/css/scrollbar"; */
 
 .card-banner {
   background-color: wheat;
@@ -29,8 +29,8 @@
   background-color: black;
   opacity: 0.3;
 }
-/* :is(.card-banner):hover > :is(button) {
-  z-index: 10 !important;
-  opacity: 1 !important;
+.card-banner:hover > button {
+  z-index: 10;
+  opacity: 1;
   box-shadow: rgb(252 253 254 / 60%) 0px 8px 24px;
-} */
+}
