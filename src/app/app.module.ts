@@ -9,6 +9,9 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { ListProductComponent } from './pages/product/list-product/list-product.component';
 import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
 import { CardComponent } from './components/product/card/card.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { SwiperModule } from 'swiper/angular';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,10 @@ import { CardComponent } from './components/product/card/card.component';
     ListProductComponent,
     DetailsProductComponent,
     CardComponent,
+    BannerComponent,
+    NotFoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, SwiperModule],
   providers: [],
   bootstrap: [AppComponent],
 })
