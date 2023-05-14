@@ -24,7 +24,7 @@
   background-color: black;
   opacity: 0.3;
 }
-.card-banner:hover button {
+:is(.card-banner):hover > :is(button) {
   z-index: 10 !important;
   opacity: 1 !important;
   box-shadow: rgb(252 253 254 / 60%) 0px 8px 24px;
