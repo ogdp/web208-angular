@@ -12,6 +12,8 @@ import { CardComponent } from './components/product/card/card.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { SwiperModule } from 'swiper/angular';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ProductsNewComponent } from './components/products-new/products-new.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     CardComponent,
     BannerComponent,
     NotFoundComponent,
+    ProductsNewComponent,
+    CartComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SwiperModule],
   providers: [],
