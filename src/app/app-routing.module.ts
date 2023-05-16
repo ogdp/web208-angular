@@ -5,10 +5,12 @@ import { ListProductComponent } from './pages/product/list-product/list-product.
 import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'product', component: ListProductComponent },
   { path: 'product/:id', component: DetailsProductComponent },
+ 
   { path: '**', component: NotFoundComponent },
 ];
 
@@ -16,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
