@@ -11,15 +11,15 @@
       *ngFor="let item of products"
       class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-auto"
     >
-      <a href="/product/{{ item.id }}">
+      <a routerLink="/product/{{ item.id }}">
         <img
           class="p-8 rounded-t-lg w-full h-72 object-cover"
-          src="https://vn-test-11.slatic.net/p/ce03645345c4b23ecdf9e0de006931e5.jpg"
+          src="{{ item.image }}"
           alt="product image"
         />
       </a>
       <div class="px-5 pb-5">
-        <a href="/product/{{ item.id }}">
+        <a routerLink="/product/{{ item.id }}">
           <h5
             class="text-lg font-medium tracking-tight dark:text-white line-clamp-2"
           >
@@ -97,7 +97,7 @@
             >${{ item.price }}</span
           >
           <a
-            href="#"
+            routerLink="#"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Đặt hàng</a
           >

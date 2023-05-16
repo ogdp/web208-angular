@@ -3,3 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 @import "@fortawesome/fontawesome-free/css/all.css";
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap");
+* {
+  font-family: "Pacifico", cursive;
+  font-family: "Quicksand", sans-serif;
+}

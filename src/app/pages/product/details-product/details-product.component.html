@@ -1,1 +1,169 @@
-<p>details-product works!</p>
+<aside class="w-full bg-[#F5F5F5] text-center mt-1">
+  <h1 class="font-extrabold text-2xl py-5">Chi tiết sản phẩm</h1>
+</aside>
+<div
+  *ngIf="product == undefined"
+  style="text-align: center"
+  class="min-h-[75vh] flex items-center justify-center"
+>
+  <div>
+    <h1 class="text-xl">Sản phẩm không tồn tại</h1>
+    <br />
+    <a routerLink="/product" class="text-sm font-bold cursor-pointer"
+      >Trở lại trang sản phẩm</a
+    >
+  </div>
+</div>
+<section
+  *ngIf="product !== undefined"
+  class="max-w-[1600] m-auto px-[85px] py-[30px]"
+>
+  <div class="flex px-[85px]">
+    <div class="w-2/3 flex">
+      <div class="w-[15%] flex flex-col gap-3 px-2">
+        <div>
+          <img src="{{ product.image }}" alt="" />
+        </div>
+      </div>
+      <img
+        src="https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg"
+        alt=""
+        style="width: 85%"
+      />
+    </div>
+    <div class="w-1/3 px-7">
+      <!-- Name -->
+      <h1 class="text-xl line-clamp-2 font-bold">
+        {{ product.name }}
+        <!-- ERG7 - EXTRA REGULAR DISTRESSED JEANS - BLACK -->
+      </h1>
+      <!-- Code -->
+      <p id="code" class="text-gray-400 uppercase text-[12px] py-1">
+        {{ product.code }}
+        <!-- SKU: ERG7 -->
+      </p>
+      <hr />
+      <!-- Price -->
+      <h4 class="text-[#FF4040] font-bold text-lg py-2">
+        {{ formatMoney(product.price) }}
+      </h4>
+      <hr />
+      <form action="" method="post">
+        <!-- Size -->
+        <h4 class="font-semibold text-xl py-3">Kích thức</h4>
+        <div class="flex gap-3">
+          <div
+            class="relative w-10 h-10 border bg-black border-gray-300 cursor-pointer"
+          >
+            <p
+              class="absolute left-[50%] top-[50%] text-[12px] text-white"
+              style="transform: translate(-50%, -50%)"
+            >
+              29
+            </p>
+          </div>
+          <div
+            class="relative w-10 h-10 border border-gray-300 cursor-pointer size_sold"
+          >
+            <p
+              class="absolute left-[50%] top-[50%] text-[12px] text-black"
+              style="transform: translate(-50%, -50%)"
+            >
+              30
+            </p>
+          </div>
+          <div class="relative w-10 h-10 border border-gray-300 cursor-pointer">
+            <p
+              class="absolute left-[50%] top-[50%] text-[12px] text-black"
+              style="transform: translate(-50%, -50%)"
+            >
+              31
+            </p>
+          </div>
+          <div class="relative w-10 h-10 border border-gray-300 cursor-pointer">
+            <p
+              class="absolute left-[50%] top-[50%] text-[12px] text-black"
+              style="transform: translate(-50%, -50%)"
+            >
+              32
+            </p>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <!-- Quantity -->
+        <div class="flex">
+          <div class="number-input-container">
+            <button
+              id="price_btn"
+              type="button"
+              class="button-decrement"
+              onclick="setNumber(event)"
+              data-input-id="hue"
+              data-operation="decrement"
+            ></button>
+            <div class="number-input">
+              <input
+                type="number"
+                id="hue"
+                name="hue"
+                class="number-input-text-box"
+                value="1"
+                min="0"
+                max="100"
+                oninput="handleNumberInput()"
+                onblur="handleNumberInputBlur(event)"
+                data-step="1"
+              />
+            </div>
+            <button
+              id="price_btn"
+              type="button"
+              class="button-increment"
+              onclick="setNumber(event)"
+              data-input-id="hue"
+              data-operation="increment"
+            ></button>
+          </div>
+        </div>
+        <button
+          class="uppercase bg-black text-white my-5 py-4 font-semibold text-[13px] block w-full"
+        >
+          Thêm vào giỏ
+        </button>
+      </form>
+      <!-- Description -->
+      <div>
+        <h5 class="font-bold text-[13px]">Mô tả</h5>
+        <ul>
+          <li class="text-sm">
+            <i class="mx-2 mr-1">&#x2022;</i> {{ product.description }}
+          </li>
+          <!-- <li class="text-sm">
+            <i class="mx-2 mr-1">&#x2022;</i> Form Regular
+          </li>
+          <li class="text-sm"><i class="mx-2 mr-1">&#x2022;</i> 100% cotton</li>
+          <li class="text-sm"><i class="mx-2 mr-1">&#x2022;</i> Vải 11 oz.</li>
+          <li class="text-sm">
+            <i class="mx-2 mr-1">&#x2022;</i> Mẫu cao 1m75, nặng 60kg mặc size
+            30.
+          </li> -->
+        </ul>
+        <h5 class="font-bold text-[13px]">Lưu ý</h5>
+        <ul>
+          <li class="text-sm">
+            <i class="mx-2 mr-1">&#x2022;</i> {{ product.note }}
+          </li>
+          <!-- <li class="text-sm">
+            <i class="mx-2 mr-1">&#x2022;</i> Với các phương pháp đo lường thủ
+            công khác nhau, có thể có sai số là bình thường.
+          </li>
+          <li class="text-sm">
+            <i class="mx-2 mr-1">&#x2022;</i> Do màn hình và điều kiện ánh sáng
+            khác nhau, màu sắc thực tế của sản phẩm có thể chênh lệch khoảng
+            3-5%.
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
