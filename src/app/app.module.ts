@@ -16,6 +16,7 @@ import { SwiperModule } from 'swiper/angular';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ProductsNewComponent } from './components/products-new/products-new.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ContactAboutUsComponent } from './components/contact-about-us/contact-about-us.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CartComponent } from './components/cart/cart.component';
     NotFoundComponent,
     ProductsNewComponent,
     CartComponent,
+    ContactAboutUsComponent,
   ],
   imports: [
     BrowserModule,
