@@ -1,1 +1,302 @@
-<p>auth works!</p>
+<section>
+  <div
+    class="grid md:grid-cols-2 gap-1 md:max-w-[1280px] m-auto min-h-[90vh] md:py-[5%] md:px-[7%] justify-center items-center max-md:px-1"
+  >
+    <div class="md:order-2">
+      <img
+        src="{{
+          isMatch
+            ? 'https://i.ibb.co/r43MLGS/register.png'
+            : 'https://i.ibb.co/7RnBcjD/vecteezy-love-couple-happy-shopping.jpg'
+        }}"
+        alt=""
+        width="100%"
+      />
+    </div>
+    <div class="md:order-1">
+      <div class="py-7 pt-0">
+        <h1 class="font-bold text-5xl text-center">
+          {{ isMatch ? "Tạo tài khoản" : "Đăng nhập" }}
+        </h1>
+        <p class="text-center py-3" *ngIf="isMatch == false">
+          Mua sắm với nhiều ưu đãi mới nhất
+        </p>
+      </div>
+      <form
+        *ngIf="isMatch == false"
+        [formGroup]="signinForm"
+        (ngSubmit)="signin()"
+      >
+        <div class="mb-6">
+          <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Email</label
+          >
+          <input
+            name="email"
+            type="email"
+            id="email"
+            placeholder="Email của bạn"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              (email?.invalid && (email?.dirty || email?.touched)) ||
+              erEmail == true
+            "
+          >
+            <div style="color: red" *ngIf="email?.errors?.['required']">
+              <small>{{ error_Email[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="email?.errors?.['email']">
+              <small>{{ error_Email[1] }}</small>
+            </div>
+          </div>
+          <!-- <p class="text-red-600 text-[14px]">Email không tồn tại</p> -->
+        </div>
+        <div class="mb-6">
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Mật khẩu</label
+          >
+          <input
+            name="password"
+            type="password"
+            id="password"
+            placeholder="*********"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="password"
+          />
+          <div
+            *ngIf="
+              (password?.invalid && (password?.dirty || password?.touched)) ||
+              erPassword == true
+            "
+          >
+            <div style="color: red" *ngIf="password?.errors?.['required']">
+              <small>{{ error_Password[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="password?.errors?.['minlength']">
+              <small>{{ error_Password[1] }}</small>
+            </div>
+            <div style="color: red" *ngIf="password?.errors?.['maxlength']">
+              <small>{{ error_Password[2] }}</small>
+            </div>
+          </div>
+          <!-- <p class="text-red-600 text-[14px]">Mật khẩu không chính xác</p> -->
+        </div>
+        <div class="mb-6 flex justify-between">
+          <div>
+            <input type="checkbox" name="save_signin" id="save" />
+            <label for="save" class="pl-2 cursor-pointer">Lưu đăng nhập</label>
+          </div>
+          <a routerLink="/forgot-password">Khôi phục tài khoản</a>
+        </div>
+        <button
+          type="submit"
+          class="text-white w-full bg-black hover:opacity-80 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Đăng nhập
+        </button>
+      </form>
+      <!-- <form *ngIf="isMatch == false" (ngSubmit)="onSignin()">
+        <div class="mb-6">
+          <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Email</label
+          >
+          <input
+            [(ngModel)]="user.email"
+            name="email"
+            type="email"
+            id="email"
+            placeholder="Email của bạn"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+          <p class="text-red-600 text-[14px]">Email không tồn tại</p>
+        </div>
+        <div class="mb-6">
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Mật khẩu</label
+          >
+          <input
+            [(ngModel)]="user.password"
+            name="password"
+            type="password"
+            id="password"
+            placeholder="*********"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+          <p class="text-red-600 text-[14px]">Mật khẩu không chính xác</p>
+        </div>
+        <div class="mb-6 flex justify-between">
+          <div>
+            <input
+              type="checkbox"
+              name="save_signin"
+              [(ngModel)]="user.save_signin"
+              id="save"
+            />
+            <label for="save" class="pl-2 cursor-pointer">Lưu đăng nhập</label>
+          </div>
+          <a routerLink="/forgot-password">Khôi phục tài khoản</a>
+        </div>
+        <button
+          type="submit"
+          class="text-white w-full bg-black hover:opacity-80 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Đăng nhập
+        </button>
+      </form> -->
+
+      <form
+        *ngIf="isMatch == true"
+        [formGroup]="signupForm"
+        (ngSubmit)="signup()"
+      >
+        <div class="mb-6">
+          <label
+            for="name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Họ tên</label
+          >
+          <input
+            type="text"
+            id="name"
+            placeholder="Họ tên đầy đủ"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+        </div>
+        <div class="mb-6">
+          <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+        </div>
+        <div class="mb-6">
+          <label
+            for="phone"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Điện thoại</label
+          >
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="Điện thoại ..."
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+        </div>
+        <div class="mb-6">
+          <label
+            for="male"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Giới tính</label
+          >
+          <div class="flex gap-4">
+            <select name="gender">
+              <option value="1">
+                <div>
+                  <input type="radio" name="male" id="male" checked />
+                  <label for="male" class="mx-1">Nam</label>
+                </div>
+              </option>
+              <option value="2">
+                <div>
+                  <input type="radio" name="male" id="female" />
+                  <label for="female" class="mx-1">Nữ</label>
+                </div>
+              </option>
+              <option value="3">
+                <div>
+                  <input type="radio" name="male" id="other_genders" />
+                  <label for="other_genders" class="mx-1"
+                    >Không muốn trả lời</label
+                  >
+                </div>
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label
+            for="address"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Địa chỉ</label
+          >
+          <input
+            type="address"
+            id="address"
+            placeholder="Địa chỉ phải chính xác để nhận hàng"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Mật khẩu</label
+          >
+          <input
+            type="password"
+            id="password"
+            placeholder="*********"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+        </div>
+        <div class="mb-6">
+          <label
+            for="confirmPassword"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Xác nhận lại mật khẩu</label
+          >
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="*********"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+          />
+        </div>
+        <div class="mb-6 flex justify-between">
+          <div>
+            <input type="checkbox" name="save" id="policy_terms" />
+            <label for="policy_terms" class="pl-2"
+              >Chấp nhận điều khoản chính sách của chúng tôi .</label
+            ><a routerLink="/policy-terms" class="font-semibold block"
+              >Điều khoản chính sách</a
+            >
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="text-white w-full bg-black hover:opacity-80 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Đăng ký
+        </button>
+      </form>
+
+      <div class="w-full py-5">
+        <p>
+          {{ isMatch ? "Bạn đã có tài khoản ?" : "Bạn chưa có tài khoản ?" }}
+          <button class="font-semibold" (click)="showSignup()">
+            {{ isMatch ? "Đăng nhập" : "Đăng ký ngay" }}
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
