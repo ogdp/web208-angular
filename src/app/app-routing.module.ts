@@ -9,6 +9,8 @@ import { AccountComponent } from './pages/account/account.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 const routes: Routes = [
   // { path: '', component: HomeComponent },
   // { path: 'auth', component: AuthComponent },
@@ -16,27 +18,6 @@ const routes: Routes = [
   // { path: 'product/:id', component: DetailsProductComponent },
   // { path: 'account', component: AccountComponent },
   // { path: '**', component: NotFoundComponent },
-
-  // {
-  //   path: '',
-  //   component: ClientLayoutComponent,
-  //   children: [
-  //     { path: '', component: HomeComponent },
-  //     { path: 'auth', component: AuthComponent },
-  //     { path: 'product', component: ListProductComponent },
-  //     { path: 'product/:id', component: DetailsProductComponent },
-  //     { path: 'account', component: AccountComponent },
-  //     { path: '**', component: NotFoundComponent },
-  //   ],
-  // },
-  // {
-  //   path: 'admin',
-  //   component: AdminLayoutComponent,
-  //   children: [
-  //     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  //     { path: 'dashboard', component: DashboardComponent },
-  //   ],
-  // },
   {
     path: 'admin',
     component: AdminLayoutComponent,
@@ -45,18 +26,29 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
     ],
   },
+
   {
     path: '',
     component: ClientLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'auth', component: AuthComponent },
       { path: 'product', component: ListProductComponent },
       { path: 'product/:id', component: DetailsProductComponent },
       { path: 'account', component: AccountComponent },
-      { path: '**', component: NotFoundComponent }, // Thêm phần này vào cuối
     ],
   },
+  {
+    path: '',
+    component: BlankLayoutComponent,
+    children: [
+      // Auth
+      { path: 'auth', component: AuthComponent },
+
+      // Checkouts
+      { path: 'checkouts/:id/thank_you', component: CheckoutSuccessComponent },
+    ],
+  },
+  { path: '**', component: NotFoundComponent }, // Thêm phần này vào cuối
 ];
 
 @NgModule({

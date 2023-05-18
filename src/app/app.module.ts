@@ -23,6 +23,8 @@ import { ContactAboutUsComponent } from './components/contact-about-us/contact-a
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AdminLayoutComponent,
     ClientLayoutComponent,
     DashboardComponent,
+    CheckoutSuccessComponent,
+    BlankLayoutComponent,
   ],
   imports: [
     AppRoutingModule,
