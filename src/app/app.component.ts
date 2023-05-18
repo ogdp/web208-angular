@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FStore';
+
+  // displayButton(){
+  //   const button = document.querySelector('.btn');
+  //   window.addEventListener('scroll', () => {
+  //     console.log(window.scrollY);
+  //     if (window.scrollY > 100) {
+  //       button.style.display = "block";
+  //     } else {
+  //       button.style.display = "none";
+  //     }
+  //   });
+  // }
 }
