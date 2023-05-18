@@ -15,6 +15,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 import { ProductsNewComponent } from './components/products-new/products-new.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CollectionsComponent } from './components/collections/collections.component';
+import { ProductsFamousComponent } from './components/products-famous/products-famous.component';
+import { AccountComponent } from './pages/account/account.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { CartComponent } from './components/cart/cart.component';
  
     ProductsNewComponent,
     CartComponent,
+    CollectionsComponent,
+    ProductsFamousComponent,
+    AccountComponent,
+    
   ],
   imports: [BrowserModule, AppRoutingModule, SwiperModule],
   providers: [],
