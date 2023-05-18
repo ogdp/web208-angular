@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
+
 @Component({
-  selector: 'app-products-new',
-  templateUrl: './products-new.component.html',
-  styleUrls: ['./products-new.component.css']
+  selector: 'app-products-famous',
+  templateUrl: './products-famous.component.html',
+  styleUrls: ['./products-famous.component.css']
 })
-export class ProductsNewComponent {
+export class ProductsFamousComponent {
   products = [
     {
       id: 1,

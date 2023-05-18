@@ -16,6 +16,9 @@ import { SwiperModule } from 'swiper/angular';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ProductsNewComponent } from './components/products-new/products-new.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CollectionsComponent } from './components/collections/collections.component';
+import { ProductsFamousComponent } from './components/products-famous/products-famous.component';
+import { AccountComponent } from './pages/account/account.component';
 import { ContactAboutUsComponent } from './components/contact-about-us/contact-about-us.component';
 
 @NgModule({
@@ -32,14 +35,17 @@ import { ContactAboutUsComponent } from './components/contact-about-us/contact-a
     NotFoundComponent,
     ProductsNewComponent,
     CartComponent,
+    CollectionsComponent,
+    ProductsFamousComponent,
+    AccountComponent,
     ContactAboutUsComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     SwiperModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
