@@ -20,6 +20,11 @@ import { CollectionsComponent } from './components/collections/collections.compo
 import { ProductsFamousComponent } from './components/products-famous/products-famous.component';
 import { AccountComponent } from './pages/account/account.component';
 import { ContactAboutUsComponent } from './components/contact-about-us/contact-about-us.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,11 @@ import { ContactAboutUsComponent } from './components/contact-about-us/contact-a
     ProductsFamousComponent,
     AccountComponent,
     ContactAboutUsComponent,
+    AdminLayoutComponent,
+    ClientLayoutComponent,
+    DashboardComponent,
+    CheckoutSuccessComponent,
+    BlankLayoutComponent,
   ],
   imports: [
     AppRoutingModule,
