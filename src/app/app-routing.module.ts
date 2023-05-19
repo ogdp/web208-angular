@@ -1,32 +1,37 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { ListProductComponent } from './pages/product/list-product/list-product.component';
-import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
+import { HomeComponent } from './pages/client/home/home.component';
+import { ListProductComponent } from './pages/client/product/list-product/list-product.component';
+import { DetailsProductComponent } from './pages/client/product/details-product/details-product.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { AuthComponent } from './pages/auth/auth.component';
-import { AccountComponent } from './pages/account/account.component';
+import { AuthComponent } from './pages/client/auth/auth.component';
+import { AccountComponent } from './pages/client/account/account.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { CheckoutSuccessComponent } from './pages/client/checkout-success/checkout-success.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
+import { CheckoutAdminComponent } from './pages/admin/checkout-admin/checkout-admin.component';
+import { ProductAdminComponent } from './pages/admin/product-admin/product-admin.component';
+import { UserAdminComponent } from './pages/admin/user-admin/user-admin.component';
+import { BannerAdminComponent } from './pages/admin/banner-admin/banner-admin.component';
+import { FeedbackAdminComponent } from './pages/admin/feedback-admin/feedback-admin.component';
+import { SettingAdminComponent } from './pages/admin/setting-admin/setting-admin.component';
 const routes: Routes = [
-  // { path: '', component: HomeComponent },
-  // { path: 'auth', component: AuthComponent },
-  // { path: 'product', component: ListProductComponent },
-  // { path: 'product/:id', component: DetailsProductComponent },
-  // { path: 'account', component: AccountComponent },
-  // { path: '**', component: NotFoundComponent },
   {
     path: 'admin',
     component: AdminLayoutComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'checkouts', component: CheckoutAdminComponent },
+      { path: 'products', component: ProductAdminComponent },
+      { path: 'users', component: UserAdminComponent },
+      { path: 'banners', component: BannerAdminComponent },
+      { path: 'feedbacks', component: FeedbackAdminComponent },
+      { path: 'settings', component: SettingAdminComponent },
     ],
   },
-
   {
     path: '',
     component: ClientLayoutComponent,
