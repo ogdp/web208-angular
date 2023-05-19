@@ -10,7 +10,7 @@ export class AuthComponent implements OnInit {
   isMatch: boolean = false;
   showSignup() {
     this.isMatch = !this.isMatch;
-    console.log(this.isMatch);
+    // console.log(this.isMatch);
   }
   //
   signinForm = new FormGroup({

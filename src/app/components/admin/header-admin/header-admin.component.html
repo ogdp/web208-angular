@@ -1,0 +1,51 @@
+<section class="w-full flex justify-between items-center px-7 py-5">
+  <div>
+    <h2 class="text-4xl font-bold">Tổng quan</h2>
+  </div>
+  <div class="flex gap-4 items-center">
+    <div class="cursor-pointer"><i class="fa-regular fa-bell text-xl"></i></div>
+    <div class="w-9 h-9 overflow-hidden rounded-full">
+      <img
+        src="https://avatars.githubusercontent.com/u/115080675?v=4"
+        width="100%"
+        alt=""
+      />
+    </div>
+    <div
+      class="hover:bg-gray-100 px-3 rounded-lg py-1 cursor-pointer relative"
+      style="transition: all 0.4s"
+      (click)="showTabControl()"
+    >
+      <h5 class="font-medium">
+        Quản trị viên <i class="fa-solid fa-caret-down"></i>
+      </h5>
+      <div
+        *ngIf="tabControl == true"
+        class="absolute bg-slate-100 w-[250px] left-[-80%] top-[120%] rounded-lg px-3 py-2"
+      >
+        <a routerLink="/admin/profile">
+          <div
+            class="w-full hover:bg-slate-200 px-2 py-1 rounded-lg"
+            style="transition: all 0.4s"
+          >
+            <button>Cập nhật thông tin</button>
+          </div>
+        </a>
+        <a routerLink="/admin/history">
+          <div
+            class="w-full hover:bg-slate-200 px-2 py-1 rounded-lg"
+            style="transition: all 0.4s"
+          >
+            <button>Lịch sử đăng nhập</button>
+          </div>
+        </a>
+        <div
+          class="w-full hover:bg-slate-200 px-2 py-1 rounded-lg"
+          style="transition: all 0.4s"
+        >
+          <button>Đăng xuất</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
