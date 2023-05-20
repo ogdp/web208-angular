@@ -1,0 +1,18 @@
+.addtocart {
+    opacity: -1;
+    transition: all .4s;
+
+}
+
+.addtocart-hover:hover>i {
+    opacity: 1;
+
+}
+
+/* .addtocart-hover:hover>a>img {
+    filter: brightness(90%);
+} */
+
+.addtocart-hover>a>img {
+    transition: all 0.2s ease-in-out;
+}

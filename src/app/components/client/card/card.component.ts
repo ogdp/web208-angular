@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { products } from 'src/app/data/mockData';
 
 @Component({
   selector: 'app-card',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-
+  products = products;
 }

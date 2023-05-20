@@ -80,19 +80,19 @@ export const products: IProduct[] = [
     description: 'heheh',
     note: 'hihi',
   },
-  {
-    id: '7',
-    name: 'Product 7',
-    price: 20000,
-    image:
-      'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
-    rate: 0,
-    size: '',
-    quantity: 1,
-    code: 'AK47',
-    description: 'heheh',
-    note: 'hihi',
-  },
+  // {
+  //   id: '7',
+  //   name: 'Product 7',
+  //   price: 20000,
+  //   image:
+  //     'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
+  //   rate: 0,
+  //   size: '',
+  //   quantity: 1,
+  //   code: 'AK47',
+  //   description: 'heheh',
+  //   note: 'hihi',
+  // },
 ];
 export const dataBanner: IBannerImg[] = [
   {
