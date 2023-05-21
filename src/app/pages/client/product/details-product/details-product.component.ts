@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { products } from 'src/app/data/mockData';
-import { IProduct } from 'src/common/Product';
 @Component({
   selector: 'app-details-product',
   templateUrl: './details-product.component.html',
@@ -12,12 +11,27 @@ export class DetailsProductComponent implements OnInit {
   id: any = '';
   products = products;
   product: any = {};
+  order_product: any = {};
+  inputValuee: number = 1;
+  activeSize: string = this.order_product.size;
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.product = this.products.filter((item: any) => item.id == this.id)[0];
+      this.order_product = {
+        id: this.product.id,
+        name: this.product.name,
+        price: this.product.price,
+        size: this.product?.size[0],
+        description: this.product.description,
+        image: this.product.image,
+        note: this.product.note,
+        quantity: this.inputValuee,
+        user: 'InfoUser',
+      };
     });
   }
+
   formatMoney(amount: any) {
     return amount.toLocaleString('vi-VN', {
       style: 'currency',
@@ -26,5 +40,44 @@ export class DetailsProductComponent implements OnInit {
   }
   isEmptyObject(obj: any) {
     return Object.keys(obj).length === 0;
+  }
+
+  inputValue() {
+    if (this.inputValuee < 1) this.inputValuee = 1;
+    if (this.inputValuee > 50) {
+      this.inputValuee = 1;
+      alert('Liên hệ quản trị viên để mua giá sỉ');
+    }
+    // console.log(this.inputValuee);
+  }
+  _setValueQuantity() {
+    if (this.inputValuee <= 1) {
+      return;
+    }
+    this.inputValuee -= 1;
+    this.order_product.quantity = this.inputValuee;
+  }
+  setValueQuantity() {
+    if (this.inputValuee >= 50) {
+      return alert('Liên hệ quản trị viên để mua giá sỉ');
+    }
+    this.inputValuee += 1;
+    this.order_product.quantity = this.inputValuee;
+  }
+  // SIZE
+  onHanddleSize(value: any) {
+    if (this.product.size.length > 0) {
+      const check = this.product.size.filter(
+        (item: any) => item == value.target.id
+      );
+      if (check.length <= 0) return console.log();
+      this.order_product.size = String(value.target.id);
+      this.activeSize = value.target.id;
+      // console.log(value.target.id);
+    }
+  }
+
+  onHanddleOrder() {
+    console.log('Đã thêm sản phẩm : >> ', this.order_product);
   }
 }

@@ -172,3 +172,15 @@ button#price_btn:disabled::after {
     transform: translateY(1px);
   }
 }
+.sizeHover:hover {
+  background-color: black;
+}
+.sizeHover:hover > p {
+  color: white;
+}
+.sizeHover.active {
+  background-color: black;
+}
+.sizeHover.active > p {
+  color: white;
+}

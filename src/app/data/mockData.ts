@@ -9,7 +9,7 @@ export const products: IProduct[] = [
     image:
       'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
     rate: 0,
-    size: '',
+    size: ['11', '12', '13'],
     quantity: 1,
     code: 'AK47',
     description: 'heheh',
@@ -22,7 +22,7 @@ export const products: IProduct[] = [
     image:
       'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
     rate: 0,
-    size: '',
+    size: ['11', '12', '13'],
     quantity: 1,
     code: 'AK47',
     description: 'heheh',
@@ -35,7 +35,7 @@ export const products: IProduct[] = [
     image:
       'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
     rate: 0,
-    size: '',
+    size: ['11', '12', '13'],
     quantity: 1,
     code: 'AK47',
     description: 'heheh',
@@ -48,7 +48,7 @@ export const products: IProduct[] = [
     image:
       'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
     rate: 0,
-    size: '',
+    size: ['11', '12', '13'],
     quantity: 1,
     code: 'AK47',
     description: 'heheh',
@@ -61,7 +61,7 @@ export const products: IProduct[] = [
     image:
       'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
     rate: 0,
-    size: '',
+    size: ['11', '12', '13'],
     quantity: 1,
     code: 'AK47',
     description: 'heheh',
@@ -74,7 +74,7 @@ export const products: IProduct[] = [
     image:
       'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
     rate: 0,
-    size: '',
+    size: ['11', '12', '13'],
     quantity: 1,
     code: 'AK47',
     description: 'heheh',
