@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
 import { ActivatedRoute } from '@angular/router';
 import { products } from 'src/app/data/mockData';
+
 @Component({
   selector: 'app-details-product',
   templateUrl: './details-product.component.html',
@@ -17,9 +19,11 @@ export class DetailsProductComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
-      this.product = this.products.filter((item: any) => item.id == this.id)[0];
+      this.product = this.products.filter(
+        (item: any) => item._id == this.id
+      )[0];
       this.order_product = {
-        id: this.product.id,
+        product_id: this.product._id,
         name: this.product.name,
         price: this.product.price,
         size: this.product?.size[0],
@@ -27,7 +31,7 @@ export class DetailsProductComponent implements OnInit {
         image: this.product.image,
         note: this.product.note,
         quantity: this.inputValuee,
-        user: 'InfoUser',
+        user: 'notfound',
       };
     });
   }
@@ -73,11 +77,23 @@ export class DetailsProductComponent implements OnInit {
       if (check.length <= 0) return console.log();
       this.order_product.size = String(value.target.id);
       this.activeSize = value.target.id;
-      // console.log(value.target.id);
     }
   }
-
+  isLoadding: boolean = false;
   onHanddleOrder() {
-    console.log('Đã thêm sản phẩm : >> ', this.order_product);
+    (async () => {
+      this.isLoadding = true;
+      const { data }: any = await axios.get(
+        'https://api.ipify.org/?format=json'
+      );
+      const userAgent = navigator.userAgent;
+      const deviceDetail = {
+        ip: data.ip,
+        userAgent: String(userAgent),
+      };
+      this.isLoadding = false;
+      this.order_product.deviceDetail = deviceDetail;
+      console.log('Đã thêm sản phẩm : >> ', this.order_product);
+    })();
   }
 }

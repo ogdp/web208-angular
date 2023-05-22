@@ -5,7 +5,7 @@
       *ngFor="let item of products"
       class="bg-white dark:bg-gray-800 dark:border-gray-700 m-auto"
     >
-      <a class="w-full" href="/product/{{ item.id }}">
+      <a class="w-full" routerLink="/product/{{ item.id }}">
         <img
           class=""
           src="https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg"
@@ -13,7 +13,7 @@
         />
       </a>
       <div class="pb-5 my-2">
-        <a href="/product/{{ item.id }}">
+        <a routerLink="/product/{{ item.id }}">
           <h5
             class="tracking-tight dark:text-white line-clamp-2 hover:text-[#618C2F] uppercase"
           >

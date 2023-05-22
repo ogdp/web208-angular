@@ -38,6 +38,7 @@ import { FeedbackAdminComponent } from './pages/admin/feedback-admin/feedback-ad
 import { BannerAdminComponent } from './pages/admin/banner-admin/banner-admin.component';
 import { SettingAdminComponent } from './pages/admin/setting-admin/setting-admin.component';
 import { CheckoutComponent } from './pages/client/checkout/checkout.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { CheckoutComponent } from './pages/client/checkout/checkout.component';
     BannerAdminComponent,
     SettingAdminComponent,
     CheckoutComponent,
+    LoaderComponent,
   ],
   imports: [
     AppRoutingModule,

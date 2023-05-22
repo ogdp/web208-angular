@@ -1,9 +1,10 @@
 import { IBannerImg } from 'src/common/BannerImg';
+import { ICategory } from 'src/common/Category';
 import { IProduct } from 'src/common/Product';
 
 export const products: IProduct[] = [
   {
-    id: '1',
+    _id: '1',
     name: 'Product 1',
     price: 20000,
     image:
@@ -16,7 +17,7 @@ export const products: IProduct[] = [
     note: 'hihi',
   },
   {
-    id: '2',
+    _id: '2',
     name: 'Product 2',
     price: 20000,
     image:
@@ -29,7 +30,7 @@ export const products: IProduct[] = [
     note: 'hihi',
   },
   {
-    id: '3',
+    _id: '3',
     name: 'Product 3',
     price: 20000,
     image:
@@ -42,7 +43,7 @@ export const products: IProduct[] = [
     note: 'hihi',
   },
   {
-    id: '4',
+    _id: '4',
     name: 'Product 4',
     price: 20000,
     image:
@@ -55,7 +56,7 @@ export const products: IProduct[] = [
     note: 'hihi',
   },
   {
-    id: '5',
+    _id: '5',
     name: 'Product 5',
     price: 20000,
     image:
@@ -68,7 +69,7 @@ export const products: IProduct[] = [
     note: 'hihi',
   },
   {
-    id: '6',
+    _id: '6',
     name: 'Product 6',
     price: 20000,
     image:
@@ -81,7 +82,7 @@ export const products: IProduct[] = [
     note: 'hihi',
   },
   // {
-  //   id: '7',
+  //   _id: '7',
   //   name: 'Product 7',
   //   price: 20000,
   //   image:
@@ -96,27 +97,45 @@ export const products: IProduct[] = [
 ];
 export const dataBanner: IBannerImg[] = [
   {
-    id: '1',
+    _id: '1',
     name: 'Img Banner',
     url: '../../../assets/images/h1.png',
     linkDetails: '#',
   },
   {
-    id: '2',
+    _id: '2',
     name: 'Img Banner',
     url: '../../../assets/images/h2.png',
     linkDetails: '#',
   },
   {
-    id: '3',
+    _id: '3',
     name: 'Img Banner',
     url: '../../../assets/images/h3.png',
     linkDetails: '#',
   },
   {
-    id: '4',
+    _id: '4',
     name: 'Img Banner',
     url: '../../../assets/images/h4.png',
     linkDetails: '#',
+  },
+];
+export const categories: ICategory[] = [
+  {
+    _id: '1',
+    name: 'Nike',
+  },
+  {
+    _id: '2',
+    name: 'Ad_idas',
+  },
+  {
+    _id: '3',
+    name: 'Wrangler',
+  },
+  {
+    _id: '4',
+    name: 'H & M',
   },
 ];
