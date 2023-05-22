@@ -18,6 +18,7 @@ import { BannerAdminComponent } from './pages/admin/banner-admin/banner-admin.co
 import { FeedbackAdminComponent } from './pages/admin/feedback-admin/feedback-admin.component';
 import { SettingAdminComponent } from './pages/admin/setting-admin/setting-admin.component';
 import { CheckoutComponent } from './pages/client/checkout/checkout.component';
+import { PolicyComponent } from './pages/client/policy/policy.component';
 const routes: Routes = [
   {
     path: 'admin',
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'product/:id', component: DetailsProductComponent },
       { path: 'account', component: AccountComponent },
       { path: 'checkout', component: CheckoutComponent },
+      { path: 'policy-terms', component: PolicyComponent },
     ],
   },
   {
