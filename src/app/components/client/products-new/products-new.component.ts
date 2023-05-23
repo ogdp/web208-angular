@@ -35,13 +35,7 @@ export class ProductsNewComponent {
       image: 'https://demo.themefisher.com/adrian/images/shop/products/222.jpg',
       description: 'hek dhjdh hehe',
     },
-    {
-      id: 4,
-      name: 'Product 4',
-      price: 2000,
-      image: 'https://demo.themefisher.com/adrian/images/shop/products/222.jpg',
-      description: 'hek dhjdh hehe',
-    },
+    
     
   ];
 }
