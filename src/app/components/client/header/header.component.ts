@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-header',
@@ -9,4 +9,8 @@ export class HeaderComponent {
   // constructor(private titleService: Title) {
   //   this.titleService.setTitle('Sản phẩm');
   // }
+  isShowMenu: boolean = false;
+  menuMobile(event1: any) {
+    this.isShowMenu = !this.isShowMenu;
+  }
 }
