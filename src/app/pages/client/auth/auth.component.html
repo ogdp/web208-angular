@@ -162,17 +162,35 @@
       >
         <div class="mb-6">
           <label
-            for="name"
+            for="fullname"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >Họ tên</label
           >
           <input
             type="text"
-            id="name"
+            name="fullname"
+            id="fullname"
             placeholder="Họ tên đầy đủ"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="fullname"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (fullname?.invalid && (fullname?.dirty || fullname?.touched)) ||
+              erFullname == true
+            "
+          >
+            <div style="color: red" *ngIf="fullname?.errors?.['required']">
+              <small>{{ error_Fullname[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="fullname?.errors?.['minlength']">
+              <small>{{ error_Fullname[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
+
         <div class="mb-6">
           <label
             for="email"
@@ -180,12 +198,30 @@
             >Email</label
           >
           <input
+            name="email"
             type="email"
             id="email"
             placeholder="Email"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="email_su"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (email_su?.invalid && (email_su?.dirty || email_su?.touched)) ||
+              erEmail_su == true
+            "
+          >
+            <div style="color: red" *ngIf="email_su?.errors?.['required']">
+              <small>{{ error_Email_su[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="email_su?.errors?.['email']">
+              <small>{{ error_Email_su[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
+
         <div class="mb-6">
           <label
             for="phone"
@@ -198,7 +234,23 @@
             id="phone"
             placeholder="Điện thoại ..."
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="phone"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (phone?.invalid && (phone?.dirty || phone?.touched)) ||
+              erPhone == true
+            "
+          >
+            <div style="color: red" *ngIf="phone?.errors?.['required']">
+              <small>{{ error_Phone[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="phone?.errors?.['pattern']">
+              <small>{{ error_Phone[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
         <div class="mb-6">
           <label
@@ -207,28 +259,14 @@
             >Giới tính</label
           >
           <div class="flex gap-4">
-            <select name="gender">
-              <option value="1">
-                <div>
-                  <input type="radio" name="male" id="male" checked />
-                  <label for="male" class="mx-1">Nam</label>
-                </div>
-              </option>
-              <option value="2">
-                <div>
-                  <input type="radio" name="male" id="female" />
-                  <label for="female" class="mx-1">Nữ</label>
-                </div>
-              </option>
-              <option value="3">
-                <div>
-                  <input type="radio" name="male" id="other_genders" />
-                  <label for="other_genders" class="mx-1"
-                    >Không muốn trả lời</label
-                  >
-                </div>
-              </option>
+            <select class="border" formControlName="gender">
+              <option [selected]="3" value="male">Nam</option>
+              <option value="female">Nữ</option>
+              <option value="other">Khác</option>
             </select>
+            <!-- <input value="male" type="radio" formControlName="gender" />
+            <input value="female" type="radio" formControlName="gender" />
+            <input value="other" type="radio" formControlName="gender" /> -->
           </div>
         </div>
         <div class="mb-6">
@@ -242,7 +280,23 @@
             id="address"
             placeholder="Địa chỉ phải chính xác để nhận hàng"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="address"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (address?.invalid && (address?.dirty || address?.touched)) ||
+              erPassword_su == true
+            "
+          >
+            <div style="color: red" *ngIf="address?.errors?.['required']">
+              <small>{{ error_Address[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="address?.errors?.['minlength']">
+              <small>{{ error_Address[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
 
         <div class="mb-6">
@@ -256,7 +310,27 @@
             id="password"
             placeholder="*********"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="password_su"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (password_su?.invalid &&
+                (password_su?.dirty || password_su?.touched)) ||
+              erPassword_su == true
+            "
+          >
+            <div style="color: red" *ngIf="password_su?.errors?.['required']">
+              <small>{{ error_Password_su[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="password_su?.errors?.['minlength']">
+              <small>{{ error_Password_su[1] }}</small>
+            </div>
+            <div style="color: red" *ngIf="password_su?.errors?.['maxlength']">
+              <small>{{ error_Password_su[2] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
         <div class="mb-6">
           <label
@@ -269,7 +343,36 @@
             id="confirmPassword"
             placeholder="*********"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="confirmPassword"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (confirmPassword?.invalid &&
+                (confirmPassword?.dirty || confirmPassword?.touched)) ||
+              erConfirmPassword == true
+            "
+          >
+            <div
+              style="color: red"
+              *ngIf="confirmPassword?.errors?.['required']"
+            >
+              <small>{{ error_confirmPassword[0] }}</small>
+            </div>
+            <div
+              style="color: red"
+              *ngIf="confirmPassword?.errors?.['minlength']"
+            >
+              <small>{{ error_confirmPassword[1] }}</small>
+            </div>
+            <div
+              style="color: red"
+              *ngIf="confirmPassword?.errors?.['maxlength']"
+            >
+              <small>{{ error_confirmPassword[2] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
         <div class="mb-6 flex justify-between">
           <div>

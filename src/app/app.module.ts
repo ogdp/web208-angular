@@ -24,6 +24,7 @@ import { AccountComponent } from './pages/client/account/account.component';
 import { ContactAboutUsComponent } from './components/client/contact-about-us/contact-about-us.component';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 import { CheckoutSuccessComponent } from './pages/client/checkout-success/checkout-success.component';
+
 // Blank
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 // Admin
@@ -38,6 +39,8 @@ import { FeedbackAdminComponent } from './pages/admin/feedback-admin/feedback-ad
 import { BannerAdminComponent } from './pages/admin/banner-admin/banner-admin.component';
 import { SettingAdminComponent } from './pages/admin/setting-admin/setting-admin.component';
 import { CheckoutComponent } from './pages/client/checkout/checkout.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
@@ -72,6 +75,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     BannerAdminComponent,
     SettingAdminComponent,
     CheckoutComponent,
+    ContactComponent,
+    AboutUsComponent,
     LoaderComponent,
   ],
   imports: [
