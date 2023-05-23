@@ -42,6 +42,7 @@ import { CheckoutComponent } from './pages/client/checkout/checkout.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { PolicyComponent } from './pages/client/policy/policy.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     ContactComponent,
     AboutUsComponent,
     LoaderComponent,
+    PolicyComponent,
   ],
   imports: [
     AppRoutingModule,

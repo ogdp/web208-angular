@@ -15,7 +15,11 @@
     </div>
     <!-- Left side menu -->
     <div
-      class="max-lg:top-0 max-lg:absolute max-lg:right-0 max-lg:w-full max-lg:bg-gray-100 max-lg:mt-16 max-lg:py-3 dark:text-white dark:bg-black max-lg:hidden"
+      [ngClass]="
+        isShowMenu
+          ? 'max-lg:top-0 max-lg:absolute max-lg:right-0 max-lg:w-full max-lg:bg-gray-100 max-lg:mt-16 max-lg:py-3 dark:text-white dark:bg-black max-lg:hidden menuMobile active'
+          : 'max-lg:top-0 max-lg:absolute max-lg:right-0 max-lg:w-full max-lg:bg-gray-100 max-lg:mt-16 max-lg:py-3 dark:text-white dark:bg-black max-lg:hidden'
+      "
     >
       <nav
         class="grid-rows-1 flex max-lg:w-full max-lg:flex-col max-lg:text-center"
@@ -60,8 +64,9 @@
         </a>
         <button
           class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2 hidden max-lg:block"
+          (click)="menuMobile($event)"
         >
-          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-bars" id="iconMenu2"></i>
         </button>
       </nav>
     </div>

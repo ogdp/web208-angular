@@ -20,6 +20,7 @@ import { SettingAdminComponent } from './pages/admin/setting-admin/setting-admin
 import { CheckoutComponent } from './pages/client/checkout/checkout.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/client/about-us/about-us.component';
+import { PolicyComponent } from './pages/client/policy/policy.component';
 const routes: Routes = [
   {
     path: 'admin',
@@ -44,8 +45,9 @@ const routes: Routes = [
       { path: 'product/:id', component: DetailsProductComponent },
       { path: 'account', component: AccountComponent },
       { path: 'checkout', component: CheckoutComponent },
-      { path: 'contact', component: ContactComponent},
-      { path: 'about-us', component: AboutUsComponent}
+      { path: 'contact', component: ContactComponent },
+      { path: 'about', component: AboutUsComponent },
+      { path: 'policy-terms', component: PolicyComponent },
     ],
   },
   {
