@@ -1,6 +1,6 @@
 <div class="w-full bg-gray-100 sticky top-0 z-10">
   <header
-    class="max-w-[1440px] m-auto grid grid-flow-col justify-between items-center auto-cols-max py-3 px-6"
+    class="max-w-[1440px] m-auto grid grid-flow-col justify-between items-center auto-cols-max py-3 px-6 relative"
   >
     <!-- Logo -->
     <div class="flex-shrink-0">
@@ -53,7 +53,10 @@
         <button class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-        <button class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2">
+        <button
+          (click)="showCart()"
+          class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2"
+        >
           <i class="fas fa-shopping-cart"></i>
         </button>
         <a
@@ -71,4 +74,7 @@
       </nav>
     </div>
   </header>
+  <div id="cart" class="absolute right-0 z-99 bg-white hidden">
+    <app-cart></app-cart>
+  </div>
 </div>

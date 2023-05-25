@@ -13,4 +13,12 @@ export class HeaderComponent {
   menuMobile(event1: any) {
     this.isShowMenu = !this.isShowMenu;
   }
+
+  classToggled:boolean = false;
+
+  showCart() {
+    const cart = document.getElementById("cart");
+    cart?.classList.toggle("hidden")
+    console.log("aaa")
+  }
 }

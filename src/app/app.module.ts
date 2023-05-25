@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+// import { ListProductModule } from './pages/client/product/list-product/list-product.module';
 
 // Client
 import { HeaderComponent } from './components/client/header/header.component';
@@ -43,6 +45,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PolicyComponent } from './pages/client/policy/policy.component';
+import { SearchProductComponent } from './components/client/search-product/search-product.component';
+
 
 @NgModule({
   declarations: [
@@ -80,6 +84,7 @@ import { PolicyComponent } from './pages/client/policy/policy.component';
     AboutUsComponent,
     LoaderComponent,
     PolicyComponent,
+    SearchProductComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -87,8 +92,11 @@ import { PolicyComponent } from './pages/client/policy/policy.component';
     SwiperModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
+    // ListProductModule,
   ],
   providers: [],
+  schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
