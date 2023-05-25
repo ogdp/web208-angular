@@ -43,6 +43,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PolicyComponent } from './pages/client/policy/policy.component';
+import { ListProductAdminComponent } from './pages/admin/product-admin/list-product-admin/list-product-admin.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { PolicyComponent } from './pages/client/policy/policy.component';
     AboutUsComponent,
     LoaderComponent,
     PolicyComponent,
+    ListProductAdminComponent,
   ],
   imports: [
     AppRoutingModule,
