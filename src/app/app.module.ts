@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+// import { ListProductModule } from './pages/client/product/list-product/list-product.module';
 
 // Client
 import { HeaderComponent } from './components/client/header/header.component';
@@ -43,6 +45,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PolicyComponent } from './pages/client/policy/policy.component';
+import { SearchProductComponent } from './components/client/search-product/search-product.component';
 import { ListProductAdminComponent } from './pages/admin/product-admin/list-product-admin/list-product-admin.component';
 
 @NgModule({
@@ -81,6 +84,7 @@ import { ListProductAdminComponent } from './pages/admin/product-admin/list-prod
     AboutUsComponent,
     LoaderComponent,
     PolicyComponent,
+    SearchProductComponent,
     ListProductAdminComponent,
   ],
   imports: [
@@ -89,8 +93,11 @@ import { ListProductAdminComponent } from './pages/admin/product-admin/list-prod
     SwiperModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
+    // ListProductModule,
   ],
   providers: [],
+  schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
