@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
   get password() {
     return this.signinForm.get('password');
   }
-  
+
   error_Password = [
     '*Mật khẩu không được bỏ trống',
     '*Mật khẩu tối thiểu 6 ký tự',
@@ -51,6 +51,7 @@ export class AuthComponent implements OnInit {
       this.erPassword = false;
     }
     if (this.signinForm.status !== 'VALID') return console.log('Form lỗi nhé');
+    console.log(this.signinForm.value);
     console.log('Thành công');
   }
 
@@ -73,14 +74,20 @@ export class AuthComponent implements OnInit {
   // Signup
 
   signupForm = new FormGroup({
-    fullname: new FormControl('', [Validators.minLength(5), Validators.required]),
+    fullname: new FormControl('', [
+      Validators.minLength(5),
+      Validators.required,
+    ]),
     email_su: new FormControl('', [Validators.email, Validators.required]),
     phone: new FormControl('', [
       Validators.required,
       Validators.pattern('(03|05|07|08|09)+([0-9]{8})'),
     ]),
     gender: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.minLength(10), Validators.required]),
+    address: new FormControl('', [
+      Validators.minLength(10),
+      Validators.required,
+    ]),
     password_su: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
@@ -111,22 +118,15 @@ export class AuthComponent implements OnInit {
   get phone() {
     return this.signupForm.get('phone');
   }
-  
-  
-  error_Fullname = [
-    '*Họ tên không được để trống',
-    '*Họ tên tối thiểu 5 ký tự',
-  ];
+
+  error_Fullname = ['*Họ tên không được để trống', '*Họ tên tối thiểu 5 ký tự'];
 
   error_Email_su = [
     '*Email không được bỏ trống',
     '*Email không đúng đinh dạng',
   ];
 
-  error_Phone = [
-    '*Số điện thoại không được bỏ trống',
-    '*Sai định dạng',
-  ];
+  error_Phone = ['*Số điện thoại không được bỏ trống', '*Sai định dạng'];
 
   error_Address = [
     '*Địa chỉ không được bỏ trống',
@@ -138,7 +138,7 @@ export class AuthComponent implements OnInit {
     '*Mật khẩu tối thiểu 6 ký tự',
     '*Mật khẩu tối đa 32 ký tự',
   ];
-  error_confirmPassword= [
+  error_confirmPassword = [
     '*Mật khẩu không được bỏ trống',
     '*Mật khẩu tối thiểu 6 ký tự',
     '*Mật khẩu tối đa 32 ký tự',
@@ -147,11 +147,11 @@ export class AuthComponent implements OnInit {
   // validateConfirmPassword(): void {
   //   const passwordControl = this.signupForm.get('password_su');
   //   const confirmPasswordControl = this.signupForm.get('confirmPassword');
-  
+
   //   if (passwordControl && confirmPasswordControl) {
   //     const password = passwordControl.value;
   //     const confirmPassword = confirmPasswordControl.value;
-  
+
   //     if (password !== confirmPassword) {
   //       confirmPasswordControl.setErrors({ mismatch: true });
   //     } else {
@@ -197,7 +197,7 @@ export class AuthComponent implements OnInit {
     } else {
       this.erConfirmPassword = false;
     }
-    console.log(this.signupForm.value)
+    console.log(this.signupForm.value);
     // if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
     console.log('Thành công');
   }
