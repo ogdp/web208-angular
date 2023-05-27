@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-// import { ListProductModule } from './pages/client/product/list-product/list-product.module';
 
 // Client
 import { HeaderComponent } from './components/client/header/header.component';
@@ -52,7 +51,7 @@ import { UpdatedProductComponent } from './pages/admin/product-admin/updated-pro
 import { AddCategoryComponent } from './pages/admin/category/add-category/add-category.component';
 import { AdminListCategoryComponent } from './pages/admin/category/admin-list-category/admin-list-category.component';
 import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
-
+import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-detail/checkout-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,6 +95,7 @@ import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-updat
     AddCategoryComponent,
     AdminListCategoryComponent,
     AdminUpdateCategoryComponent,
+    CheckoutDetailComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -104,7 +104,6 @@ import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-updat
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    // ListProductModule,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

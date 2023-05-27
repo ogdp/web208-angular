@@ -21,4 +21,9 @@ export class HeaderComponent {
     cart?.classList.toggle("hidden")
     console.log("aaa")
   }
+  showSearch() {
+    const search = document.getElementById("search");
+    search?.classList.toggle("hidden")
+    console.log("aaa")
+  }
 }

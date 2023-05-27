@@ -50,7 +50,10 @@
     <!-- Right side icons -->
     <div>
       <nav class="grid-rows-3 flex items-center">
-        <button class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2">
+        <button
+          (click)="showSearch()"
+          class="text-gray-600 hover:text-gray-600 font-medium px-3 py-2"
+        >
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
         <button
@@ -76,5 +79,8 @@
   </header>
   <div id="cart" class="absolute right-0 z-99 bg-white hidden">
     <app-cart></app-cart>
+  </div>
+  <div id="search" class="absolute p-2 right-0 z-99 bg-white hidden">
+    <app-search-product></app-search-product>
   </div>
 </div>
