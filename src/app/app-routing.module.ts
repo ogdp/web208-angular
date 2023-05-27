@@ -21,6 +21,7 @@ import { CheckoutComponent } from './pages/client/checkout/checkout.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { PolicyComponent } from './pages/client/policy/policy.component';
+import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-detail/checkout-detail.component';
 const routes: Routes = [
   {
     path: 'admin',
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'checkouts', component: CheckoutAdminComponent },
+      { path: 'checkouts/detail', component: CheckoutDetailComponent },
       { path: 'products', component: ProductAdminComponent },
       { path: 'users', component: UserAdminComponent },
       { path: 'banners', component: BannerAdminComponent },

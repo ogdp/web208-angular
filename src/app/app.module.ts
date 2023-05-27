@@ -47,6 +47,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PolicyComponent } from './pages/client/policy/policy.component';
 import { SearchProductComponent } from './components/client/search-product/search-product.component';
 import { ListProductAdminComponent } from './pages/admin/product-admin/list-product-admin/list-product-admin.component';
+import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-detail/checkout-detail.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ListProductAdminComponent } from './pages/admin/product-admin/list-prod
     PolicyComponent,
     SearchProductComponent,
     ListProductAdminComponent,
+    CheckoutDetailComponent,
   ],
   imports: [
     AppRoutingModule,
