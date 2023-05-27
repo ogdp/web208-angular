@@ -21,6 +21,10 @@ import { CheckoutComponent } from './pages/client/checkout/checkout.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { PolicyComponent } from './pages/client/policy/policy.component';
+import { AddProductComponent } from './pages/admin/product-admin/add-product/add-product.component';
+import { UpdatedProductComponent } from './pages/admin/product-admin/updated-product/updated-product.component';
+import { AddCategoryComponent } from './pages/admin/category/add-category/add-category.component';
+import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
 const routes: Routes = [
   {
     path: 'admin',
@@ -30,6 +34,10 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'checkouts', component: CheckoutAdminComponent },
       { path: 'products', component: ProductAdminComponent },
+      { path: 'products/add', component: AddProductComponent },
+      { path: 'products/:id/update', component: UpdatedProductComponent },
+      { path: 'category/add', component: AddCategoryComponent },
+      { path: 'category/:id/update', component: AdminUpdateCategoryComponent },
       { path: 'users', component: UserAdminComponent },
       { path: 'banners', component: BannerAdminComponent },
       { path: 'feedbacks', component: FeedbackAdminComponent },

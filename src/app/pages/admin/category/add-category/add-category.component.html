@@ -1,0 +1,62 @@
+<section class="max-h-[90vh] overflow-x-hidden">
+  <div class="mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Thêm Danh Mục</h1>
+    <section
+      class="max-w-7xl mx-auto grid grid-cols-2 gap-8 bg-white rounded-lg shadow-md p-6"
+    >
+      <section class="grid-cols-1">
+        <form>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
+              >Tên Danh Mục</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="name"
+              type="text"
+              placeholder="Nhập tên sản phẩm"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="image"
+              >Hình Ảnh</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="image"
+              type="file"
+              multiple="true"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="status"
+              >Trạng Thái</label
+            >
+            <select
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="status"
+            >
+              <option value="active">Hiển thị</option>
+              <option value="inactive">Không hiển thị</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Thêm Danh Mục
+            </button>
+          </div>
+        </form>
+      </section>
+      <section class="grid-cols-2">
+        <app-admin-list-category></app-admin-list-category>
+      </section>
+    </section>
+  </div>
+</section>

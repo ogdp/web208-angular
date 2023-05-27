@@ -47,6 +47,11 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PolicyComponent } from './pages/client/policy/policy.component';
 import { SearchProductComponent } from './components/client/search-product/search-product.component';
 import { ListProductAdminComponent } from './pages/admin/product-admin/list-product-admin/list-product-admin.component';
+import { AddProductComponent } from './pages/admin/product-admin/add-product/add-product.component';
+import { UpdatedProductComponent } from './pages/admin/product-admin/updated-product/updated-product.component';
+import { AddCategoryComponent } from './pages/admin/category/add-category/add-category.component';
+import { AdminListCategoryComponent } from './pages/admin/category/admin-list-category/admin-list-category.component';
+import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +91,11 @@ import { ListProductAdminComponent } from './pages/admin/product-admin/list-prod
     PolicyComponent,
     SearchProductComponent,
     ListProductAdminComponent,
+    AddProductComponent,
+    UpdatedProductComponent,
+    AddCategoryComponent,
+    AdminListCategoryComponent,
+    AdminUpdateCategoryComponent,
   ],
   imports: [
     AppRoutingModule,

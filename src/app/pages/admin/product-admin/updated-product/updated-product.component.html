@@ -1,0 +1,256 @@
+<section class="max-h-[90vh] overflow-x-hidden">
+  <div class="mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Cập Nhật Sản Phẩm</h1>
+    <form
+      class="max-w-7xl mx-auto grid grid-cols-2 gap-8 bg-white rounded-lg shadow-md p-6"
+    >
+      <section class="grid-cols-1">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
+            >Tên Sản Phẩm</label
+          >
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            type="text"
+            placeholder="Nhập tên sản phẩm"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="category"
+            >Danh Mục</label
+          >
+          <select
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="category"
+          >
+            <option value="category1">Danh mục 1</option>
+            <option value="category2">Danh mục 2</option>
+            <option value="category3">Danh mục 3</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="price"
+            >Giá</label
+          >
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="price"
+            type="text"
+            placeholder="Nhập giá sản phẩm"
+          />
+        </div>
+        <div class="mb-4"></div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="image"
+            >Hình Ảnh</label
+          >
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="image"
+            type="file"
+            multiple="true"
+          />
+        </div>
+      </section>
+      <section class="grid-cols-2">
+        <div class="mb-4">
+          <div>
+            <h2
+              class="block text-gray-700 text-sm font-bold mb-2 cursor-pointer"
+              (click)="showSize()"
+            >
+              Số lượng - <span *ngIf="isMatchSize == false">Size chữ</span
+              ><span *ngIf="isMatchSize == true">Size số</span>
+              <i class="fa-solid fa-caret-down mx-2"></i>
+            </h2>
+            <div
+              *ngIf="isMatchSize == true"
+              class="grid grid-cols-6 border border-gray-200 rounded-lg p-4"
+            >
+              <div>
+                <label for="" class="font-semibold text-gray-700">28</label>
+                <br />
+                <input
+                  type="number"
+                  placeholder="28"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+
+              <div>
+                <label for="" class="font-semibold text-gray-700">29</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="29"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">30</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="30"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">31</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="31"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">32</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="32"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">33</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="33"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="isMatchSize == false"
+              class="grid grid-cols-6 border border-gray-200 rounded-lg p-4"
+            >
+              <div>
+                <label for="" class="font-semibold text-gray-700">S</label>
+                <br />
+                <input
+                  type="number"
+                  placeholder="S"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">M</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="M"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">L</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="L"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">XL</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="XL"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">XXL</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="XXL"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">XXXL</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="XXXL"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="status"
+            >Trạng Thái</label
+          >
+          <select
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="status"
+          >
+            <option value="active">Hiển thị</option>
+            <option value="inactive">Không hiển thị</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="description"
+            >Mô Tả</label
+          >
+          <textarea
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="description"
+            placeholder="Nhập mô tả sản phẩm"
+          ></textarea>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="note"
+            >Lưu Ý</label
+          >
+          <textarea
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="note"
+            placeholder="Nhập lưu ý sản phẩm"
+          ></textarea>
+        </div>
+      </section>
+
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Cập Nhật Sản Phẩm
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
