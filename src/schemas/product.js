@@ -16,7 +16,13 @@ const productSchema = Joi.object({
     "any.required": "Số lượng sản phẩm là trường bắt buộc",
   }),
   description: Joi.any(),
-  image: Joi.any(),
+  image: Joi.string().required().messages({
+    "string.empty": "Hình ảnh không được bỏ trống",
+    "any.required": "Hình ảnh là trường bắt buộc",
+  }),
+  note: Joi.any(),
+  size: Joi.any(),
+  status: Joi.any(),
   categoryId: Joi.string().required().messages({
     "string.empty": "Danh mục sản phẩm không được bỏ trống",
     "any.required": "Danh mục sản phẩm là trường bắt buộc",

@@ -4,6 +4,7 @@ import cors from "cors";
 import categoryRouter from "./routers/category";
 import productRouter from "./routers/product";
 import authRouter from "./routers/auth";
+import userRouter from "./routers/user";
 import cartRouter from "./routers/cart";
 import billRouter from "./routers/bill";
 import dotenv from "dotenv";
@@ -22,6 +23,7 @@ app.use("/api", billRouter);
 app.use("/api", cartRouter);
 app.use("/api", productRouter);
 app.use("/api", authRouter);
+app.use("/api", userRouter);
 
 mongoose.connect(`${URL_DB}`);
 

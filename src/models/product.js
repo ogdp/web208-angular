@@ -19,6 +19,17 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    size: {
+      type: Array,
+    },
+    status: {
+      type: Boolean,
+      default: true,
+    },
+    note: {
+      type: String,
+      default: "Còn hàng",
+    },
     categoryId: {
       type: mongoose.Types.ObjectId,
       ref: "Category",
