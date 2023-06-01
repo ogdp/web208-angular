@@ -71,3 +71,40 @@ export const signin = async (req, res) => {
     });
   }
 };
+export const getAll = async (req, res) => {
+  try {
+    const users = await User.find();
+    if (!users) {
+      return res.status(400).json({
+        message: "Không có khách hàng",
+      });
+    }
+    return res.status(200).json({
+      message: "Danh sách khách hàng",
+      users,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+  console.log("AAA");
+};
+export const get = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(400).json({
+        message: "Danh mục rỗng",
+      });
+    }
+    return res.status(200).json({
+      message: "Lấy danh mục thành công",
+      user,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};

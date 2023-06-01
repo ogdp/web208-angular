@@ -14,7 +14,8 @@ app.use("/api", productRouter);
 app.use("/api", authRouter);
 
 mongoose.connect(
-  `mongodb+srv://duclqmph28383:duclqmph28383@cluster0.uhzph4w.mongodb.net/`
+  `mongodb+srv://thai9696:33554432@cluster1.yuunqxd.mongodb.net/?retryWrites=true&w=majority
+  `
 );
 
 export const viteNodeApp = app;
