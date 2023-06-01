@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 // Client
 import { HeaderComponent } from './components/client/header/header.component';
@@ -104,6 +105,7 @@ import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-d
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    HttpClientModule
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

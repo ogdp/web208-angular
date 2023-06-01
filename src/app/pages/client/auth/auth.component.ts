@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validator, ValidatorFn, Validators } from '@angular/forms';
+import { matchPassword } from './matchpassword.validator';
 
 @Component({
   selector: 'app-auth',
@@ -98,6 +99,8 @@ export class AuthComponent implements OnInit {
       Validators.minLength(6),
       Validators.maxLength(32),
     ]),
+  },{
+    validators:matchPassword
   });
 
   get fullname() {
@@ -118,6 +121,8 @@ export class AuthComponent implements OnInit {
   get phone() {
     return this.signupForm.get('phone');
   }
+
+  
 
   error_Fullname = ['*Họ tên không được để trống', '*Họ tên tối thiểu 5 ký tự'];
 
@@ -140,8 +145,8 @@ export class AuthComponent implements OnInit {
   ];
   error_confirmPassword = [
     '*Mật khẩu không được bỏ trống',
-    '*Mật khẩu tối thiểu 6 ký tự',
-    '*Mật khẩu tối đa 32 ký tự',
+    '*Mật khẩu không khớp',
+    
   ];
 
   // validateConfirmPassword(): void {

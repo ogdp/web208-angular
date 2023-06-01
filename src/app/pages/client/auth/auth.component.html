@@ -363,15 +363,9 @@
             </div>
             <div
               style="color: red"
-              *ngIf="confirmPassword?.errors?.['minlength']"
+              *ngIf="signupForm?.errors?.['passwordmatcherror']"
             >
               <small>{{ error_confirmPassword[1] }}</small>
-            </div>
-            <div
-              style="color: red"
-              *ngIf="confirmPassword?.errors?.['maxlength']"
-            >
-              <small>{{ error_confirmPassword[2] }}</small>
             </div>
           </div>
           <!--  -->
