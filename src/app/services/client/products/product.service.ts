@@ -9,7 +9,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
   getProducts(){
     let apiUrl = 'http://localhost:8080/api/products';
-    // let apiUrl = 'http://localhost:3000/products';
+    
     return this.http.get(apiUrl);
   }
   

@@ -19,6 +19,7 @@ export class DetailsProductComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
+      console.log(this.id);
       this.product = this.products.filter(
         (item: any) => item._id == this.id
       )[0];

@@ -15,9 +15,9 @@ export class ListProductComponent  {
   // filteredProducts: IProduct[] = [];
   constructor(private product:ProductService){
     this.product.getProducts().subscribe((data:any)=>{
-      console.log(data);
+      
       this.products=data.product.docs
-      console.log(this.products)
+      
     })
   }
   // ngOnInit(): void{
