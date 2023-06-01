@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -8,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
   isMatch: boolean = false;
+  notification: number = 0;
   showSignup() {
     this.isMatch = !this.isMatch;
     // console.log(this.isMatch);
@@ -22,15 +24,12 @@ export class AuthComponent implements OnInit {
       Validators.maxLength(32),
     ]),
   });
-
   get email() {
     return this.signinForm.get('email');
   }
-
   get password() {
     return this.signinForm.get('password');
   }
-
   error_Password = [
     '*Mật khẩu không được bỏ trống',
     '*Mật khẩu tối thiểu 6 ký tự',
@@ -39,6 +38,8 @@ export class AuthComponent implements OnInit {
   error_Email = ['*Email không được bỏ trống', '*Email không đúng định dạng'];
   erEmail: boolean = false;
   erPassword: boolean = false;
+  constructor(private signinSV: SigninServiceService, private router: Router) {}
+
   signin() {
     if (this.signinForm.value.email == '') {
       this.erEmail = true;
@@ -51,8 +52,33 @@ export class AuthComponent implements OnInit {
       this.erPassword = false;
     }
     if (this.signinForm.status !== 'VALID') return console.log('Form lỗi nhé');
-    console.log(this.signinForm.value);
-    console.log('Thành công');
+    // console.log(this.signinForm.value);
+    // console.log('Thành công');
+
+    const url = 'http://localhost:8080/api/signin';
+    this.signinSV.signinLogic(url, this.signinForm.value).subscribe(
+      (data: any) => {
+        this.notification = 1;
+        setTimeout(() => {
+          this.notification = 0;
+          this.router.navigate(['/']);
+        }, 1200);
+        localStorage.setItem('user', '');
+        localStorage.setItem('user', JSON.stringify(data));
+      },
+      (error: any) => {
+        try {
+          throw error;
+        } catch (error) {
+          this.notification = 2;
+          setTimeout(() => {
+            this.notification = 0;
+          }, 1200);
+          localStorage.setItem('user', '');
+          // console.log('Lỗi xảy ra:', error);
+        }
+      }
+    );
   }
 
   // // Signin
