@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { products } from 'src/app/data/mockData';
 import { IProduct } from 'src/common/Product';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ProductService } from 'src/app/services/client/products/product.service';
 
 @Component({
   selector: 'app-list-product',
@@ -9,10 +9,17 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./list-product.component.css'],
 })
 export class ListProductComponent  {
-  products: IProduct[] = products;
+  // products: IProduct[] = products;
+  products:any
   // searchTerm!: string;
   // filteredProducts: IProduct[] = [];
-  constructor(){}
+  constructor(private product:ProductService){
+    this.product.getProducts().subscribe((data:any)=>{
+      console.log(data);
+      this.products=data.product.docs
+      console.log(this.products)
+    })
+  }
   // ngOnInit(): void{
 
   // }

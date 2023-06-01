@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validator,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { matchPassword } from './matchpassword.validator';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
 import { Router } from '@angular/router';
 @Component({
@@ -99,32 +108,37 @@ export class AuthComponent implements OnInit {
 
   // Signup
 
-  signupForm = new FormGroup({
-    fullname: new FormControl('', [
-      Validators.minLength(5),
-      Validators.required,
-    ]),
-    email_su: new FormControl('', [Validators.email, Validators.required]),
-    phone: new FormControl('', [
-      Validators.required,
-      Validators.pattern('(03|05|07|08|09)+([0-9]{8})'),
-    ]),
-    gender: new FormControl('', [Validators.required]),
-    address: new FormControl('', [
-      Validators.minLength(10),
-      Validators.required,
-    ]),
-    password_su: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(32),
-    ]),
-    confirmPassword: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(32),
-    ]),
-  });
+  signupForm = new FormGroup(
+    {
+      fullname: new FormControl('', [
+        Validators.minLength(5),
+        Validators.required,
+      ]),
+      email_su: new FormControl('', [Validators.email, Validators.required]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('(03|05|07|08|09)+([0-9]{8})'),
+      ]),
+      gender: new FormControl('', [Validators.required]),
+      address: new FormControl('', [
+        Validators.minLength(10),
+        Validators.required,
+      ]),
+      password_su: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(32),
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(32),
+      ]),
+    },
+    {
+      validators: matchPassword,
+    }
+  );
 
   get fullname() {
     return this.signupForm.get('fullname');
@@ -166,8 +180,7 @@ export class AuthComponent implements OnInit {
   ];
   error_confirmPassword = [
     '*Mật khẩu không được bỏ trống',
-    '*Mật khẩu tối thiểu 6 ký tự',
-    '*Mật khẩu tối đa 32 ký tự',
+    '*Mật khẩu không khớp',
   ];
 
   // validateConfirmPassword(): void {

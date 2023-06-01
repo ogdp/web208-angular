@@ -83,12 +83,8 @@
             <i
               class="addtocart absolute text-3xl top-4 right-4 fa-solid fa-cart-plus cursor-pointer text-black"
             ></i>
-            <a class="w-full" routerLink="/product/{{ item._id }}">
-              <img
-                class=""
-                src="https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg"
-                alt="product image"
-              />
+            <a class="w-full">
+              <img class="" src="{{ item.image }}" alt="product image" />
             </a>
             <div class="pb-5 my-2">
               <a routerLink="/product/{{ item._id }}">
