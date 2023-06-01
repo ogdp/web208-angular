@@ -71,7 +71,6 @@ export const signin = async (req, res) => {
     });
   }
 };
-
 export const verifyToken = async (req, res) => {
   try {
     const token = req.params.id;
