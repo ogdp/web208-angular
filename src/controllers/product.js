@@ -7,7 +7,7 @@ export const getAll = async (req, res) => {
       _page = 1,
       _order = "asc",
       _sort = "createdAt",
-      _limit = 2,
+      _limit = 10,
     } = req.query;
     const options = {
       page: _page,
@@ -23,7 +23,7 @@ export const getAll = async (req, res) => {
       });
     }
     return res.status(200).json({
-      message: "Danh sách sản phẩm",
+      // message: "Danh sách sản phẩm",
       product,
     });
   } catch (error) {
