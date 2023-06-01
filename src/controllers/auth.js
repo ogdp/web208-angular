@@ -108,3 +108,36 @@ export const get = async (req, res) => {
     });
   }
 };
+export const verifyToken = async (req, res) => {
+  try {
+    const token = req.params.id;
+    const isMatch = await Jwt.verify(token, "duc");
+    const user = await User.findById(isMatch.id);
+    // console.log(user);
+    if (!user) {
+      return res.status(403).json({
+        message: "Token không hợp lệ",
+      });
+    }
+    if (user.role == "member") {
+      return res.status(200).json({
+        message: "account member",
+        user,
+      });
+    }
+    if (user.role == "admin") {
+      return res.status(200).json({
+        message: "account admin",
+        user,
+      });
+    }
+    return res.status(403).json({
+      message: "Token error",
+      token: req.params.id,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
