@@ -8,7 +8,7 @@ import userRouter from "./routers/user";
 import cartRouter from "./routers/cart";
 import billRouter from "./routers/bill";
 import dotenv from "dotenv";
-
+import uploadRouter from "./routers/upload";
 dotenv.config();
 
 const { URL_DB } = process.env;
@@ -24,6 +24,7 @@ app.use("/api", cartRouter);
 app.use("/api", productRouter);
 app.use("/api", authRouter);
 app.use("/api", userRouter);
+app.use("/api", uploadRouter);
 
 mongoose.connect(`${URL_DB}`);
 
