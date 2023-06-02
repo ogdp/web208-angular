@@ -39,14 +39,14 @@ export class HeaderComponent {
       this.verifyToken.verifyToken(url).subscribe(
         (data: any) => {
           this.isMathGuest = false;
-          console.log(data);
+          // console.log(data);
         },
         (error: any) => {
           this.isMathGuest = true;
           try {
             throw error;
           } catch (error) {
-            console.log('Lỗi xảy ra:', error);
+            // console.log('Lỗi xảy ra:', error);
           }
         }
       );

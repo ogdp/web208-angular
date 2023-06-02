@@ -21,7 +21,7 @@
       </h5>
       <div
         *ngIf="tabControl == true"
-        class="absolute bg-slate-100 w-[250px] left-[-80%] top-[120%] rounded-lg px-3 py-2"
+        class="absolute bg-slate-100 w-[250px] left-[-80%] top-[120%] rounded-lg px-3 py-2 z-50"
       >
         <a routerLink="/admin/profile">
           <div
@@ -40,6 +40,7 @@
           </div>
         </a>
         <div
+          (click)="logoutAccount()"
           class="w-full hover:bg-slate-200 px-2 py-1 rounded-lg"
           style="transition: all 0.4s"
         >
