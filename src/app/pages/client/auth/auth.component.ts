@@ -93,25 +93,6 @@ export class AuthComponent implements OnInit {
     );
   }
 
-  
-
-  // // Signin
-  // user = {
-  //   email: '',
-  //   password: '',
-  //   save_signin: false,
-  // };
-  // // Erorr signin
-  // errorSignin = {
-  //   email: null,
-  //   password: null,
-  // };
-  // onSignin() {
-  //   console.log(this.user);
-  //   console.log(this.errorSignin);
-  // }
-
-  // Signup
 
   signupForm = new FormGroup(
     {
@@ -194,23 +175,6 @@ export class AuthComponent implements OnInit {
     '*Mật khẩu không được bỏ trống',
     '*Mật khẩu không khớp',
   ];
-
-  // validateConfirmPassword(): void {
-  //   const passwordControl = this.signupForm.get('password_su');
-  //   const confirmPasswordControl = this.signupForm.get('confirmPassword');
-
-  //   if (passwordControl && confirmPasswordControl) {
-  //     const password = passwordControl.value;
-  //     const confirmPassword = confirmPasswordControl.value;
-
-  //     if (password !== confirmPassword) {
-  //       confirmPasswordControl.setErrors({ mismatch: true });
-  //     } else {
-  //       confirmPasswordControl.setErrors(null);
-  //     }
-  //   }
-  // }
-
   
 
   erFullname: boolean = false;
@@ -251,8 +215,8 @@ export class AuthComponent implements OnInit {
       this.erConfirmPassword = false;
     }
     console.log(this.signupForm.value);
-    // if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
-    console.log('Thành công');
+    if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
+   
     
     const url = 'http://localhost:8080/api/signup';
     const userNew = {
@@ -268,11 +232,20 @@ export class AuthComponent implements OnInit {
     this.signupSV.signupLogic(url, userNew).subscribe(
       (data: any) => {
         console.log(data)
+        this.notification = 3;
+          setTimeout(() => {
+            this.notification = 0;
+            window.location.reload()
+          }, 1200);
       },
       (error: any) => {
         try {
           throw error;
         } catch (error) {
+          this.notification = 4;
+          setTimeout(() => {
+            this.notification = 0;
+          }, 1200);
           console.log('Lỗi xảy ra:', error);
         }
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { ActivatedRoute } from '@angular/router';
 import { products } from 'src/app/data/mockData';
+import { ProductService } from 'src/app/services/client/products/product.service';
 
 @Component({
   selector: 'app-details-product',
@@ -9,32 +10,48 @@ import { products } from 'src/app/data/mockData';
   styleUrls: ['./details-product.component.css'],
 })
 export class DetailsProductComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
   id: any = '';
-  products = products;
   product: any = {};
+  products:any
+  constructor(private route: ActivatedRoute,private getProduct: ProductService) {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      console.log(this.id);
+    });
+    this.getProduct.getProduct(this.id).subscribe((data: any) => {
+      console.log(data)
+      this.product = data.product;
+    });
+    this.getProduct.getProductsNew().subscribe((data: any) => {
+      console.log(data)
+      this.products = data.product.docs;
+    });
+  }
+  
+ 
+  
   order_product: any = {};
   inputValuee: number = 1;
   activeSize: string = this.order_product.size;
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.id = params['id'];
-      console.log(this.id);
-      this.product = this.products.filter(
-        (item: any) => item._id == this.id
-      )[0];
+    // this.route.params.subscribe((params) => {
+    //   this.id = params['id'];
+    //   console.log(this.id);
+    //   this.product = this.products.filter(
+    //     (item: any) => item._id == this.id
+    //   )[0];
       this.order_product = {
         product_id: this.product._id,
         name: this.product.name,
         price: this.product.price,
-        size: this.product?.size[0],
+        size: this.product.size[0],
         description: this.product.description,
         image: this.product.image,
         note: this.product.note,
         quantity: this.inputValuee,
         user: 'notfound',
       };
-    });
+    // });
   }
 
   formatMoney(amount: any) {
