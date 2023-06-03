@@ -2,13 +2,18 @@ import cloudinary from "../config/cloudinary";
 
 export const uploadImage = async (req, res) => {
   const images = req.files.map((file) => file.path);
+  return res.json({ urls: images });
 
+  console.log(images);
+  let i = 0;
   const uploadedImages = [];
+  i++;
+  console.log("Mấy lần", i);
   for (const image of images) {
     try {
       const result = await cloudinary.uploader.upload(image);
-      //   console.log(result);
-      //   console.log("Thanh cong");
+      // console.log(result);
+      console.log("Thanh cong");
       uploadedImages.push({
         url: result.secure_url,
         publicId: result.public_id,
@@ -31,6 +36,8 @@ export const deleteImage = async (req, res) => {
   }
 };
 export const updateImage = async (req) => {
+  console.log("Mấy lần 11");
+  return res.json({ urls: "ok" });
   const publicId = req.params.publicId; // Lấy publicId của ảnh cần cập nhật
   const newImage = req.files[0].path; // Lấy đường dẫn của ảnh mới
 
