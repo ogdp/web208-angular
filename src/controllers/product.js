@@ -13,7 +13,7 @@ export const getAll = async (req, res) => {
       page: _page,
       limit: _limit,
       sort: {
-        [_sort]: _order == "desc" ? -1 : 1,
+        [_sort]: _order == "desc" ? 1 : -1,
       },
     };
     const product = await Product.paginate({}, options);

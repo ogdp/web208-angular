@@ -36,7 +36,6 @@ export const deleteImage = async (req, res) => {
   }
 };
 export const updateImage = async (req) => {
-  console.log("Mấy lần 11");
   return res.json({ urls: "ok" });
   const publicId = req.params.publicId; // Lấy publicId của ảnh cần cập nhật
   const newImage = req.files[0].path; // Lấy đường dẫn của ảnh mới
