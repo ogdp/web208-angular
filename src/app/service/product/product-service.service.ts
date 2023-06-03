@@ -11,6 +11,10 @@ export class ProductServiceService {
     const result = this.http.get(`${this.url}/products`);
     return result;
   }
+  getOneProduct(id: string) {
+    const result = this.http.get(`${this.url}/products/${id}`);
+    return result;
+  }
   removeProduct(id: string, token: string) {
     const config = {
       headers: { Authorization: 'Bearer ' + token },
@@ -23,6 +27,13 @@ export class ProductServiceService {
       headers: { Authorization: 'Bearer ' + token },
     };
     const result = this.http.post(`${this.url}/products/`, body, config);
+    return result;
+  }
+  updateProduct(id: string, body: object, token: string) {
+    const config = {
+      headers: { Authorization: 'Bearer ' + token },
+    };
+    const result = this.http.patch(`${this.url}/products/${id}`, body, config);
     return result;
   }
 }

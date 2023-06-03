@@ -37,7 +37,7 @@ const routes: Routes = [
       { path: 'checkouts/detail', component: CheckoutDetailComponent },
       { path: 'products', component: ProductAdminComponent },
       { path: 'products/add', component: AddProductComponent },
-      { path: 'products/:id/update', component: UpdatedProductComponent },
+      { path: 'products/:id/edit', component: UpdatedProductComponent },
       { path: 'category/add', component: AddCategoryComponent },
       { path: 'category/:id/update', component: AdminUpdateCategoryComponent },
       { path: 'users', component: UserAdminComponent },
