@@ -61,6 +61,68 @@
     </div>
   </div>
 </section>
+<section
+  [ngClass]="
+    notification == 3
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Đăng ký thành công!</span>
+    </div>
+  </div>
+</section>
+<section
+  [ngClass]="
+    notification == 4
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Đăng ký thất bại !!!</span>
+    </div>
+  </div>
+</section>
 <section>
   <div
     class="grid md:grid-cols-2 gap-1 md:max-w-[1280px] m-auto min-h-[90vh] md:py-[5%] md:px-[7%] justify-center items-center max-md:px-1"
@@ -383,7 +445,13 @@
         </div>
         <div class="mb-6 flex justify-between">
           <div>
-            <input type="checkbox" name="save" id="policy_terms" />
+            <input
+              type="checkbox"
+              name="save"
+              id="policy_terms"
+              [(ngModel)]="isChecked"
+              [ngModelOptions]="{ standalone: true }"
+            />
             <label for="policy_terms" class="pl-2"
               >Chấp nhận điều khoản chính sách của chúng tôi .</label
             ><a routerLink="/policy-terms" class="font-semibold block"
@@ -392,6 +460,8 @@
           </div>
         </div>
         <button
+          [disabled]="!isChecked"
+          id="submit-signup"
           type="submit"
           class="text-white w-full bg-black hover:opacity-80 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

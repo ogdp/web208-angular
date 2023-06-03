@@ -1,10 +1,11 @@
 import { IBannerImg } from 'src/common/BannerImg';
 import { ICategory } from 'src/common/Category';
 import { IProduct } from 'src/common/Product';
+import { ProductService } from '../services/client/products/product.service';
 
-export const products: IProduct[] = [
+export const products: any = [
   {
-    _id: '1',
+    _id: '6474a14a7a0b4e5830894cf6',
     name: 'Product 1',
     price: 20000,
     image:
@@ -81,19 +82,7 @@ export const products: IProduct[] = [
     description: 'heheh',
     note: 'hihi',
   },
-  // {
-  //   _id: '7',
-  //   name: 'Product 7',
-  //   price: 20000,
-  //   image:
-  //     'https://product.hstatic.net/200000307615/product/7__2__31af12cab2374c02b2df8c3fe98ce9b6_master.jpg',
-  //   rate: 0,
-  //   size: '',
-  //   quantity: 1,
-  //   code: 'AK47',
-  //   description: 'heheh',
-  //   note: 'hihi',
-  // },
+  
 ];
 export const dataBanner: IBannerImg[] = [
   {
@@ -139,3 +128,4 @@ export const categories: ICategory[] = [
     name: 'H & M',
   },
 ];
+

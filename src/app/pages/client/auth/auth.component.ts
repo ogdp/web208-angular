@@ -10,13 +10,16 @@ import {
 } from '@angular/forms';
 import { matchPassword } from './matchpassword.validator';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
+import { SignupServiceService } from 'src/app/service/auth/signup-service.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
+  isChecked: boolean = false;
   isMatch: boolean = false;
   notification: number = 0;
   showSignup() {
@@ -47,8 +50,8 @@ export class AuthComponent implements OnInit {
   error_Email = ['*Email không được bỏ trống', '*Email không đúng định dạng'];
   erEmail: boolean = false;
   erPassword: boolean = false;
-  constructor(private signinSV: SigninServiceService, private router: Router) {}
-
+  constructor(private signinSV: SigninServiceService,private signupSV: SignupServiceService, private router: Router) {}
+  
   signin() {
     if (this.signinForm.value.email == '') {
       this.erEmail = true;
@@ -90,23 +93,6 @@ export class AuthComponent implements OnInit {
     );
   }
 
-  // // Signin
-  // user = {
-  //   email: '',
-  //   password: '',
-  //   save_signin: false,
-  // };
-  // // Erorr signin
-  // errorSignin = {
-  //   email: null,
-  //   password: null,
-  // };
-  // onSignin() {
-  //   console.log(this.user);
-  //   console.log(this.errorSignin);
-  // }
-
-  // Signup
 
   signupForm = new FormGroup(
     {
@@ -119,7 +105,7 @@ export class AuthComponent implements OnInit {
         Validators.required,
         Validators.pattern('(03|05|07|08|09)+([0-9]{8})'),
       ]),
-      gender: new FormControl('', [Validators.required]),
+      gender: new FormControl('male', [Validators.required]),
       address: new FormControl('', [
         Validators.minLength(10),
         Validators.required,
@@ -139,6 +125,13 @@ export class AuthComponent implements OnInit {
       validators: matchPassword,
     }
   );
+
+  
+     
+
+     
+    
+  
 
   get fullname() {
     return this.signupForm.get('fullname');
@@ -182,22 +175,7 @@ export class AuthComponent implements OnInit {
     '*Mật khẩu không được bỏ trống',
     '*Mật khẩu không khớp',
   ];
-
-  // validateConfirmPassword(): void {
-  //   const passwordControl = this.signupForm.get('password_su');
-  //   const confirmPasswordControl = this.signupForm.get('confirmPassword');
-
-  //   if (passwordControl && confirmPasswordControl) {
-  //     const password = passwordControl.value;
-  //     const confirmPassword = confirmPasswordControl.value;
-
-  //     if (password !== confirmPassword) {
-  //       confirmPasswordControl.setErrors({ mismatch: true });
-  //     } else {
-  //       confirmPasswordControl.setErrors(null);
-  //     }
-  //   }
-  // }
+  
 
   erFullname: boolean = false;
   erEmail_su: boolean = false;
@@ -237,7 +215,40 @@ export class AuthComponent implements OnInit {
       this.erConfirmPassword = false;
     }
     console.log(this.signupForm.value);
-    // if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
-    console.log('Thành công');
+    if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
+   
+    
+    const url = 'http://localhost:8080/api/signup';
+    const userNew = {
+      name: this.signupForm.value.fullname,
+      email: this.signupForm.value.email_su,
+      gender: this.signupForm.value.gender,
+      address: this.signupForm.value.address,
+      tel: this.signupForm.value.phone,
+      password: this.signupForm.value.password_su,
+      confirmPassword: this.signupForm.value.confirmPassword,
+    };
+
+    this.signupSV.signupLogic(url, userNew).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.notification = 3;
+          setTimeout(() => {
+            this.notification = 0;
+            window.location.reload()
+          }, 1200);
+      },
+      (error: any) => {
+        try {
+          throw error;
+        } catch (error) {
+          this.notification = 4;
+          setTimeout(() => {
+            this.notification = 0;
+          }, 1200);
+          console.log('Lỗi xảy ra:', error);
+        }
+      }
+    );
   }
 }
