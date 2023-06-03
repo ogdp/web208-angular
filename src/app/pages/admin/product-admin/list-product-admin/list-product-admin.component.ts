@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
 import { ProductServiceService } from 'src/app/service/product/product-service.service';
 import { Title } from '@angular/platform-browser';
+import { CategoryServiceService } from 'src/app/service/category/category-service.service';
 @Component({
   selector: 'app-list-product-admin',
   templateUrl: './list-product-admin.component.html',
@@ -10,13 +11,25 @@ import { Title } from '@angular/platform-browser';
 export class ListProductAdminComponent {
   products: any;
   notificationPro: number = 0;
+  listCategory: any;
   constructor(
     private productSV: ProductServiceService,
     private signinSV: SigninServiceService,
-    private titleService: Title
+    private titleService: Title,
+    private categorySV: CategoryServiceService
   ) {
     this.titleService.setTitle('Quản lý sản phẩm');
     this.refreshData();
+    this.titleService.setTitle('Thêm sản phẩm');
+    this.categorySV.getCategory().subscribe(
+      (response: any) => {
+        this.listCategory = response.category;
+        // console.log(this.listCategory);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
   refreshData = () => {
     this.productSV.getProduct().subscribe((data: any) => {
@@ -63,5 +76,14 @@ export class ListProductAdminComponent {
       style: 'currency',
       currency: 'VND',
     });
+  }
+  formatDate(value: any) {
+    const date = new Date(value);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString().padStart(4, '0');
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${day}:${month}:${year} | ${hours}:${minutes}`;
   }
 }

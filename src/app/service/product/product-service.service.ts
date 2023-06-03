@@ -18,4 +18,11 @@ export class ProductServiceService {
     const result = this.http.delete(`${this.url}/products/${id}`, config);
     return result;
   }
+  addProduct(body: object, token: string) {
+    const config = {
+      headers: { Authorization: 'Bearer ' + token },
+    };
+    const result = this.http.post(`${this.url}/products/`, body, config);
+    return result;
+  }
 }

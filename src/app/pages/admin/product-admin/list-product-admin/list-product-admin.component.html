@@ -239,7 +239,7 @@
           </th>
           <td class="px-6 py-4">
             <img
-              src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQQMJk4DAlP-OFJ6Bi9pYMuGUvUx6xCdtWpTOtA3n0oiXCUdYZ6I-QvPrZosSzvFoGgedllptAMWs2ukCqbKQXVsdVSWn1hH9XeJyO2mOW7&usqp=CAE"
+              src="{{ item?.image[0] }}"
               alt=""
               class="w-14 h-14 object-cover"
             />
@@ -253,10 +253,12 @@
             {{ item.status == true ? "Hiển thị" : "Không hiển thị" }}
           </td>
           <td class="px-6 py-4 max-w-[70px] overflow-hidden">
-            {{ item.categoryId }}
+            <span *ngFor="let icate of listCategory">
+              <span *ngIf="icate._id == item.categoryId">{{ icate.name }}</span>
+            </span>
           </td>
           <td class="px-6 py-4 max-w-[70px] overflow-hidden">
-            {{ item.createdAt }}
+            {{ formatDate(item.createdAt) }}
           </td>
           <td class="px-6 py-4 flex gap-2">
             <a
