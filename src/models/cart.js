@@ -14,12 +14,25 @@ const cartSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Product",
     },
+    name: {
+      type: String,
+    },
     quantity: {
       type: Number,
     },
-    note: {
+    price: {
+      type: Number,
+    },
+    size: {
       type: String,
-      default: "",
+    },
+    image: {
+      type: Array,
+      default: [],
+    },
+    user: {
+      type: String,
+      default: "notfound",
     },
     device: {
       type: String,

@@ -37,6 +37,25 @@ export const get = async (req, res) => {
     });
   }
 };
+export const getFollowDevice = async (req, res) => {
+  try {
+    const details = req.params.id;
+    const cart = await Cart.find({ device: { $regex: details } });
+    if (!cart) {
+      return res.status(400).json({
+        message: "Giỏ hàng rỗng",
+      });
+    }
+    return res.status(200).json({
+      message: "Lấy giỏ hàng thành công",
+      cart,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
 export const create = async (req, res) => {
   try {
     const { error } = await cartSchema.validate(req.body, {
