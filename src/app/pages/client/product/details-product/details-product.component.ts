@@ -90,16 +90,48 @@ export class DetailsProductComponent implements OnInit {
   onHanddleOrder() {
     (async () => {
       this.isLoadding = true;
-      const { data }: any = await axios.get(
-        'https://api.ipify.org/?format=json'
-      );
-      const userAgent = navigator.userAgent;
-      const deviceDetail = {
-        ip: data.ip,
-        userAgent: String(userAgent),
+      // const { data }: any = await axios.get(
+      //   'https://hv9z9dmd3zvtctkvo5fayfyanezudkb6.edns.ip-api.com/json?lang=en'
+      // );
+      // // const { data }: any = await axios.get(
+      // //   'https://api.ipify.org/?format=json'
+      // // );
+      const deviceInfo = () => {
+        const getCartToken = (): string | null => {
+          const cookies = document.cookie.split(';'); // Tách các cookie thành một mảng
+
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim(); // Xóa khoảng trắng thừa
+
+            if (cookie.startsWith('cart_token=')) {
+              const value = cookie.substring('cart_token='.length);
+              return value;
+            }
+          }
+          return null; // Trả về null nếu không tìm thấy "cart_token" trong cookie
+        };
+        if (getCartToken() == null) {
+          const platform = navigator.platform;
+          const vendor = navigator.vendor;
+          const language = navigator.language;
+          const sizeWH = window.innerHeight + window.innerWidth;
+          const currentTime = new Date().getTime();
+          const userAgent = navigator.userAgent;
+          const deviceDetail = {
+            ip: '123',
+            violet: String(platform + vendor + language),
+            currentTime: String(currentTime),
+            sizeWH: String(sizeWH),
+            userAgent: String(userAgent),
+          };
+          const encode64 = btoa(JSON.stringify(deviceDetail));
+          document.cookie = `cart_token=${encode64}`;
+          this.order_product.device = encode64;
+        } else {
+          this.order_product.device = getCartToken();
+        }
       };
-      const encode64 = btoa(JSON.stringify(deviceDetail));
-      this.order_product.device = encode64;
+      deviceInfo();
       // Gửi lên server
       this.cartSV.addToCart(this.order_product).subscribe(
         (response: any) => {
@@ -108,7 +140,7 @@ export class DetailsProductComponent implements OnInit {
           setTimeout(() => {
             this.notification = 0;
           }, 1200);
-          console.log(response);
+          // console.log(response);
         },
         (err: any) => {
           this.isLoadding = false;

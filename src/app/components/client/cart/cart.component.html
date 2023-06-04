@@ -25,10 +25,7 @@
       <div class="p-5" *ngFor="let item of listCart">
         <div class="grid grid-cols-5 gap-3 relative">
           <div>
-            <img
-              src="https://product.hstatic.net/200000307615/product/5__2__71fd137f95c6496b89237d27ba0136bb_master.jpg"
-              alt=""
-            />
+            <img src="{{ item.image[0] }}" alt="" />
           </div>
           <div class="col-span-3">
             <p class="font-bold text-sm mb-1">
@@ -84,14 +81,19 @@
   <div class="p-5 flex justify-between items-center">
     <div>Tổng tiền:</div>
     <div class="text-[#FF0000] font-bold">
-      0<span class="underline">đ</span>
+      {{ formatMoney(sumPrice) }}
     </div>
   </div>
   <div class="p-5 flex justify-between items-center">
     <button class="px-10 py-3 bg-black text-white uppercase">
       Xem giỏ hàng
     </button>
-    <button class="px-10 py-3 bg-black text-white uppercase">Thanh toán</button>
+    <button
+      class="px-10 py-3 bg-black text-white uppercase"
+      (click)="onHandleCheckout()"
+    >
+      Thanh toán
+    </button>
   </div>
   <hr />
 </div>

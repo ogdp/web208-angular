@@ -60,16 +60,18 @@ export class HeaderComponent {
       this.isLoadding = true;
       (async () => {
         try {
-          const { data }: any = await axios.get(
-            'https://api.ipify.org/?format=json'
-          );
-          const userAgent = navigator.userAgent;
-          const deviceDetail = {
-            ip: data.ip,
-            userAgent: String(userAgent),
+          const getCartToken = (): string | null => {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              if (cookie.startsWith('cart_token=')) {
+                const value = cookie.substring('cart_token='.length);
+                return value;
+              }
+            }
+            return null;
           };
-          const encode64 = btoa(JSON.stringify(deviceDetail));
-          this.cartSV.getDeviceCart(encode64).subscribe(
+          this.cartSV.getDeviceCart(String(getCartToken())).subscribe(
             (response: any) => {
               this.cartData = response;
               const cart = document.getElementById('cart');
