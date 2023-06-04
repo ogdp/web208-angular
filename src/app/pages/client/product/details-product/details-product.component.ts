@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ActivatedRoute } from '@angular/router';
 import { products } from 'src/app/data/mockData';
 import { ProductService } from 'src/app/services/client/products/product.service';
-
+import { CartServiceService } from 'src/app/service/cart/cart-service.service';
 @Component({
   selector: 'app-details-product',
   templateUrl: './details-product.component.html',
@@ -12,49 +12,38 @@ import { ProductService } from 'src/app/services/client/products/product.service
 export class DetailsProductComponent implements OnInit {
   id: any = '';
   product: any = {};
-  products:any
-  constructor(private route: ActivatedRoute,private getProduct: ProductService) {
-    this.route.params.subscribe((params) => {
-      this.id = params['id'];
-      console.log(this.id);
-    });
-    this.getProduct.getProduct(this.id).subscribe((data: any) => {
-      console.log(data)
-      this.product = data.product;
-    });
-    this.getProduct.getProductsNew().subscribe((data: any) => {
-      console.log(data)
-      this.products = data.product.docs;
-    });
-  }
-  
- 
-  
+  products: any;
   order_product: any = {};
   inputValuee: number = 1;
   activeSize: string = this.order_product.size;
-  ngOnInit() {
-    // this.route.params.subscribe((params) => {
-    //   this.id = params['id'];
-    //   console.log(this.id);
-    //   this.product = this.products.filter(
-    //     (item: any) => item._id == this.id
-    //   )[0];
+  notification: number = 0;
+  isLoadding: boolean = false;
+  constructor(
+    private route: ActivatedRoute,
+    private getProduct: ProductService,
+    private cartSV: CartServiceService
+  ) {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+    });
+    this.getProduct.getProduct(this.id).subscribe((data: any) => {
+      this.product = data.product;
       this.order_product = {
         product_id: this.product._id,
         name: this.product.name,
         price: this.product.price,
-        size: this.product.size[0],
-        description: this.product.description,
+        size: this.product?.size[0],
         image: this.product.image,
-        note: this.product.note,
         quantity: this.inputValuee,
         user: 'notfound',
       };
-    // });
+    });
+    this.getProduct.getProductsNew().subscribe((data: any) => {
+      this.products = data.product.docs;
+    });
   }
-
-  formatMoney(amount: any) {
+  ngOnInit() {}
+  formatMoney(amount: any = 0) {
     return amount.toLocaleString('vi-VN', {
       style: 'currency',
       currency: 'VND',
@@ -97,7 +86,7 @@ export class DetailsProductComponent implements OnInit {
       this.activeSize = value.target.id;
     }
   }
-  isLoadding: boolean = false;
+  // Submit
   onHanddleOrder() {
     (async () => {
       this.isLoadding = true;
@@ -109,9 +98,24 @@ export class DetailsProductComponent implements OnInit {
         ip: data.ip,
         userAgent: String(userAgent),
       };
-      this.isLoadding = false;
-      this.order_product.deviceDetail = deviceDetail;
-      console.log('Đã thêm sản phẩm : >> ', this.order_product);
+      const encode64 = btoa(JSON.stringify(deviceDetail));
+      this.order_product.device = encode64;
+      // Gửi lên server
+      this.cartSV.addToCart(this.order_product).subscribe(
+        (response: any) => {
+          this.isLoadding = false;
+          this.notification = 1;
+          setTimeout(() => {
+            this.notification = 0;
+          }, 1200);
+          console.log(response);
+        },
+        (err: any) => {
+          this.isLoadding = false;
+          console.log(err);
+        }
+      );
+      // console.log('Đã thêm sản phẩm : >> ', this.order_product);
     })();
   }
 }

@@ -150,9 +150,10 @@
     </div>
   </header>
   <div id="cart" class="absolute right-0 z-99 bg-white hidden">
-    <app-cart></app-cart>
+    <app-cart [receivedData]="cartData"></app-cart>
   </div>
   <div id="search" class="absolute p-2 right-0 z-99 bg-white hidden">
     <app-search-product></app-search-product>
   </div>
 </div>
+<app-loader [isLoadding]="isLoadding"></app-loader>

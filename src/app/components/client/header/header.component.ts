@@ -2,26 +2,27 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
 import { Router } from '@angular/router';
+import { CartServiceService } from 'src/app/service/cart/cart-service.service';
+import axios from 'axios';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  // constructor(private titleService: Title) {
-  //   this.titleService.setTitle('Sản phẩm');
-  // }
-
   isShowMenu: boolean = false;
   isShowProfile: boolean = false;
   isMathGuest: boolean = false;
   notification: number = 0;
+  public cartData: any = '';
+  isLoadding: boolean = false;
   menuMobile(event1: any) {
     this.isShowMenu = !this.isShowMenu;
   }
   constructor(
     private verifyToken: SigninServiceService,
-    private router: Router
+    private router: Router,
+    private cartSV: CartServiceService
   ) {
     const checkLoged = localStorage.getItem('user');
     if (
@@ -53,12 +54,43 @@ export class HeaderComponent {
     }
   }
 
-  classToggled: boolean = false;
-
+  classToggledCart: boolean = false;
   showCart() {
-    const cart = document.getElementById('cart');
-    cart?.classList.toggle('hidden');
-    console.log('aaa');
+    if (this.classToggledCart == false) {
+      this.isLoadding = true;
+      (async () => {
+        try {
+          const { data }: any = await axios.get(
+            'https://api.ipify.org/?format=json'
+          );
+          const userAgent = navigator.userAgent;
+          const deviceDetail = {
+            ip: data.ip,
+            userAgent: String(userAgent),
+          };
+          const encode64 = btoa(JSON.stringify(deviceDetail));
+          this.cartSV.getDeviceCart(encode64).subscribe(
+            (response: any) => {
+              this.cartData = response;
+              const cart = document.getElementById('cart');
+              cart?.classList.toggle('hidden');
+              this.isLoadding = false;
+            },
+            (err: any) => {
+              console.log(err);
+            }
+          );
+        } catch (error) {
+          console.log(error);
+          this.isLoadding = false;
+        }
+      })();
+      this.classToggledCart = true;
+    } else {
+      const cart = document.getElementById('cart');
+      cart?.classList.toggle('hidden');
+      this.classToggledCart = false;
+    }
   }
   showSearch() {
     const search = document.getElementById('search');
