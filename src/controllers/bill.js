@@ -1,4 +1,5 @@
 import Bill from "../models/bill";
+import Cart from "../models/cart";
 import billSchema from "../schemas/bill";
 
 export const getAll = async (req, res) => {
@@ -21,7 +22,12 @@ export const getAll = async (req, res) => {
 };
 export const get = async (req, res) => {
   try {
-    const bill = await Bill.findById(req.params.id);
+    const bill = await Bill.findById(req.params.id)
+      .populate({
+        path: "cart_id.product",
+        model: "Cart",
+      })
+      .exec();
     if (!bill) {
       return res.status(400).json({
         message: "Đơn hàng rỗng",
@@ -31,6 +37,17 @@ export const get = async (req, res) => {
       message: "Lấy đơn hàng thành công",
       bill,
     });
+
+    // const bill = await Bill.findById(req.params.id);
+    // if (!bill) {
+    //   return res.status(400).json({
+    //     message: "Đơn hàng rỗng",
+    //   });
+    // }
+    // return res.status(200).json({
+    //   message: "Lấy đơn hàng thành công",
+    //   bill,
+    // });
   } catch (error) {
     return res.status(400).json({
       error: error.message,

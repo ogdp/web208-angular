@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
-
 const billSchema = new mongoose.Schema(
   {
-    cart_id: {
-      type: mongoose.Types.ObjectId,
-      ref: "Cart",
-    },
+    cart_id: [
+      {
+        product: {
+          type: mongoose.Types.ObjectId,
+          ref: "Cart",
+        },
+        quantity: Number,
+      },
+    ],
     user_id: {
       type: mongoose.Types.ObjectId,
       ref: "User",
@@ -13,7 +17,7 @@ const billSchema = new mongoose.Schema(
     name: {
       type: String,
     },
-    phone: {
+    tel: {
       type: String,
     },
     email: {
@@ -22,6 +26,9 @@ const billSchema = new mongoose.Schema(
     },
     address: {
       type: String,
+    },
+    price: {
+      type: Number,
     },
     note: {
       type: String,
