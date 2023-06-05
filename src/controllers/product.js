@@ -23,7 +23,7 @@ export const getAll = async (req, res) => {
       });
     }
     return res.status(200).json({
-      // message: "Danh sách sản phẩm",
+      message: "Danh sách sản phẩm",
       product,
     });
   } catch (error) {
@@ -107,6 +107,30 @@ export const remove = async (req, res) => {
     return res.status(200).json({
       message: "Xoá sản phẩm thành công",
       product,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+export const search = async (req, res) => {
+  try {
+    let productFind = await Product.find({
+      $or: [
+        {
+          name: {
+            $regex: req.params.key,
+            $options: "i",
+          },
+        },
+      ],
+    });
+    if (!productFind) {
+    }
+    return res.status(200).json({
+      message: "Kết quả tìm kiếm",
+      productFind,
     });
   } catch (error) {
     return res.status(400).json({
