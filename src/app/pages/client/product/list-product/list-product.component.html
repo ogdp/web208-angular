@@ -1,48 +1,64 @@
-<section id="c-search" class="container mx-auto my-6">
-  <div class="grid grid-cols-4 gap-8">
+<section id="c-search" class="lg:px-0 px-3 container mx-auto my-6">
+  <div class="grid lg:grid-cols-4 grid-cols-1 lg:gap-8 gap-0">
     <div class="">
-      <h3 class="font-bold mt-8">Tìm kiếm sản phẩm</h3>
-      <form action="">
-        <input
-          class="border py-2 pl-2 my-3 focus:outline-none mr-2"
-          type="text"
-          placeholder="Nhập tên"
-        />
-        <button
-          class="bg-black text-white py-2 px-4 hover:bg-white hover:text-black hover:border my-3 font-medium"
+      <h3 class="font-bold lg:mt-8 mt-4">Tìm kiếm sản phẩm</h3>
+
+      <!-- <input
+        class="border py-2 pl-2 my-3 focus:outline-none mr-2"
+        type="text"
+        placeholder="Nhập tên"
+        [(ngModel)]="enteredSearchValue"
+        (input)="onSearchTextChanged()"
+      /> -->
+      <div class="flex justify-between">
+        <app-search-product
+          (searchTextChanged)="onSearchTextEntered($event)"
+        ></app-search-product>
+        <!-- <button
+          class="bg-black text-white py-2 px-4 hover:bg-white hover:text-black hover:border font-medium"
         >
           Tìm kiếm
-        </button>
-        <br />
-        <label class="font-bold" for="">Thương hiệu</label><br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />Nike <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />Adidas
-        <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />Nike <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />Nike <br />
-        <label class="font-bold" for="">Mức giá</label> <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />Dưới
-        200.000 VND <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />
-        200.000 VND - 400.000 VND <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />
-        400.000 VND - 700.000 VND<br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />
-        700.000 VND - 1.000.000 VND <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />Trên
-        1.000.000 VND <br />
-        <label class="font-bold" for="">Kích thước</label> <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />29 <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />30 <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />31 <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />32 <br />
-        <input class="mr-2" type="checkbox" id="" name="" value="" />33 <br />
-      </form>
+        </button> -->
+      </div>
+
+      <br />
+      <label class="font-bold" for="">Thương hiệu</label><br />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />Nike
+      <br class="lg:block hidden" />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />Adidas
+      <br class="lg:block hidden" />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />Chanel
+      <br class="lg:block hidden" />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />Lacoste
+      <br />
+
+      <label class="font-bold" for="">Mức giá</label> <br />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />Dưới 200.000
+      VND <br />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />
+      200.000 VND - 400.000 VND <br />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />
+      400.000 VND - 700.000 VND<br />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />
+      700.000 VND - 1.000.000 VND <br />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />Trên
+      1.000.000 VND <br />
+      <label class="font-bold" for="">Kích thước</label> <br />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />29
+      <br class="lg:block hidden" />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />30
+      <br class="lg:block hidden" />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />31
+      <br class="lg:block hidden" />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />32
+      <br class="lg:block hidden" />
+      <input class="mr-2" type="checkbox" id="" name="" value="" />33
+      <br class="lg:block hidden" />
     </div>
     <div class="col-span-3">
-      <div class="my-8 flex justify-between items-center">
-        <h2 class="text-2xl font-bold">Kết quả tìm kiếm</h2>
-        <form action="">
+      <div class="lg:my-8 my-3 flex justify-between items-center">
+        <h2 class="lg:text-2xl text-xl font-bold">Kết quả tìm kiếm</h2>
+        <form action="" class="lg:block hidden">
           <label class="font-bold" for="">Sắp xếp theo: </label>
           <select class="focus:outline-none border py-1 px-2" name="" id="">
             <option value="">Mới nhất</option>
@@ -53,8 +69,116 @@
         </form>
       </div>
 
-      <app-card></app-card>
+      <!-- <app-card></app-card> -->
+      <div class="grid lg:grid-cols-3 grid-cols-1 gap-8">
+        <div
+          *ngFor="let item of products"
+          class="relative bg-white dark:bg-gray-800 dark:border-gray-700 m-auto addtocart-hover"
+        >
+          <div
+            *ngIf="
+              searchText === '' || item.name.toLowerCase().includes(searchText)
+            "
+          >
+            <!-- <i
+              class="addtocart absolute text-3xl top-4 right-4 fa-solid fa-cart-plus cursor-pointer text-black"
+            ></i> -->
+            <a class="w-full">
+              <img
+                *ngIf="item.image?.length > 1"
+                class=""
+                src="{{ item.image[0] }}"
+                alt="product image"
+              />
+              <img
+                *ngIf="item.image?.length == 1"
+                class=""
+                src="{{ item.image }}"
+                alt="product image"
+              />
+            </a>
+            <div class="pb-5 my-2">
+              <a routerLink="/product/{{ item._id }}">
+                <h5
+                  class="tracking-tight dark:text-white line-clamp-1 hover:text-[#618C2F] uppercase"
+                >
+                  {{ item.name }}
+                </h5>
+              </a>
 
+              <div class="flex items-center justify-between">
+                <span class="font-light dark:text-white"
+                  >{{ item.price }} <span class="underline">đ</span>
+                </span>
+                <div>
+                  <div class="flex items-center mt-2.5 mb-5">
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 h-5 text-yellow-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>First star</title>
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      ></path>
+                    </svg>
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 h-5 text-yellow-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Second star</title>
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      ></path>
+                    </svg>
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 h-5 text-yellow-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Third star</title>
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      ></path>
+                    </svg>
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 h-5 text-yellow-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Fourth star</title>
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      ></path>
+                    </svg>
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 h-5 text-yellow-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Fifth star</title>
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>
         <div class="text-center w-full" aria-label="Page navigation example">
           <ul class="inline-flex items-center -space-x-px">

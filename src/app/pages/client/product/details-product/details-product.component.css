@@ -14,9 +14,11 @@
   background-color: red;
   transform: translate(-50%, -50%) skew(313deg, 359deg);
 }
+
 .size_sold p {
   color: #bea1a1;
 }
+
 /* input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -155,6 +157,7 @@ button#price_btn:disabled::after {
 }
 
 @media (hover: hover) {
+
   input[type="number"]:hover,
   button#price_btn:hover {
     background-color: white;
@@ -172,15 +175,38 @@ button#price_btn:disabled::after {
     transform: translateY(1px);
   }
 }
+
 .sizeHover:hover {
   background-color: black;
 }
-.sizeHover:hover > p {
+
+.sizeHover:hover>p {
   color: white;
 }
+
 .sizeHover.active {
   background-color: black;
 }
-.sizeHover.active > p {
+
+.sizeHover.active>p {
   color: white;
+}
+
+.addtocart {
+  opacity: -1;
+  transition: all .4s;
+
+}
+
+.addtocart-hover:hover>div>i {
+  opacity: 1;
+
+}
+
+/* .addtocart-hover:hover>a>img {
+  filter: brightness(90%);
+} */
+
+.addtocart-hover>a>img {
+  transition: all 0.2s ease-in-out;
 }

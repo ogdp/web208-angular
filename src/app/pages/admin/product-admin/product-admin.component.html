@@ -1,1 +1,21 @@
-<p>product-admin works!</p>
+<section class="px-4">
+  <h1 class="font-bold text-xl">Quản lý sản phẩm</h1>
+  <div class="py-3">
+    <a routerLink="/admin/products/add">
+      <button
+        class="py-2 px-3 bg-blue-600 text-white rounded-md hover:bg-blue-500"
+      >
+        Thêm sản phẩm
+      </button>
+    </a>
+    <a routerLink="/admin/category/add">
+      <button
+        class="py-2 px-3 @apply bg-[linear-gradient(116deg,#cb5714_0%,#ecab0d_100%)] hover:bg-[linear-gradient(204deg,#b54606_0%,#eab024_100%)] text-white rounded-md hover:bg-blue-500 ml-3"
+        style="transition: all 0.4s"
+      >
+        Quản lý danh mục
+      </button>
+    </a>
+  </div>
+  <app-list-product-admin></app-list-product-admin>
+</section>

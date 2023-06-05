@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 // Client
 import { HeaderComponent } from './components/client/header/header.component';
@@ -24,6 +26,7 @@ import { AccountComponent } from './pages/client/account/account.component';
 import { ContactAboutUsComponent } from './components/client/contact-about-us/contact-about-us.component';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 import { CheckoutSuccessComponent } from './pages/client/checkout-success/checkout-success.component';
+
 // Blank
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 // Admin
@@ -38,8 +41,18 @@ import { FeedbackAdminComponent } from './pages/admin/feedback-admin/feedback-ad
 import { BannerAdminComponent } from './pages/admin/banner-admin/banner-admin.component';
 import { SettingAdminComponent } from './pages/admin/setting-admin/setting-admin.component';
 import { CheckoutComponent } from './pages/client/checkout/checkout.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutUsComponent } from './pages/client/about-us/about-us.component';
 import { LoaderComponent } from './components/loader/loader.component';
-
+import { PolicyComponent } from './pages/client/policy/policy.component';
+import { SearchProductComponent } from './components/client/search-product/search-product.component';
+import { ListProductAdminComponent } from './pages/admin/product-admin/list-product-admin/list-product-admin.component';
+import { AddProductComponent } from './pages/admin/product-admin/add-product/add-product.component';
+import { UpdatedProductComponent } from './pages/admin/product-admin/updated-product/updated-product.component';
+import { AddCategoryComponent } from './pages/admin/category/add-category/add-category.component';
+import { AdminListCategoryComponent } from './pages/admin/category/admin-list-category/admin-list-category.component';
+import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
+import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-detail/checkout-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +85,18 @@ import { LoaderComponent } from './components/loader/loader.component';
     BannerAdminComponent,
     SettingAdminComponent,
     CheckoutComponent,
+    ContactComponent,
+    AboutUsComponent,
     LoaderComponent,
+    PolicyComponent,
+    SearchProductComponent,
+    ListProductAdminComponent,
+    AddProductComponent,
+    UpdatedProductComponent,
+    AddCategoryComponent,
+    AdminListCategoryComponent,
+    AdminUpdateCategoryComponent,
+    CheckoutDetailComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -80,8 +104,11 @@ import { LoaderComponent } from './components/loader/loader.component';
     SwiperModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
+    HttpClientModule,
   ],
   providers: [],
+  schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,355 @@
+<section
+  [ngClass]="
+    notificationPro == 1
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Thêm sản phẩm thành công!</span>
+    </div>
+  </div>
+</section>
+<section class="max-h-[90vh] overflow-x-hidden">
+  <div class="mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Thêm Sản Phẩm</h1>
+    <form
+      [formGroup]="addForm"
+      (ngSubmit)="onSubmit()"
+      class="max-w-7xl mx-auto grid grid-cols-2 gap-8 bg-white rounded-lg shadow-md p-6"
+    >
+      <section class="grid-cols-1">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
+            >Tên Sản Phẩm</label
+          >
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            name="name"
+            type="text"
+            formControlName="name"
+            placeholder="Nhập tên sản phẩm"
+          />
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+            <div style="color: red" *ngIf="name?.errors?.['required']">
+              <small>{{ noti_er_name[1] }}</small>
+            </div>
+            <div style="color: red" *ngIf="name?.errors?.['minlength']">
+              <small>{{ noti_er_name[2] }}</small>
+            </div>
+            <div style="color: red" *ngIf="name?.errors?.['maxlength']">
+              <small>{{ noti_er_name[3] }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="category"
+            >Danh Mục</label
+          >
+          <select
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="category"
+            formControlName="categoryId"
+          >
+            <option
+              *ngFor="let icate of listCategory"
+              value="{{ icate._id }}"
+              [selected]=""
+            >
+              {{ icate.name }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="price"
+            >Giá</label
+          >
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="price"
+            type="number"
+            placeholder="Nhập giá sản phẩm"
+            formControlName="price"
+          />
+          <div *ngIf="price?.invalid && (price?.dirty || price?.touched)">
+            <div style="color: red" *ngIf="price?.errors?.['required']">
+              <small>{{ noti_er_price[1] }}</small>
+            </div>
+            <div style="color: red" *ngIf="price?.errors?.['min']">
+              <small>{{ noti_er_price[2] }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4"></div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="image"
+            >Hình Ảnh</label
+          >
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="file"
+            id="image"
+            formControlName="image"
+            accept="image/*"
+            (change)="handleFileInput($event)"
+            multiple
+          />
+          <div *ngIf="image?.invalid && (image?.dirty || image?.touched)">
+            <div style="color: red" *ngIf="image?.errors?.['required']">
+              <small>{{ noti_er_image[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="image?.errors?.['invalidImage']">
+              <small>{{ noti_er_image[1] }}</small>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="grid-cols-2">
+        <!-- <div class="mb-4">
+          <div>
+            <h2
+              class="block text-gray-700 text-sm font-bold mb-2 cursor-pointer"
+              (click)="showSize()"
+            >
+              Số lượng - <span *ngIf="isMatchSize == false">Size chữ</span
+              ><span *ngIf="isMatchSize == true">Size số</span>
+              <i class="fa-solid fa-caret-down mx-2"></i>
+            </h2>
+            <div
+              *ngIf="isMatchSize == true"
+              class="grid grid-cols-6 border border-gray-200 rounded-lg p-4"
+            >
+              <div>
+                <label for="" class="font-semibold text-gray-700">28</label>
+                <br />
+                <input
+                  type="number"
+                  placeholder="28"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+
+              <div>
+                <label for="" class="font-semibold text-gray-700">29</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="29"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">30</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="30"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">31</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="31"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">32</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="32"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">33</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="33"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="isMatchSize == false"
+              class="grid grid-cols-6 border border-gray-200 rounded-lg p-4"
+            >
+              <div>
+                <label for="" class="font-semibold text-gray-700">S</label>
+                <br />
+                <input
+                  type="number"
+                  placeholder="S"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">M</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="M"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                  width="100%"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">L</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="L"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">XL</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="XL"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">XXL</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="XXL"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+              <div>
+                <label for="" class="font-semibold text-gray-700">XXXL</label
+                ><br />
+                <input
+                  type="number"
+                  placeholder="XXXL"
+                  class="focus:outline-none border border-gray-300 w-20 text-center"
+                  value="0"
+                />
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="quantity"
+            >Số lượng</label
+          >
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="quantity"
+            type="number"
+            placeholder="Nhập số lượng sản phẩm"
+            formControlName="quantity"
+          />
+          <div
+            *ngIf="quantity?.invalid && (quantity?.dirty || quantity?.touched)"
+          >
+            <div style="color: red" *ngIf="quantity?.errors?.['required']">
+              <small>{{ noti_er_quantity[1] }}</small>
+            </div>
+            <div style="color: red" *ngIf="quantity?.errors?.['min']">
+              <small>{{ noti_er_quantity[2] }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="status"
+            >Trạng Thái</label
+          >
+          <select
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="status"
+            formControlName="status"
+          >
+            <option [selected]="true" value="true">Hiển thị</option>
+            <option value="false">Không hiển thị</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="description"
+            >Mô Tả</label
+          >
+          <textarea
+            formControlName="description"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="description"
+            placeholder="Nhập mô tả sản phẩm"
+          ></textarea>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="note"
+            >Lưu Ý</label
+          >
+          <textarea
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="note"
+            placeholder="Nhập lưu ý sản phẩm"
+            formControlName="note"
+          ></textarea>
+        </div>
+      </section>
+
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Thêm Sản Phẩm
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+<app-loader [isLoadding]="isLoadding"></app-loader>

@@ -1,4 +1,4 @@
-<div class="w-[450px] mx-auto border">
+<div class="lg:w-[450px] md:w-full mx-auto border">
   <div class="m-5">
     <p class="text-center bg-[#F3F5F6] py-2">Giỏ hàng</p>
   </div>
@@ -20,8 +20,44 @@
     </svg>
     <p class="text-center my-5">Hiện chưa có sản phẩm</p>
   </div>
-  <div class="my-5 p-5">
-    <div class="grid grid-cols-5 gap-3">
+  <div class="max-h-[380px] overflow-scroll overflow-x-hidden">
+    <div *ngIf="listCart !== ''">
+      <div class="p-5" *ngFor="let item of listCart">
+        <div class="grid grid-cols-5 gap-3 relative">
+          <div>
+            <img src="{{ item.image[0] }}" alt="" />
+          </div>
+          <div class="col-span-3">
+            <p class="font-bold text-sm mb-1">
+              {{ item.name }}
+            </p>
+            <p class="font-bold text-sm mb-1 text-red-500">
+              {{ formatMoney(item.price) }}
+            </p>
+
+            <div class="w-6 h-6 bg-[#F5F5F5] text-center relative">
+              {{ item.size }}
+              <span class="text-black absolute top-0 right-[-273px]">
+                x {{ item.quantity }}</span
+              >
+            </div>
+          </div>
+          <button
+            class="absolute py-2 px-3 top-[-10px] right-0"
+            (click)="removeCart(item._id)"
+          >
+            <i class="fa-solid fa-xmark text-[18px]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="listCart == ''" class="w-full py-12 text-center">
+      <i class="fa-solid fa-cart-plus text-5xl my-4"></i>
+      <h4 class="font-semibold text-base">Giỏ hàng rỗng</h4>
+    </div>
+  </div>
+  <!-- <div class="my-5 p-5">
+    <div class="grid grid-cols-5 gap-3 relative">
       <div>
         <img
           src="https://product.hstatic.net/200000307615/product/5__2__71fd137f95c6496b89237d27ba0136bb_master.jpg"
@@ -35,21 +71,29 @@
         </p>
         <div class="w-6 h-6 bg-[#F5F5F5] text-center">2</div>
       </div>
+      <button class="absolute py-2 px-3 top-[-10px] right-0">
+        <i class="fa-solid fa-xmark text-[18px]"></i>
+      </button>
     </div>
-  </div>
+  </div> -->
   <hr />
 
   <div class="p-5 flex justify-between items-center">
     <div>Tổng tiền:</div>
     <div class="text-[#FF0000] font-bold">
-      0<span class="underline">đ</span>
+      {{ formatMoney(sumPrice) }}
     </div>
   </div>
   <div class="p-5 flex justify-between items-center">
     <button class="px-10 py-3 bg-black text-white uppercase">
       Xem giỏ hàng
     </button>
-    <button class="px-10 py-3 bg-black text-white uppercase">Thanh toán</button>
+    <button
+      class="px-10 py-3 bg-black text-white uppercase"
+      (click)="onHandleCheckout()"
+    >
+      Thanh toán
+    </button>
   </div>
   <hr />
 </div>

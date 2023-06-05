@@ -1,3 +1,128 @@
+<!-- Alert -->
+<section
+  [ngClass]="
+    notification == 1
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Đăng nhập thành công!</span>
+    </div>
+  </div>
+</section>
+<section
+  [ngClass]="
+    notification == 2
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Kiểm tra lại email hoặc mật khẩu !!!</span>
+    </div>
+  </div>
+</section>
+<section
+  [ngClass]="
+    notification == 3
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Đăng ký thành công!</span>
+    </div>
+  </div>
+</section>
+<section
+  [ngClass]="
+    notification == 4
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Đăng ký thất bại !!!</span>
+    </div>
+  </div>
+</section>
 <section>
   <div
     class="grid md:grid-cols-2 gap-1 md:max-w-[1280px] m-auto min-h-[90vh] md:py-[5%] md:px-[7%] justify-center items-center max-md:px-1"
@@ -26,6 +151,7 @@
         *ngIf="isMatch == false"
         [formGroup]="signinForm"
         (ngSubmit)="signin()"
+        class="max-sm:px-5"
       >
         <div class="mb-6">
           <label
@@ -102,77 +228,44 @@
           Đăng nhập
         </button>
       </form>
-      <!-- <form *ngIf="isMatch == false" (ngSubmit)="onSignin()">
-        <div class="mb-6">
-          <label
-            for="email"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Email</label
-          >
-          <input
-            [(ngModel)]="user.email"
-            name="email"
-            type="email"
-            id="email"
-            placeholder="Email của bạn"
-            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          />
-          <p class="text-red-600 text-[14px]">Email không tồn tại</p>
-        </div>
-        <div class="mb-6">
-          <label
-            for="password"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Mật khẩu</label
-          >
-          <input
-            [(ngModel)]="user.password"
-            name="password"
-            type="password"
-            id="password"
-            placeholder="*********"
-            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          />
-          <p class="text-red-600 text-[14px]">Mật khẩu không chính xác</p>
-        </div>
-        <div class="mb-6 flex justify-between">
-          <div>
-            <input
-              type="checkbox"
-              name="save_signin"
-              [(ngModel)]="user.save_signin"
-              id="save"
-            />
-            <label for="save" class="pl-2 cursor-pointer">Lưu đăng nhập</label>
-          </div>
-          <a routerLink="/forgot-password">Khôi phục tài khoản</a>
-        </div>
-        <button
-          type="submit"
-          class="text-white w-full bg-black hover:opacity-80 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Đăng nhập
-        </button>
-      </form> -->
 
       <form
         *ngIf="isMatch == true"
         [formGroup]="signupForm"
         (ngSubmit)="signup()"
+        class="max-sm:px-5"
       >
         <div class="mb-6">
           <label
-            for="name"
+            for="fullname"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >Họ tên</label
           >
           <input
             type="text"
-            id="name"
+            name="fullname"
+            id="fullname"
             placeholder="Họ tên đầy đủ"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="fullname"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (fullname?.invalid && (fullname?.dirty || fullname?.touched)) ||
+              erFullname == true
+            "
+          >
+            <div style="color: red" *ngIf="fullname?.errors?.['required']">
+              <small>{{ error_Fullname[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="fullname?.errors?.['minlength']">
+              <small>{{ error_Fullname[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
+
         <div class="mb-6">
           <label
             for="email"
@@ -180,12 +273,30 @@
             >Email</label
           >
           <input
+            name="email"
             type="email"
             id="email"
             placeholder="Email"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="email_su"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (email_su?.invalid && (email_su?.dirty || email_su?.touched)) ||
+              erEmail_su == true
+            "
+          >
+            <div style="color: red" *ngIf="email_su?.errors?.['required']">
+              <small>{{ error_Email_su[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="email_su?.errors?.['email']">
+              <small>{{ error_Email_su[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
+
         <div class="mb-6">
           <label
             for="phone"
@@ -198,7 +309,23 @@
             id="phone"
             placeholder="Điện thoại ..."
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="phone"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (phone?.invalid && (phone?.dirty || phone?.touched)) ||
+              erPhone == true
+            "
+          >
+            <div style="color: red" *ngIf="phone?.errors?.['required']">
+              <small>{{ error_Phone[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="phone?.errors?.['pattern']">
+              <small>{{ error_Phone[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
         <div class="mb-6">
           <label
@@ -207,28 +334,14 @@
             >Giới tính</label
           >
           <div class="flex gap-4">
-            <select name="gender">
-              <option value="1">
-                <div>
-                  <input type="radio" name="male" id="male" checked />
-                  <label for="male" class="mx-1">Nam</label>
-                </div>
-              </option>
-              <option value="2">
-                <div>
-                  <input type="radio" name="male" id="female" />
-                  <label for="female" class="mx-1">Nữ</label>
-                </div>
-              </option>
-              <option value="3">
-                <div>
-                  <input type="radio" name="male" id="other_genders" />
-                  <label for="other_genders" class="mx-1"
-                    >Không muốn trả lời</label
-                  >
-                </div>
-              </option>
+            <select class="border" formControlName="gender">
+              <option [selected]="3" value="male">Nam</option>
+              <option value="female">Nữ</option>
+              <option value="other">Khác</option>
             </select>
+            <!-- <input value="male" type="radio" formControlName="gender" />
+            <input value="female" type="radio" formControlName="gender" />
+            <input value="other" type="radio" formControlName="gender" /> -->
           </div>
         </div>
         <div class="mb-6">
@@ -242,7 +355,23 @@
             id="address"
             placeholder="Địa chỉ phải chính xác để nhận hàng"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="address"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (address?.invalid && (address?.dirty || address?.touched)) ||
+              erPassword_su == true
+            "
+          >
+            <div style="color: red" *ngIf="address?.errors?.['required']">
+              <small>{{ error_Address[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="address?.errors?.['minlength']">
+              <small>{{ error_Address[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
 
         <div class="mb-6">
@@ -256,7 +385,27 @@
             id="password"
             placeholder="*********"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="password_su"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (password_su?.invalid &&
+                (password_su?.dirty || password_su?.touched)) ||
+              erPassword_su == true
+            "
+          >
+            <div style="color: red" *ngIf="password_su?.errors?.['required']">
+              <small>{{ error_Password_su[0] }}</small>
+            </div>
+            <div style="color: red" *ngIf="password_su?.errors?.['minlength']">
+              <small>{{ error_Password_su[1] }}</small>
+            </div>
+            <div style="color: red" *ngIf="password_su?.errors?.['maxlength']">
+              <small>{{ error_Password_su[2] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
         <div class="mb-6">
           <label
@@ -269,11 +418,40 @@
             id="confirmPassword"
             placeholder="*********"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            formControlName="confirmPassword"
           />
+          <!-- Validate -->
+          <div
+            *ngIf="
+              (confirmPassword?.invalid &&
+                (confirmPassword?.dirty || confirmPassword?.touched)) ||
+              erConfirmPassword == true
+            "
+          >
+            <div
+              style="color: red"
+              *ngIf="confirmPassword?.errors?.['required']"
+            >
+              <small>{{ error_confirmPassword[0] }}</small>
+            </div>
+            <div
+              style="color: red"
+              *ngIf="signupForm?.errors?.['passwordmatcherror']"
+            >
+              <small>{{ error_confirmPassword[1] }}</small>
+            </div>
+          </div>
+          <!--  -->
         </div>
         <div class="mb-6 flex justify-between">
           <div>
-            <input type="checkbox" name="save" id="policy_terms" />
+            <input
+              type="checkbox"
+              name="save"
+              id="policy_terms"
+              [(ngModel)]="isChecked"
+              [ngModelOptions]="{ standalone: true }"
+            />
             <label for="policy_terms" class="pl-2"
               >Chấp nhận điều khoản chính sách của chúng tôi .</label
             ><a routerLink="/policy-terms" class="font-semibold block"
@@ -282,6 +460,8 @@
           </div>
         </div>
         <button
+          [disabled]="!isChecked"
+          id="submit-signup"
           type="submit"
           class="text-white w-full bg-black hover:opacity-80 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
@@ -289,7 +469,7 @@
         </button>
       </form>
 
-      <div class="w-full py-5">
+      <div class="w-full py-5 max-sm:px-5">
         <p>
           {{ isMatch ? "Bạn đã có tài khoản ?" : "Bạn chưa có tài khoản ?" }}
           <button class="font-semibold" (click)="showSignup()">

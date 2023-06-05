@@ -18,6 +18,14 @@ import { BannerAdminComponent } from './pages/admin/banner-admin/banner-admin.co
 import { FeedbackAdminComponent } from './pages/admin/feedback-admin/feedback-admin.component';
 import { SettingAdminComponent } from './pages/admin/setting-admin/setting-admin.component';
 import { CheckoutComponent } from './pages/client/checkout/checkout.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutUsComponent } from './pages/client/about-us/about-us.component';
+import { PolicyComponent } from './pages/client/policy/policy.component';
+import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-detail/checkout-detail.component';
+import { AddProductComponent } from './pages/admin/product-admin/add-product/add-product.component';
+import { UpdatedProductComponent } from './pages/admin/product-admin/updated-product/updated-product.component';
+import { AddCategoryComponent } from './pages/admin/category/add-category/add-category.component';
+import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
 const routes: Routes = [
   {
     path: 'admin',
@@ -26,7 +34,12 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'checkouts', component: CheckoutAdminComponent },
+      { path: 'checkouts/detail', component: CheckoutDetailComponent },
       { path: 'products', component: ProductAdminComponent },
+      { path: 'products/add', component: AddProductComponent },
+      { path: 'products/:id/edit', component: UpdatedProductComponent },
+      { path: 'category/add', component: AddCategoryComponent },
+      { path: 'category/:id/update', component: AdminUpdateCategoryComponent },
       { path: 'users', component: UserAdminComponent },
       { path: 'banners', component: BannerAdminComponent },
       { path: 'feedbacks', component: FeedbackAdminComponent },
@@ -42,6 +55,9 @@ const routes: Routes = [
       { path: 'product/:id', component: DetailsProductComponent },
       { path: 'account', component: AccountComponent },
       { path: 'checkout', component: CheckoutComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'about', component: AboutUsComponent },
+      { path: 'policy-terms', component: PolicyComponent },
     ],
   },
   {

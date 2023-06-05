@@ -1,5 +1,5 @@
 <section class="bg-[#F5F5F5]">
-  <div class="grid grid-cols-2 max-w-[1580px] w-full m-auto">
+  <div class="grid lg:grid-cols-2 lg:max-w-[1580px] grid-cols-1 w-full m-auto">
     <div class="grid-cols-1 relative bg-black">
       <div class="opacity-70 object-cover w-full max-h-[420px] overflow-hidden">
         <img
@@ -12,18 +12,20 @@
         class="absolute top-[50%] left-[50%] w-[70%]"
         style="transform: translate(-50%, -50%)"
       >
-        <h1 class="uppercase font-bold text-5xl text-white">VỀ CHÚNG TÔI</h1>
-        <div class="h-10"></div>
+        <h1 class="uppercase font-bold sm:text-5xl text-2xl text-white">
+          VỀ CHÚNG TÔI
+        </h1>
+        <div class="sm:h-10 h-4"></div>
         <a
           routerLink="/about"
-          class="hover:bg-black hover:text-white uppercase px-6 py-2 bg-white text-black font-normal text-sm"
+          class="hover:bg-black hover:text-white uppercase sm:px-6 px-3 sm:py-2 py-1 bg-white text-black font-normal text-sm"
           style="transition: all 0.4s"
           >Xem thêm</a
         >
       </div>
     </div>
     <div class="grid-cols-2 flex justify-center items-center">
-      <div class="py-[5%] px-[10%] flex flex-col gap-2">
+      <div class="sm:py-[5%] sm:px-[10%] py-5 px-3 flex flex-col gap-2">
         <h3 class="font-bold">
           FStore ra đời để tạo ra một quy chuẩn mới về chất lượng và sự phù hợp
           để nâng tầm streetwear Việt Nam.
@@ -52,39 +54,39 @@
       </div>
     </div>
   </div>
-  <div class="flex max-w-[1440px] m-auto py-6 px-5">
-    <div class="w-full flex justify-center items-center">
-      <div class="w-[15%]">
+  <div class="flex max-w-[1440px] m-auto sm:py-6 px-5">
+    <div class="w-full lg:flex lg:justify-center flex-none lg:items-center">
+      <div class="lg:w-[15%] w-full my-3 lg:my-0">
         <i class="fa-solid fa-envelope-open-text"></i>
         <span class="text-sm px-4">Đăng ký nhận thư</span>
       </div>
-      <div class="w-[40%]">
+      <div class="lg:w-[40%] w-full my-3 lg:my-0">
         <form class="flex w-full">
           <input
             type="text"
             name="email"
             id="email"
-            class="w-[80%] px-5 focus:outline-none"
+            class="sm:w-[80%] w-[65%] sm:px-5 px-2 focus:outline-none"
             placeholder="Nhập email vào đây"
           />
           <button
-            class="uppercase px-5 py-3 text-sm bg-black text-white w-[20%]"
+            class="uppercase px-5 sm:py-3 text-sm bg-black text-white sm:w-[20%] w-[35%] py-2"
           >
             Đăng ký
           </button>
         </form>
       </div>
-      <div class="min-w-[15%] px-5 flex">
-        <div>
-          <div class="w-7 h-7 rounded-full bg-black relative">
+      <div class="min-w-[15%] sm:px-5 flex">
+        <div class="max-sm:w-7">
+          <div class="sm:w-7 sm:h-7 w-5 h-5 rounded-full bg-black relative">
             <i
-              class="fa-solid fa-phone absolute text-white top-[50%] left-[50%] text-[10px]"
+              class="fa-solid fa-phone absolute text-white top-[50%] left-[50%] sm:text-[10px] text-[8px]"
               style="transform: translate(-50%, -50%)"
             ></i>
           </div>
         </div>
-        <div class="flex gap-2">
-          <span style="margin-left: 10px"> Hỗ trợ / Mua hàng: </span
+        <div class="flex sm:gap-2">
+          <span class="sm:ml-[10px] mr-2"> Hỗ trợ / Mua hàng: </span
           ><a class="text-red-700" href="tel:+84869076265">086.907.6265</a>
         </div>
       </div>
