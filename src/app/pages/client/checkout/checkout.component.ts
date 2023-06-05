@@ -52,18 +52,15 @@ export class CheckoutComponent {
       // Default user
       this.defaultValue = JSON.parse(user).user;
       this.token = JSON.parse(user).accessToken;
-
       this.defaultValue.user_id = JSON.parse(user).user._id;
-
-      this.defaultValue.cart_id = this.dataCart.map((item: any) => {
-        return { id: item._id, quantity: item.quantity };
+      this.defaultValue.list_cart = this.dataCart.map((item: any) => {
+        return { product: item._id, quantity: item.quantity };
       });
       this.defaultValue.note = '';
       this.defaultValue.price = this.parentSumPrice;
       delete this.defaultValue.createdAt;
       delete this.defaultValue.gender;
       delete this.defaultValue.role;
-      delete this.defaultValue.email;
       delete this.defaultValue.updatedAt;
       delete this.defaultValue._id;
       this.billForm = new FormGroup({
@@ -97,6 +94,30 @@ export class CheckoutComponent {
     this.isLoadding = true;
     this.billSV.addToBill(this.defaultValue, this.token).subscribe(
       (response: any) => {
+        // Xoá giỏ hàng khi đã thanh toán
+        const getCartToken = (): string | null => {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith('cart_token=')) {
+              const value = cookie.substring('cart_token='.length);
+              return value;
+            }
+          }
+          return null;
+        };
+        if (!getCartToken() || getCartToken() == null)
+          return alert(
+            'Giỏ hàng trống, vui lòng thêm sản phẩm mới vào giỏ hàng'
+          );
+        this.cartSV.updateCartFollowDevice(String(getCartToken())).subscribe(
+          (response: any) => {
+            // console.log(response);
+          },
+          (err: any) => {
+            console.log(err);
+          }
+        );
         // console.log(response);
         this.isLoadding = false;
         this.notification = 1;

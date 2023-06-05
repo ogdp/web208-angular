@@ -14,4 +14,8 @@ export class BillServiceService {
     const result = this.http.post(`${this.url}/bill/`, body, config);
     return result;
   }
+  getOneBill(id: string) {
+    const result = this.http.get(`${this.url}/bill/${id}`);
+    return result;
+  }
 }

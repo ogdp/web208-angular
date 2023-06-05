@@ -8,7 +8,18 @@
       class="bg-white dark:bg-gray-800 dark:border-gray-700 m-auto"
     >
       <a class="w-full" routerLink="/product/{{ item._id }}">
-        <img class="" src="{{ item.image }}" alt="product image" />
+        <img
+          *ngIf="item.image?.length > 1"
+          class=""
+          src="{{ item.image[0] }}"
+          alt="product image"
+        />
+        <img
+          *ngIf="item.image?.length == 1"
+          class=""
+          src="{{ item.image }}"
+          alt="product image"
+        />
       </a>
       <div class="pb-5 my-2">
         <a routerLink="/product/{{ item._id }}">

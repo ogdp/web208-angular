@@ -26,18 +26,23 @@ export class DetailsProductComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
-    this.getProduct.getProduct(this.id).subscribe((data: any) => {
-      this.product = data.product;
-      this.order_product = {
-        product_id: this.product._id,
-        name: this.product.name,
-        price: this.product.price,
-        size: this.product?.size[0],
-        image: this.product.image,
-        quantity: this.inputValuee,
-        user: 'notfound',
-      };
-    });
+    this.getProduct.getProduct(this.id).subscribe(
+      (data: any) => {
+        this.product = data.product;
+        this.order_product = {
+          product_id: this.product._id,
+          name: this.product.name,
+          price: this.product.price,
+          size: this.product?.size[0],
+          image: this.product.image,
+          quantity: this.inputValuee,
+          user: 'notfound',
+        };
+      },
+      (err: any) => {
+        this.product = undefined;
+      }
+    );
     this.getProduct.getProductsNew().subscribe((data: any) => {
       this.products = data.product.docs;
     });

@@ -80,11 +80,22 @@
               searchText === '' || item.name.toLowerCase().includes(searchText)
             "
           >
-            <i
+            <!-- <i
               class="addtocart absolute text-3xl top-4 right-4 fa-solid fa-cart-plus cursor-pointer text-black"
-            ></i>
+            ></i> -->
             <a class="w-full">
-              <img class="" src="{{ item.image }}" alt="product image" />
+              <img
+                *ngIf="item.image?.length > 1"
+                class=""
+                src="{{ item.image[0] }}"
+                alt="product image"
+              />
+              <img
+                *ngIf="item.image?.length == 1"
+                class=""
+                src="{{ item.image }}"
+                alt="product image"
+              />
             </a>
             <div class="pb-5 my-2">
               <a routerLink="/product/{{ item._id }}">

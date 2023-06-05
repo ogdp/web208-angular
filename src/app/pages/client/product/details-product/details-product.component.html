@@ -56,12 +56,19 @@
       <div
         class="sm:w-[15%] w-[25%] sm:flex sm:flex-col sm:gap-3 sm:px-2 max-sm:py-2"
       >
-        <div>
-          <img src="{{ product.image }}" alt="" />
+        <div *ngFor="let item of product.image">
+          <img src="{{ item }}" alt="" />
         </div>
       </div>
       <img
-        src="{{ product.image }}"
+        *ngIf="product.image?.length > 1"
+        src="{{ product?.image[0] }}"
+        alt=""
+        class="sm:w-[85%] w-[100%] max-sm:py-4"
+      />
+      <img
+        *ngIf="product.image?.length == 1"
+        src="{{ product?.image }}"
         alt=""
         class="sm:w-[85%] w-[100%] max-sm:py-4"
       />
@@ -247,11 +254,22 @@
         class="relative bg-white dark:bg-gray-800 dark:border-gray-700 m-auto addtocart-hover"
       >
         <div>
-          <i
+          <!-- <i
             class="addtocart absolute text-3xl top-4 right-4 fa-solid fa-cart-plus cursor-pointer text-black"
-          ></i>
+          ></i> -->
           <a class="w-full">
-            <img class="" src="{{ item.image }}" alt="product image" />
+            <img
+              *ngIf="item.image?.length > 1"
+              class=""
+              src="{{ item.image[0] }}"
+              alt="product image"
+            />
+            <img
+              *ngIf="item.image?.length == 1"
+              class=""
+              src="{{ item.image }}"
+              alt="product image"
+            />
           </a>
           <div class="pb-5 my-2">
             <a href="/product/{{ item._id }}">
