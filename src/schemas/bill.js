@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 const billSchema = Joi.object({
-  cart_id: Joi.any().required().messages({
+  list_cart: Joi.any().required().messages({
     "any.required": "Cart_id là trường bắt buộc",
   }),
   user_id: Joi.string().required().messages({

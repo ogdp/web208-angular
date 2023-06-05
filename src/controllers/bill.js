@@ -24,7 +24,7 @@ export const get = async (req, res) => {
   try {
     const bill = await Bill.findById(req.params.id)
       .populate({
-        path: "cart_id.product",
+        path: "list_cart.product",
         model: "Cart",
       })
       .exec();

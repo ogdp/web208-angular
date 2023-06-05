@@ -56,6 +56,29 @@ export const getFollowDevice = async (req, res) => {
     });
   }
 };
+export const updateFollowDevice = async (req, res) => {
+  try {
+    const cart_token = req.params.id;
+    const filter = { device: cart_token };
+    const update = { device: "checkout successfully" };
+    const cart = await Cart.updateMany(filter, update, {
+      new: true,
+    });
+    if (!cart) {
+      return res.status(400).json({
+        message: "Cập nhật device giỏ hàng thất bại",
+      });
+    }
+    return res.status(200).json({
+      message: "Cập nhật device giỏ hàng thành công",
+      cart,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
 export const create = async (req, res) => {
   try {
     const { error } = await cartSchema.validate(req.body, {

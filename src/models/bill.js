@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const billSchema = new mongoose.Schema(
   {
-    cart_id: [
+    list_cart: [
       {
         product: {
           type: mongoose.Types.ObjectId,
