@@ -14,6 +14,7 @@ export class HeaderComponent {
   isShowProfile: boolean = false;
   isMathGuest: boolean = false;
   notification: number = 0;
+  user: any;
   public cartData: any = '';
   isLoadding: boolean = false;
   menuMobile(event1: any) {
@@ -40,7 +41,7 @@ export class HeaderComponent {
       this.verifyToken.verifyToken(url).subscribe(
         (data: any) => {
           this.isMathGuest = false;
-          // console.log(data);
+          this.user = data.user;
         },
         (error: any) => {
           this.isMathGuest = true;

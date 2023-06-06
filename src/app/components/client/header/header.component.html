@@ -94,6 +94,12 @@
           <i class="fas fa-shopping-cart"></i>
         </button>
         <button class="relative" (click)="checkAccount()">
+          <span *ngIf="isMathGuest == false" class="relative">
+            <div
+              class="absolute w-8 h-8 border border-black rounded-full top-50 left-50"
+              style="transform: translate(7%, -15%)"
+            ></div>
+          </span>
           <a
             *ngIf="isMathGuest == true"
             routerLink="/auth"
@@ -117,10 +123,18 @@
                   <span
                     class="absolute top-[50%] left-[50%] font-bold text-white"
                     style="transform: translate(-50%, -50%)"
-                    >Đ</span
+                    >{{ user.name.trim().charAt(0) }}</span
                   >
                 </div>
               </a>
+            </div>
+            <div
+              *ngIf="user.role == 'admin'"
+              class="py-1 border-b hover:border-red-200"
+            >
+              <a routerLink="/admin" class="text-sm font-semibold"
+                >Trang quản trị</a
+              >
             </div>
             <div class="py-1 border-b hover:border-red-200">
               <a routerLink="/my-bill" class="text-sm font-semibold"
