@@ -163,6 +163,41 @@ export const searchFollowStatus = async (req, res) => {
     });
   }
 };
+export const searchFollowUid = async (req, res) => {
+  try {
+    const {
+      _page = 1,
+      _order = "asc",
+      _sort = "createdAt",
+      _limit = 10,
+    } = req.query;
+    const options = {
+      page: _page,
+      limit: _limit,
+      sort: {
+        [_sort]: _order == "desc" ? 1 : -1,
+      },
+      populate: {
+        path: "list_cart.product",
+        model: "Cart",
+      },
+    };
+    const bill = await Bill.paginate({ user_id: req.params.uid }, options);
+    if (!bill) {
+      return res.status(400).json({
+        message: "Lấy đơn hàng thất bại",
+      });
+    }
+    return res.status(200).json({
+      message: "Lấy đơn hàng thành công",
+      bill,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
 export const search = async (req, res) => {
   try {
     const {
