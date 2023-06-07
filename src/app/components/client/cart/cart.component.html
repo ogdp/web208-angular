@@ -88,12 +88,15 @@
     <button class="px-10 py-3 bg-black text-white uppercase">
       Xem giỏ hàng
     </button>
-    <button
-      class="px-10 py-3 bg-black text-white uppercase"
-      (click)="onHandleCheckout()"
-    >
-      Thanh toán
-    </button>
+    <span *ngIf="listCart !== undefined">
+      <button
+        *ngIf="listCart.length > 0"
+        class="px-10 py-3 bg-black text-white uppercase"
+        (click)="onHandleCheckout()"
+      >
+        Thanh toán
+      </button>
+    </span>
   </div>
   <hr />
 </div>
