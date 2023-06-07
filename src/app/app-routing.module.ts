@@ -34,7 +34,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'checkouts', component: CheckoutAdminComponent },
-      { path: 'checkouts/detail', component: CheckoutDetailComponent },
+      { path: 'checkouts/details/:id', component: CheckoutDetailComponent },
       { path: 'products', component: ProductAdminComponent },
       { path: 'products/add', component: AddProductComponent },
       { path: 'products/:id/edit', component: UpdatedProductComponent },

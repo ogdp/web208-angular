@@ -1,8 +1,14 @@
-<section class="w-full container mx-auto">
+<section *ngIf="dataBill == undefined" class="w-full text-center">
+  <h1 class="my-9 font-semibold text-2xl">Đơn hàng có thể đã bị xoá</h1>
+  <a routerLink="/admin/checkouts">Quay lại danh sách đơn hàng</a>
+</section>
+<section *ngIf="dataBill !== undefined" class="w-full container mx-auto">
   <div class="flex justify-between my-6">
     <h2>
       Mã đơn hàng:
-      <span class="font-extrabold text-xl text-blue-700">FCO0001</span>
+      <span class="font-extrabold text-xl text-blue-700">{{
+        dataBill._id
+      }}</span>
     </h2>
     <div>
       <!-- <p>Đơn hàng từ:</p> -->
@@ -11,12 +17,19 @@
   </div>
   <hr />
   <div class="flex justify-between my-6">
-    <h4>Ngày tạo đơn: 01/01/2023</h4>
+    <div>
+      <h4>Ngày tạo đơn: {{ formatDate(dataBill.createdAt) }}</h4>
+      <div>
+        <h2 class="font-semibold">
+          Ghi chú:<span class="pl-2 font-normal">{{ dataBill.note }}</span>
+        </h2>
+      </div>
+    </div>
     <div>
       <h2>Đơn hàng cho</h2>
-      <p class="font-extrabold">VU HONG THAI</p>
-      <p>thaivhph28695@gmail.com</p>
-      <p>Linh Đàm</p>
+      <p class="font-extrabold">{{ dataBill.name }}</p>
+      <p>{{ dataBill.email }}</p>
+      <p>{{ dataBill.address }}</p>
     </div>
   </div>
   <hr />
@@ -38,27 +51,39 @@
       </thead>
       <tbody>
         <tr
+          *ngFor="let item of dataBill.list_cart; let i = index"
           class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
-          <td class="w-4 p-4 text-center font-semibold">1</td>
+          <td class="w-4 p-4 text-center font-semibold">{{ i + 1 }}</td>
           <th
             scope="row"
             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white overflow-hidden max-w-[150px]"
           >
-            PRODUCT 1
+            {{ item.product.name }}
           </th>
           <td class="px-6 py-4">
             <img
-              src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQQMJk4DAlP-OFJ6Bi9pYMuGUvUx6xCdtWpTOtA3n0oiXCUdYZ6I-QvPrZosSzvFoGgedllptAMWs2ukCqbKQXVsdVSWn1hH9XeJyO2mOW7&usqp=CAE"
+              *ngIf="item.product.image.length == 1"
+              src="{{ item.product.image }}"
+              alt=""
+              class="w-14 h-14 object-cover"
+            />
+            <img
+              *ngIf="item.product.image.length > 1"
+              src="{{ item.product.image[0] }}"
               alt=""
               class="w-14 h-14 object-cover"
             />
           </td>
-          <td class="px-6 py-4">500.000</td>
-          <td class="px-6 py-4">2</td>
-          <td class="px-6 py-4">1.000.000</td>
+          <td class="px-6 py-4 text-red-500">
+            {{ formatMoney(item.product.price) }}
+          </td>
+          <td class="px-6 py-4 text-red-500">{{ item.quantity }}</td>
+          <td class="px-6 py-4 text-red-500">
+            {{ formatMoney(item.product.price * item.quantity) }}
+          </td>
         </tr>
-        <tr
+        <!-- <tr
           class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <td class="w-4 p-4 text-center font-semibold">1</td>
@@ -78,14 +103,17 @@
           <td class="px-6 py-4">800.000</td>
           <td class="px-6 py-4">3</td>
           <td class="px-6 py-4">2.400.000</td>
-        </tr>
+        </tr> -->
 
         <tr class="border-t-2">
           <td class="px-6 py-4 text-2xl font-extrabold" colspan="5">
             Thành tiền
           </td>
-          <td class="px-6 py-4 font-extrabold text-red-500 text-2xl">
-            3.400.000 VND
+          <td
+            *ngIf="dataBill?.price !== undefined"
+            class="px-6 py-4 font-extrabold text-red-500 text-2xl"
+          >
+            {{ formatMoney(dataBill?.price) }}
           </td>
         </tr>
       </tbody>

@@ -1,154 +1,50 @@
 <section class="w-full">
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <div class="flex items-center justify-between pb-4">
-      <div>
+      <div class="flex gap-1">
         <button
-          id="dropdownRadioButton"
-          data-dropdown-toggle="dropdownRadio"
-          class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+          (click)="getAllBill()"
           type="button"
+          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
         >
-          <svg
-            class="w-4 h-4 mr-2 text-gray-400"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          Last 30 days
-          <svg
-            class="w-3 h-3 ml-2"
-            aria-hidden="true"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
+          Tất cả đơn hàng
         </button>
-        <!-- Dropdown menu -->
-        <div
-          id="dropdownRadio"
-          class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-          data-popper-reference-hidden=""
-          data-popper-escaped=""
-          data-popper-placement="top"
-          style="
-            position: absolute;
-            inset: auto auto 0px 0px;
-            margin: 0px;
-            transform: translate3d(522.5px, 3847.5px, 0px);
-          "
+        <button
+          (click)="getBillFollowStatus('pending')"
+          type="button"
+          class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
         >
-          <ul
-            class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownRadioButton"
-          >
-            <li>
-              <div
-                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-              >
-                <input
-                  id="filter-radio-example-1"
-                  type="radio"
-                  value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  for="filter-radio-example-1"
-                  class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                  >Last day</label
-                >
-              </div>
-            </li>
-            <li>
-              <div
-                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-              >
-                <input
-                  checked=""
-                  id="filter-radio-example-2"
-                  type="radio"
-                  value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  for="filter-radio-example-2"
-                  class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                  >Last 7 days</label
-                >
-              </div>
-            </li>
-            <li>
-              <div
-                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-              >
-                <input
-                  id="filter-radio-example-3"
-                  type="radio"
-                  value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  for="filter-radio-example-3"
-                  class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                  >Last 30 days</label
-                >
-              </div>
-            </li>
-            <li>
-              <div
-                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-              >
-                <input
-                  id="filter-radio-example-4"
-                  type="radio"
-                  value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  for="filter-radio-example-4"
-                  class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                  >Last month</label
-                >
-              </div>
-            </li>
-            <li>
-              <div
-                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-              >
-                <input
-                  id="filter-radio-example-5"
-                  type="radio"
-                  value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  for="filter-radio-example-5"
-                  class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                  >Last year</label
-                >
-              </div>
-            </li>
-          </ul>
-        </div>
+          Chờ duyệt
+        </button>
+
+        <button
+          (click)="getBillFollowStatus('delivery in progress')"
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Đang giao
+        </button>
+        <button
+          (click)="getBillFollowStatus('delivered')"
+          type="button"
+          class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        >
+          Đã giao
+        </button>
+        <button
+          (click)="getBillFollowStatus('cancellation')"
+          type="button"
+          class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        >
+          Đã huỷ
+        </button>
+        <button
+          (click)="getBillFollowStatus('delivery failed')"
+          type="button"
+          class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+        >
+          Không nhận hàng
+        </button>
       </div>
       <label for="table-search" class="sr-only">Search</label>
       <div class="relative">
@@ -171,9 +67,9 @@
         </div>
         <input
           type="text"
-          id="table-search"
           class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search for items"
+          (change)="searchName($event)"
         />
       </div>
     </div>
@@ -182,44 +78,90 @@
         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
       >
         <tr>
-          <th scope="col" class="px-6 py-3">STT</th>
-          <th scope="col" class="px-6 py-3">Mã đơn hàng</th>
+          <th scope="col" class="px-6 py-3 w-[40px]">STT</th>
+          <th scope="col" class="px-6 py-3 max-w-[60px]">Mã đơn hàng</th>
+          <th scope="col" class="px-6 py-3">Tên người nhận</th>
+          <th scope="col" class="px-6 py-3">Số điện thoại</th>
           <th scope="col" class="px-6 py-3">Email khách hàng</th>
           <th scope="col" class="px-6 py-3">Ngày đặt hàng</th>
-          <th scope="col" class="px-6 py-3">Ngày giao hàng</th>
           <th scope="col" class="px-6 py-3">Tổng giá</th>
           <th scope="col" class="px-6 py-3">Trạng thái đơn hàng</th>
-
+          <th scope="col" class="px-6 py-3">Ghi chú</th>
           <th scope="col" class="px-6 py-3">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <div *ngIf="dataBill.length == 0" class="w-full text-center">
+        <h3 class="text-3xl py-6">Danh sách đơn hàng trống</h3>
+      </div>
+      <tbody *ngIf="dataBill.length > 0">
         <tr
-          class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
+          class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 w-[40px]"
+          *ngFor="let item of dataBill; let i = index"
         >
-          <td class="w-4 p-4 text-center font-semibold">1</td>
-          <th
+          <td class="w-4 p-4 font-semibold text-center">{{ i + 1 }}</td>
+          <td
             scope="row"
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white overflow-hidden max-w-[150px]"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white overflow-hidden"
           >
-            FCO0001
-          </th>
-          <td class="px-6 py-4">thaivhph28695@fpt.edu.vn</td>
-          <td class="px-6 py-4">01/01/2023</td>
-          <td class="px-6 py-4">01/02/2023</td>
-          <td class="px-6 py-4">1.000.000 VND</td>
+            {{ item._id }}
+          </td>
+          <td class="px-6 py-4">{{ item.name }}</td>
+          <td class="px-6 py-4">{{ item.tel }}</td>
+          <td class="px-6 py-4 overflow-hidden">{{ item.email }}</td>
+          <td class="px-6 py-4">{{ formatDate(item.createdAt) }}</td>
+          <td class="px-6 py-4 text-red-500 font-semibold text-center">
+            {{ formatMoney(item.price) }}
+          </td>
           <td class="px-6 py-4 text-black">
-            <select class="border border-black py-2 px-2" name="" id="">
-              <option value="">Đang duyệt</option>
-              <option value="">Chưa giao hàng</option>
-              <option value="">Đã thanh toán</option>
-              <option value="">Đã giao hàng</option>
-              <option value="">Hoàn thành</option>
-              <option value="">Hủy đơn</option>
+            <select
+              class="border border-black py-2 px-2"
+              (change)="onHandleStatus($event, item._id)"
+            >
+              <option
+                value="pending"
+                [selected]="item.status === 'pending' ? true : null"
+              >
+                Chờ duyệt
+              </option>
+              <option
+                value="approved"
+                [selected]="item.status === 'approved' ? 'selected' : null"
+              >
+                Đã duyệt
+              </option>
+
+              <option
+                value="delivery in progress"
+                [selected]="
+                  item.status === 'delivery in progress' ? true : null
+                "
+              >
+                Đang giao hàng
+              </option>
+              <option
+                value="delivered"
+                [selected]="item.status === 'delivered' ? true : null"
+              >
+                Đã giao hàng
+              </option>
+              <option
+                value="delivery failed"
+                [selected]="item.status === 'delivery failed' ? true : null"
+              >
+                Giao hàng thất bại
+              </option>
+              <option
+                value="cancellation"
+                [selected]="item.status === 'cancellation' ? true : null"
+              >
+                Hủy đơn
+              </option>
             </select>
           </td>
+          <td class="px-6 py-4 line-clamp-4">{{ item.note }}</td>
+
           <td class="px-6 py-4">
-            <a routerLink="detail"
+            <a routerLink="/admin/checkouts/details/{{ item._id }}"
               ><button class="bg-black text-white px-4 py-2">
                 Xem chi tiết
               </button></a
@@ -228,5 +170,90 @@
         </tr>
       </tbody>
     </table>
+    <hr />
+    <div class="pt-3">
+      <div class="text-center w-full" aria-label="Page navigation example">
+        <ul class="inline-flex items-center -space-x-px">
+          <li>
+            <a
+              href="#"
+              class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <span class="sr-only">Previous</span>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >1</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >2</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              aria-current="page"
+              class="z-10 px-3 py-2 leading-tight text-white border bg-black dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+              >3</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >4</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >5</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <span class="sr-only">Next</span>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>

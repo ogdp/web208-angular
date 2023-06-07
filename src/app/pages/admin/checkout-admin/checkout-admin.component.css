@@ -1,0 +1,22 @@
+tbody {
+  display: block;
+  max-height: 75vh;
+  overflow-y: scroll;
+}
+thead,
+tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+thead {
+  width: 100%;
+}
+table {
+  width: 100%;
+}
