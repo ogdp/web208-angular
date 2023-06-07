@@ -42,6 +42,10 @@ export class BillServiceService {
     );
     return result;
   }
+  getBillFollowUid(uid: string) {
+    const result = this.http.get(`${this.url}/bill/search_uid/${uid}`);
+    return result;
+  }
   getSearchName(key_search: string, token: string) {
     const config = {
       headers: { Authorization: 'Bearer ' + token },

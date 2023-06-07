@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BillServiceService } from 'src/app/service/bill/bill-service.service';
 import { IBill } from 'src/common/Bill';
@@ -14,8 +15,10 @@ export class CheckoutAdminComponent {
   page: string = '';
   constructor(
     private billSV: BillServiceService,
-    private params: ActivatedRoute
+    private params: ActivatedRoute,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('Quản lý đơn hàng');
     const getUsers: any = localStorage.getItem('user');
     this.token = JSON.parse(getUsers).accessToken;
     this.getAllBill();
@@ -41,7 +44,7 @@ export class CheckoutAdminComponent {
       .updateStatusBill(id, String(checkToken), { status: status })
       .subscribe(
         (response: any) => {
-          this.getAllBill();
+          // this.getAllBill();
         },
         (err: any) => {
           console.log(err);

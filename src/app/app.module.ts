@@ -53,6 +53,7 @@ import { AddCategoryComponent } from './pages/admin/category/add-category/add-ca
 import { AdminListCategoryComponent } from './pages/admin/category/admin-list-category/admin-list-category.component';
 import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
 import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-detail/checkout-detail.component';
+import { BillComponent } from './pages/client/bill/bill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,6 +98,7 @@ import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-d
     AdminListCategoryComponent,
     AdminUpdateCategoryComponent,
     CheckoutDetailComponent,
+    BillComponent,
   ],
   imports: [
     AppRoutingModule,

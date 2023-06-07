@@ -1,0 +1,226 @@
+<section class="mx-auto container py-8">
+  <h2 class="font-semibold text-3xl text-center my-8">Đơn hàng của tôi</h2>
+  <div class="mx-auto">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div class="pb-4 bg-white dark:bg-gray-900">
+        <label for="table-search" class="sr-only">Search</label>
+        <div class="relative mt-1">
+          <div
+            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+          >
+            <svg
+              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="table-search"
+            class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Tìm kiếm đơn hàng"
+          />
+        </div>
+      </div>
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="p-4">
+              <div class="flex items-center">
+                STT
+                <label for="checkbox-all-search" class="sr-only"
+                  >checkbox</label
+                >
+              </div>
+            </th>
+            <th scope="col" class="px-6 py-3">Thời gian</th>
+            <th scope="col" class="px-6 py-3 max-w-[300px]">Sản phẩm</th>
+            <th scope="col" class="px-6 py-3 max-w-[360px]">
+              Thông tin người nhận
+            </th>
+            <th scope="col" class="px-6 py-3">Trạng thái</th>
+            <th scope="col" class="px-6 py-3">Tổng tiền</th>
+            <th scope="col" class="px-6 py-3 max-w-[230px]">Ghi chú</th>
+            <th scope="col" class="px-6 py-3">Tuỳ chọn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of dataBill; let i = index"
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <td class="w-4 p-4">
+              <div class="flex text-center">
+                {{ i + 1 }}
+                <label for="checkbox-table-search-1" class="sr-only"
+                  >checkbox</label
+                >
+              </div>
+            </td>
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              Lê Quang Minh Đức<br />
+              <h6 class="text-gray-500 text-xs">
+                {{ formatDate(item.createdAt) }}
+              </h6>
+            </th>
+            <td class="px-6 py-4 max-w-[300px]">
+              <div
+                *ngFor="let item2 of item.list_cart; let i2 = index"
+                class="border-b border-gray-200"
+              >
+                <span class="line-clamp-2">
+                  <span class="font-extrabold"
+                    ><a routerLink="/product/{{ item2.product.product_id }}">{{
+                      item2.product.name
+                    }}</a></span
+                  >
+                </span>
+                <span class="font-extrabold">{{ item2.product.size }}</span> x
+                <span class="font-extrabold text-blue-800">{{
+                  item2.quantity
+                }}</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 max-w-[360px] font-semibold text-gray-800">
+              <h5>{{ item.name }}</h5>
+              <h5>{{ item.tel }}</h5>
+              <span class="line-clamp-2">
+                {{ item.address }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <span *ngIf="item.status === 'pending'" class="font-semibold">
+                Chờ duyệt
+              </span>
+              <span
+                *ngIf="item.status === 'approved'"
+                class="font-semibold text-green-600"
+              >
+                Đã duyệt
+              </span>
+
+              <span
+                *ngIf="item.status === 'delivery in progress'"
+                class="font-semibold text-orange-500"
+              >
+                Đang giao hàng
+              </span>
+              <span
+                *ngIf="item.status === 'delivered'"
+                class="font-semibold text-blue-600"
+              >
+                Đã giao hàng
+              </span>
+              <span
+                *ngIf="item.status === 'delivery failed'"
+                class="font-semibold text-red-500"
+              >
+                Giao hàng thất bại
+              </span>
+              <span
+                *ngIf="item.status === 'cancellation'"
+                class="font-semibold text-red-500"
+              >
+                Đơn đã huỷ
+              </span>
+            </td>
+            <td class="px-6 py-4 text-red-500 font-semibold">
+              {{ formatMoney(item.price) }}
+            </td>
+            <td class="px-6 py-4 max-w-[230px]">
+              <span>
+                <span class="line-clamp-3">{{ item.note }}</span>
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <a
+                routerLink="/checkouts/{{ item._id }}/thank_you"
+                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >Link</a
+              ><button
+                *ngIf="item.status == 'pending'"
+                class="text-red-600 font-semibold mx-2"
+                (click)="billCancel(item._id)"
+              >
+                Huỷ đơn
+              </button>
+            </td>
+          </tr>
+          <!-- <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <td class="w-4 p-4">
+              <div class="flex text-center">
+                1
+                <label for="checkbox-table-search-1" class="sr-only"
+                  >checkbox</label
+                >
+              </div>
+            </td>
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              Lê Quang Minh Đức<br />
+              <h6 class="text-gray-500 text-xs">5/6/2020 | 11:59</h6>
+            </th>
+            <td class="px-6 py-4 max-w-[300px]">
+              <div class="border-b border-gray-200">
+                <span class="line-clamp-2">
+                  <span class="font-extrabold">1 . </span
+                  ><a routerLink="/product/fdjsahgkjf"
+                    >Áo siuuu no product Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Adipisci harum quas asperiores
+                    voluptas.</a
+                  >
+                </span>
+                <span class="font-extrabold">M</span> x
+                <span class="font-extrabold text-blue-800">3</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 max-w-[360px] font-semibold text-gray-800">
+              <h5>Lê Văn Bôn</h5>
+              <h5>0869076265</h5>
+              <span class="line-clamp-2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia
+                rerum in dolore?
+              </span>
+            </td>
+            <td class="px-6 py-4">Đang giao</td>
+            <td class="px-6 py-4">$2999</td>
+            <td class="px-6 py-4 max-w-[230px]">
+              <span>
+                <span class="line-clamp-3"
+                  >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Aliquam vel, iure iusto laborum inventore repellat suscipit
+                  magnam aspernatur, debitis explicabo exercitationem dicta
+                  perspiciatis, ea sequi sed ducimus?</span
+                >
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <a
+                routerLink="/checkouts/dsafkjhds/thank_you"
+                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >Link</a
+              ><button class="text-red-600 font-semibold mx-2">Huỷ đơn</button>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BillServiceService } from 'src/app/service/bill/bill-service.service';
 import { IBill } from 'src/common/Bill';
@@ -12,8 +13,10 @@ export class CheckoutDetailComponent {
   dataBill: IBill | any = {} || undefined;
   constructor(
     private router: ActivatedRoute,
-    private billSV: BillServiceService
+    private billSV: BillServiceService,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('Chi tiết đơn hàng');
     const value_Url: any = this.router.url;
     this.getOneBill(String(value_Url._value[2].path));
   }

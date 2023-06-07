@@ -26,6 +26,7 @@ import { AddProductComponent } from './pages/admin/product-admin/add-product/add
 import { UpdatedProductComponent } from './pages/admin/product-admin/updated-product/updated-product.component';
 import { AddCategoryComponent } from './pages/admin/category/add-category/add-category.component';
 import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
+import { BillComponent } from './pages/client/bill/bill.component';
 const routes: Routes = [
   {
     path: 'admin',
@@ -54,6 +55,7 @@ const routes: Routes = [
       { path: 'product', component: ListProductComponent },
       { path: 'product/:id', component: DetailsProductComponent },
       { path: 'account', component: AccountComponent },
+      { path: 'my-bill', component: BillComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'about', component: AboutUsComponent },
