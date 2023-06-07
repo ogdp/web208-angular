@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 const billSchema = new mongoose.Schema(
   {
     list_cart: [
@@ -36,10 +37,10 @@ const billSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      default: "Pedding",
+      default: "pending",
     },
   },
   { timestamps: true, versionKey: false }
 );
-
+billSchema.plugin(mongoosePaginate);
 export default mongoose.model("Bill", billSchema);

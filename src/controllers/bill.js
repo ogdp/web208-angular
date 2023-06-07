@@ -4,7 +4,20 @@ import billSchema from "../schemas/bill";
 
 export const getAll = async (req, res) => {
   try {
-    const bill = await Bill.find();
+    const {
+      _page = 1,
+      _order = "asc",
+      _sort = "createdAt",
+      _limit = 10,
+    } = req.query;
+    const options = {
+      page: _page,
+      limit: _limit,
+      sort: {
+        [_sort]: _order == "desc" ? 1 : -1,
+      },
+    };
+    const bill = await Bill.paginate({}, options);
     if (!bill) {
       return res.status(400).json({
         message: "Đơn hàng rỗng",
@@ -37,17 +50,6 @@ export const get = async (req, res) => {
       message: "Lấy đơn hàng thành công",
       bill,
     });
-
-    // const bill = await Bill.findById(req.params.id);
-    // if (!bill) {
-    //   return res.status(400).json({
-    //     message: "Đơn hàng rỗng",
-    //   });
-    // }
-    // return res.status(200).json({
-    //   message: "Lấy đơn hàng thành công",
-    //   bill,
-    // });
   } catch (error) {
     return res.status(400).json({
       error: error.message,
@@ -110,6 +112,92 @@ export const remove = async (req, res) => {
     }
     return res.status(200).json({
       message: "Xoá đơn hàng thành công",
+      bill,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+export const searchFollowStatus = async (req, res) => {
+  try {
+    const {
+      _page = 1,
+      _order = "asc",
+      _sort = "createdAt",
+      _limit = 10,
+    } = req.query;
+    const options = {
+      page: _page,
+      limit: _limit,
+      sort: {
+        [_sort]: _order == "desc" ? 1 : -1,
+      },
+    };
+    const bill = await Bill.paginate(
+      {
+        $or: [
+          {
+            status: {
+              $regex: req.params.key_status,
+              $options: "i",
+            },
+          },
+        ],
+      },
+      options
+    );
+    if (!bill) {
+      return res.status(400).json({
+        message: "Lấy đơn hàng thất bại",
+      });
+    }
+    return res.status(200).json({
+      message: "Lấy đơn hàng thành công",
+      bill,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+export const search = async (req, res) => {
+  try {
+    const {
+      _page = 1,
+      _order = "asc",
+      _sort = "createdAt",
+      _limit = 10,
+    } = req.query;
+    const options = {
+      page: _page,
+      limit: _limit,
+      sort: {
+        [_sort]: _order == "desc" ? 1 : -1,
+      },
+    };
+    const bill = await Bill.paginate(
+      {
+        $or: [
+          {
+            name: {
+              $regex: req.params.key,
+              $options: "i",
+            },
+          },
+        ],
+      },
+      options
+    );
+    if (!bill) {
+      return res.status(400).json({
+        message: "Lấy đơn hàng thất bại",
+      });
+    }
+    return res.status(200).json({
+      message: "Lấy đơn hàng thành công",
       bill,
     });
   } catch (error) {
