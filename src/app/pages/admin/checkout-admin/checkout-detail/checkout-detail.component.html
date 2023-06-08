@@ -2,88 +2,112 @@
   <h1 class="my-9 font-semibold text-2xl">Đơn hàng có thể đã bị xoá</h1>
   <a routerLink="/admin/checkouts">Quay lại danh sách đơn hàng</a>
 </section>
-<section *ngIf="dataBill !== undefined" class="w-full container mx-auto">
-  <div class="flex justify-between my-6">
-    <h2>
-      Mã đơn hàng:
-      <span class="font-extrabold text-xl text-blue-700">{{
-        dataBill._id
-      }}</span>
-    </h2>
-    <div>
-      <!-- <p>Đơn hàng từ:</p> -->
-      <h2 class="text-2xl font-extrabold">FSTORE</h2>
-    </div>
-  </div>
-  <hr />
-  <div class="flex justify-between my-6">
-    <div>
-      <h4>Ngày tạo đơn: {{ formatDate(dataBill.createdAt) }}</h4>
+<section>
+  <h1 class="font-bold text-xl pb-3 px-4">Chi tiết đơn hàng</h1>
+  <section *ngIf="dataBill !== undefined" class="w-full container mx-auto">
+    <div class="flex justify-between my-6">
+      <h2>
+        Mã đơn hàng:
+        <span class="font-extrabold text-xl text-blue-700">{{
+          dataBill._id
+        }}</span>
+      </h2>
       <div>
-        <h2 class="font-semibold">
-          Ghi chú:<span class="pl-2 font-normal">{{ dataBill.note }}</span>
-        </h2>
+        <!-- <p>Đơn hàng từ:</p> -->
+        <h2 class="text-2xl font-extrabold">FSTORE</h2>
       </div>
     </div>
-    <div>
-      <h2>Đơn hàng cho</h2>
-      <p class="font-extrabold">{{ dataBill.name }}</p>
-      <p>{{ dataBill.email }}</p>
-      <p>{{ dataBill.address }}</p>
-    </div>
-  </div>
-  <hr />
-  <div>
-    <h2 class="my-5 font-bold text-xl">Chi tiết đơn hàng</h2>
     <hr />
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead
-        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-      >
-        <tr>
-          <th scope="col" class="px-6 py-3">STT</th>
-          <th scope="col" class="px-6 py-3">Tên sản phẩm</th>
-          <th scope="col" class="px-6 py-3">Ảnh minh họa</th>
-          <th scope="col" class="px-6 py-3">Giá</th>
-          <th scope="col" class="px-6 py-3">Số lượng</th>
-          <th scope="col" class="px-6 py-3">Thành tiền</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="let item of dataBill.list_cart; let i = index"
-          class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
+    <div class="flex gap-2 my-6">
+      <div>
+        <h4 class="font-extrabold">
+          Ngày tạo đơn: {{ formatDate(dataBill.createdAt) }}
+        </h4>
+        <h2 class="font-extrabold">Thông tin người nhận</h2>
+        <span class="font-extrabold">Họ tên :</span
+        ><span> {{ dataBill.name }}</span> <br /><span class="font-extrabold"
+          >Điện thoại :</span
+        ><span> {{ dataBill.tel }}</span> <br /><span class="font-extrabold"
+          >Email :</span
+        ><span> {{ dataBill.email }}</span> <br /><span class="font-extrabold"
+          >Địa chỉ :</span
+        ><span> {{ dataBill.address }}</span>
+        <div>
+          <h2 class="font-extrabold">
+            Ghi chú:<span class="pl-2 font-normal"
+              >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Consectetur et, unde voluptates eaque voluptatum, numquam itaque
+              harum placeat, expedita tempora esse. Perspiciatis?</span
+            >
+          </h2>
+        </div>
+      </div>
+      <!-- <div>
+      <h2>Thông tin người nhận</h2>
+      <span class="font-extrabold">Họ tên :</span
+      ><span class="font-extrabold">{{ dataBill.name }}</span> <br /><span
+        class="font-extrabold"
+        >Điện thoại :</span
+      ><span class="font-extrabold">{{ dataBill.tel }}</span> <br /><span
+        class="font-extrabold"
+        >Email :</span
+      ><span>{{ dataBill.email }}</span> <br /><span class="font-extrabold"
+        >Địa chỉ :</span
+      ><span>{{ dataBill.address }}</span>
+    </div> -->
+    </div>
+    <hr />
+    <div>
+      <h2 class="my-5 font-bold text-xl">Chi tiết đơn hàng</h2>
+      <hr />
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
         >
-          <td class="w-4 p-4 text-center font-semibold">{{ i + 1 }}</td>
-          <th
-            scope="row"
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white overflow-hidden max-w-[150px]"
+          <tr>
+            <th scope="col" class="px-6 py-3">STT</th>
+            <th scope="col" class="px-6 py-3">Tên sản phẩm</th>
+            <th scope="col" class="px-6 py-3">Ảnh minh họa</th>
+            <th scope="col" class="px-6 py-3">Giá</th>
+            <th scope="col" class="px-6 py-3">Số lượng</th>
+            <th scope="col" class="px-6 py-3">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of dataBill.list_cart; let i = index"
+            class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
-            {{ item.product.name }}
-          </th>
-          <td class="px-6 py-4">
-            <img
-              *ngIf="item.product.image.length == 1"
-              src="{{ item.product.image }}"
-              alt=""
-              class="w-14 h-14 object-cover"
-            />
-            <img
-              *ngIf="item.product.image.length > 1"
-              src="{{ item.product.image[0] }}"
-              alt=""
-              class="w-14 h-14 object-cover"
-            />
-          </td>
-          <td class="px-6 py-4 text-red-500">
-            {{ formatMoney(item.product.price) }}
-          </td>
-          <td class="px-6 py-4 text-red-500">{{ item.quantity }}</td>
-          <td class="px-6 py-4 text-red-500">
-            {{ formatMoney(item.product.price * item.quantity) }}
-          </td>
-        </tr>
-        <!-- <tr
+            <td class="w-4 p-4 text-center font-semibold">{{ i + 1 }}</td>
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white overflow-hidden max-w-[150px]"
+            >
+              {{ item.product.name }}
+            </th>
+            <td class="px-6 py-4">
+              <img
+                *ngIf="item.product.image.length == 1"
+                src="{{ item.product.image }}"
+                alt=""
+                class="w-14 h-14 object-cover"
+              />
+              <img
+                *ngIf="item.product.image.length > 1"
+                src="{{ item.product.image[0] }}"
+                alt=""
+                class="w-14 h-14 object-cover"
+              />
+            </td>
+            <td class="px-6 py-4 text-red-500">
+              {{ formatMoney(item.product.price) }}
+            </td>
+            <td class="px-6 py-4 text-red-500">{{ item.quantity }}</td>
+            <td class="px-6 py-4 text-red-500">
+              {{ formatMoney(item.product.price * item.quantity) }}
+            </td>
+          </tr>
+          <!-- <tr
           class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <td class="w-4 p-4 text-center font-semibold">1</td>
@@ -105,18 +129,19 @@
           <td class="px-6 py-4">2.400.000</td>
         </tr> -->
 
-        <tr class="border-t-2">
-          <td class="px-6 py-4 text-2xl font-extrabold" colspan="5">
-            Thành tiền
-          </td>
-          <td
-            *ngIf="dataBill?.price !== undefined"
-            class="px-6 py-4 font-extrabold text-red-500 text-2xl"
-          >
-            {{ formatMoney(dataBill?.price) }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          <tr class="border-t-2">
+            <td class="px-6 py-4 text-2xl font-extrabold" colspan="5">
+              Thành tiền
+            </td>
+            <td
+              *ngIf="dataBill?.price !== undefined"
+              class="px-6 py-4 font-extrabold text-red-500 text-2xl"
+            >
+              {{ formatMoney(dataBill?.price) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </section>

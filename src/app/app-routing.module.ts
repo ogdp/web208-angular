@@ -27,6 +27,7 @@ import { UpdatedProductComponent } from './pages/admin/product-admin/updated-pro
 import { AddCategoryComponent } from './pages/admin/category/add-category/add-category.component';
 import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
 import { BillComponent } from './pages/client/bill/bill.component';
+import { AdminListCategoryComponent } from './pages/admin/category/admin-list-category/admin-list-category.component';
 const routes: Routes = [
   {
     path: 'admin',
@@ -39,8 +40,16 @@ const routes: Routes = [
       { path: 'products', component: ProductAdminComponent },
       { path: 'products/add', component: AddProductComponent },
       { path: 'products/:id/edit', component: UpdatedProductComponent },
-      { path: 'category/add', component: AddCategoryComponent },
-      { path: 'category/:id/update', component: AdminUpdateCategoryComponent },
+      {
+        path: 'category',
+        component: AdminListCategoryComponent,
+        children: [
+          { path: 'category', component: AdminListCategoryComponent },
+          { path: 'add', component: AddCategoryComponent },
+          { path: ':id/update', component: AdminUpdateCategoryComponent },
+        ],
+      },
+      // { path: 'category/:id/update', component: AdminUpdateCategoryComponent },
       { path: 'users', component: UserAdminComponent },
       { path: 'banners', component: BannerAdminComponent },
       { path: 'feedbacks', component: FeedbackAdminComponent },

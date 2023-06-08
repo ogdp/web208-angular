@@ -26,7 +26,6 @@ export class CheckoutAdminComponent {
   getAllBill() {
     this.billSV.getAllBill(this.token).subscribe(
       (response: any) => {
-        // console.log(response);
         this.dataBill = response.bill.docs;
       },
       (err: any) => {

@@ -36,4 +36,15 @@ export class ProductServiceService {
     const result = this.http.patch(`${this.url}/products/${id}`, body, config);
     return result;
   }
+  updateFollowCategoryId(body: object, token: string) {
+    const config = {
+      headers: { Authorization: 'Bearer ' + token },
+    };
+    const result = this.http.post(
+      `${this.url}/products/updateFollowCateId`,
+      body,
+      config
+    );
+    return result;
+  }
 }

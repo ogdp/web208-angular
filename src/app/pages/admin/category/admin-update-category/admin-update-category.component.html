@@ -1,62 +1,99 @@
-<section class="max-h-[90vh] overflow-x-hidden">
-  <div class="mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Cập Nhật Danh Mục</h1>
-    <section
-      class="max-w-7xl mx-auto grid grid-cols-2 gap-8 bg-white rounded-lg shadow-md p-6"
+<section
+  [ngClass]="
+    notificationPro == 1
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <section class="grid-cols-1">
-        <form>
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
-              >Tên Danh Mục</label
-            >
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="name"
-              type="text"
-              placeholder="Nhập tên sản phẩm"
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 text-sm font-bold mb-2"
-              for="image"
-              >Hình Ảnh</label
-            >
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="image"
-              type="file"
-              multiple="true"
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              class="block text-gray-700 text-sm font-bold mb-2"
-              for="status"
-              >Trạng Thái</label
-            >
-            <select
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="status"
-            >
-              <option value="active">Hiển thị</option>
-              <option value="inactive">Không hiển thị</option>
-            </select>
-          </div>
-          <div class="flex items-center justify-between">
-            <button
-              class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Cập Nhật Danh Mục
-            </button>
-          </div>
-        </form>
-      </section>
-      <section class="grid-cols-2">
-        <app-admin-list-category></app-admin-list-category>
-      </section>
-    </section>
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Cập nhật danh mục thành công!</span>
+    </div>
   </div>
+</section>
+<section
+  [ngClass]="
+    notificationPro == 2
+      ? 'fixed left-1/2 top-[50px]'
+      : 'fixed left-1/2 top-[-50px]'
+  "
+  style="transform: translate(-50%, -50%); transition: all 0.35s"
+>
+  <div
+    class="flex p-4 mb-4 text-sm text-white rounded-lg bg-red-500 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Thất bại !!! Danh mục đã bị xoá</span>
+    </div>
+  </div>
+</section>
+
+<section class="grid-cols-1">
+  <form [formGroup]="schemaForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
+        >Tên Danh Mục</label
+      >
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="name"
+        type="text"
+        placeholder="Nhập tên danh mục"
+        formControlName="name"
+        value="{{ dataOld.name }}"
+      />
+      <span
+        *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+        class="text-red-500"
+      >
+        <p *ngIf="name?.errors?.['required']">
+          <small>Tên là trường bắt buộc</small>
+        </p>
+        <p *ngIf="name?.errors?.['minlength']">
+          <small>Tên danh mục tối thiểu 3 ký tự</small>
+        </p>
+      </span>
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
+      >
+        Cập nhật danh mục
+      </button>
+    </div>
+  </form>
 </section>
