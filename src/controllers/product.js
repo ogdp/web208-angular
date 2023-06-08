@@ -71,6 +71,25 @@ export const create = async (req, res) => {
     });
   }
 };
+export const updateFollowCategoryId = async (req, res) => {
+  try {
+    const find = {
+      categoryId: req.body.categoryIdOld,
+    };
+    const update = {
+      categoryId: req.body.categoryIdNew,
+    };
+    const product = await Product.updateMany(find, update, { new: true });
+    return res.status(200).json({
+      message: "Cập nhật sản phẩm thành công",
+      product,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
 export const update = async (req, res) => {
   try {
     const { error } = await productSchema.validate(req.body, {

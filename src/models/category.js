@@ -7,17 +7,17 @@ const categorySchema = new mongoose.Schema(
       minLength: 3,
       require: true,
     },
-    images: {
-      type: String,
-      default: "",
-    },
-    productId: [
-      {
-        type: mongoose.Types.ObjectId,
-        default: "",
-        ref: "Product",
-      },
-    ],
+    // images: {
+    //   type: String,
+    //   default: "",
+    // },
+    // productId: [
+    //   {
+    //     type: mongoose.Types.ObjectId,
+    //     default: "",
+    //     ref: "Product",
+    //   },
+    // ],
   },
   { timestamps: true, versionKey: false }
 );

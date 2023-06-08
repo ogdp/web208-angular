@@ -1,6 +1,5 @@
 import Category from "../models/category";
 import categorySchema from "../schemas/category";
-
 export const getAll = async (req, res) => {
   try {
     const category = await Category.find();
