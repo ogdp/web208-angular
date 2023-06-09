@@ -7,6 +7,7 @@ import {
   search,
   searchFollowStatus,
   searchFollowUid,
+  searchNameFollowStatus,
   update,
 } from "../controllers/bill";
 import checkPermission from "../middlewares/checkPermission";
@@ -16,6 +17,11 @@ const router = express.Router();
 
 router.get("/bill", checkPermission, getAll);
 router.get("/bill/:id", get);
+router.get(
+  "/bill/search/:status/:key",
+  checkPermission,
+  searchNameFollowStatus
+);
 router.get("/bill/search/:key_status", checkPermission, searchFollowStatus);
 router.get("/bill/search_uid/:uid", searchFollowUid);
 router.get("/bill/search_name/:key", checkPermission, search);

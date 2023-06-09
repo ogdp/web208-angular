@@ -241,3 +241,46 @@ export const search = async (req, res) => {
     });
   }
 };
+export const searchNameFollowStatus = async (req, res) => {
+  try {
+    const {
+      _page = 1,
+      _order = "asc",
+      _sort = "createdAt",
+      _limit = 10,
+    } = req.query;
+    const options = {
+      page: _page,
+      limit: _limit,
+      sort: {
+        [_sort]: _order == "desc" ? 1 : -1,
+      },
+    };
+    const objOrder = {
+      name: {
+        $regex: req.params.key,
+        $options: "i",
+      },
+    };
+    if (req.params.status !== "no") objOrder.status = req.params.status;
+    const bill = await Bill.paginate(
+      {
+        $or: [objOrder],
+      },
+      options
+    );
+    if (!bill || bill.totalDocs == 0) {
+      return res.status(400).json({
+        message: "Danh sách trống",
+      });
+    }
+    return res.status(200).json({
+      message: "Danh sách đơn hàng",
+      bill,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
