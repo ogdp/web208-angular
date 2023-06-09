@@ -48,3 +48,10 @@ export const signinSchema = Joi.object({
     "any.required": "Mật khẩu là trường bắt buộc",
   }),
 });
+
+// export const roleSchema = Joi.object({
+//   role: Joi.string().required().messages({
+//     "string.empty": "Email không được bỏ trống",
+//     "any.required": "Email là trường bắt buộc",
+//   }),
+// });

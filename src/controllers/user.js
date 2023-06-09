@@ -80,3 +80,21 @@ export const remove = async (req, res) => {
     });
   }
 };
+export const roleDisable = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true }
+    );
+    return res.status(200).json({
+      message: "Cập nhật người dùng thành công",
+      user,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+
