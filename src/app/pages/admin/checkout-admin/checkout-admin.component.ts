@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BillServiceService } from 'src/app/service/bill/bill-service.service';
@@ -61,17 +62,27 @@ export class CheckoutAdminComponent {
       }
     );
   }
-  searchName(event: any) {
-    const newValue = event.target.value;
+  formSearchData = new FormGroup({
+    status: new FormControl('no', [Validators.required]),
+    keyword: new FormControl('', [Validators.required]),
+  });
+  searchName() {
+    if (this.formSearchData.status !== 'VALID') return;
     const checkToken = String(this.token);
-    this.billSV.getSearchName(newValue, String(checkToken)).subscribe(
-      (response: any) => {
-        this.dataBill = response.bill.docs;
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    this.billSV
+      .getSearchNameFollowStatus(
+        String(this.formSearchData.value.status),
+        String(this.formSearchData.value.keyword),
+        String(checkToken)
+      )
+      .subscribe(
+        (response: any) => {
+          this.dataBill = response.bill.docs;
+        },
+        (err: any) => {
+          this.dataBill = [];
+        }
+      );
   }
   formatMoney(amount: any) {
     return amount.toLocaleString('vi-VN', {

@@ -46,12 +46,12 @@ export class BillServiceService {
     const result = this.http.get(`${this.url}/bill/search_uid/${uid}`);
     return result;
   }
-  getSearchName(key_search: string, token: string) {
+  getSearchNameFollowStatus(status: string, keyword: string, token: string) {
     const config = {
       headers: { Authorization: 'Bearer ' + token },
     };
     const result = this.http.get(
-      `${this.url}/bill/search_name/${key_search}`,
+      `${this.url}/bill/search/${status}/${keyword}`,
       config
     );
     return result;
