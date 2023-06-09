@@ -62,6 +62,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'product', component: ListProductComponent },
+      { path: 'product/search/:key', component: ListProductComponent },
       { path: 'product/:id', component: DetailsProductComponent },
       { path: 'account', component: AccountComponent },
       { path: 'my-bill', component: BillComponent },

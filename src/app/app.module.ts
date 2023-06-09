@@ -27,6 +27,7 @@ import { ContactAboutUsComponent } from './components/client/contact-about-us/co
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 import { CheckoutSuccessComponent } from './pages/client/checkout-success/checkout-success.component';
 
+
 // Blank
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 // Admin

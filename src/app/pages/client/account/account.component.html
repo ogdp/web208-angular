@@ -6,17 +6,23 @@
       <h3 class="my-5 font-bold">TÀI KHOẢN</h3>
       <ul>
         <li><a href="#">Thông tin tài khoản</a></li>
-        <li><a href="#">Đơn hàng đã mua</a></li>
-        <li><a href="#">Đăng xuất</a></li>
+        <li><a routerLink="/my-bill">Đơn hàng</a></li>
       </ul>
     </div>
 
     <div class="">
-      <div>
+      <div *ngIf="data != undefined">
         <h3 class="my-5 font-bold">THÔNG TIN TÀI KHOẢN</h3>
-        <p>Tên người dùng: Thai Vu Hong</p>
-        <p>Email: thaivhph28695@fpt.edu.vn</p>
-        <p>Giới tính: Nam</p>
+        <p>Tên người dùng: {{ data.user.name }}</p>
+        <p>Vai trò: {{ data.user.role }}</p>
+        <p>Email: {{ data.user.email }}</p>
+        <p>
+          Giới tính:
+          <span *ngIf="data.user.gender == 'male'">Nam</span>
+          <span *ngIf="data.user.gender == 'female'">Nữ</span>
+          <span *ngIf="data.user.gender == 'other'">Khác</span>
+        </p>
+        <p>Địa chỉ: {{ data.user.address }}</p>
         <a class="text-blue-500" href="">Chỉnh sửa thông tin</a>
       </div>
     </div>

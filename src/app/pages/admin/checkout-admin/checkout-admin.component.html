@@ -18,6 +18,13 @@
           >
             Chờ duyệt
           </button>
+          <button
+            (click)="getBillFollowStatus('approved')"
+            type="button"
+            class="focus:outline-none text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+          >
+            Đã duyệt
+          </button>
 
           <button
             (click)="getBillFollowStatus('delivery in progress')"
@@ -58,6 +65,7 @@
             <select formControlName="status">
               <option value="no" [selected]="true">Tất cả trạng thái</option>
               <option value="pending">Chờ duyệt</option>
+              <option value="approved">Đã duyệt</option>
               <option value="delivery in progress">Đang giao</option>
               <option value="delivered">Đã giao</option>
               <option value="cancellation">Đã huỷ</option>

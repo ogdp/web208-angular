@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -15,8 +13,12 @@ export class ProductService {
     let apiUrl = `http://localhost:8080/api/products/${id}`;
     return this.http.get(apiUrl);
   }
+  searchProduct(key: string) {
+    let apiUrl = `http://localhost:8080/api/products/search/${key}`;
+    return this.http.get(apiUrl);
+  }
   getProductsNew() {
-    let apiUrl = `http://localhost:8080/api/products?_limit=4&_order=asc`;
+    let apiUrl = `http://localhost:8080/api/products?_limit=4&_order=desc`;
     return this.http.get(apiUrl);
   }
   getProductsPrice() {
