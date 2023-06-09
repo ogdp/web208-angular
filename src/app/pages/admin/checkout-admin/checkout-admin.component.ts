@@ -13,7 +13,8 @@ import { IBill } from 'src/common/Bill';
 export class CheckoutAdminComponent {
   token: string | any = '' || null;
   dataBill: IBill[] = [] || undefined;
-  page: string = '';
+  totalPage: number[] = [];
+  activeButtonPage: number = 1;
   constructor(
     private billSV: BillServiceService,
     private params: ActivatedRoute,
@@ -28,6 +29,15 @@ export class CheckoutAdminComponent {
     this.billSV.getAllBill(this.token).subscribe(
       (response: any) => {
         this.dataBill = response.bill.docs;
+        if (response.bill.totalPages > 1) {
+          for (let index = 0; index < response.bill.totalPages; index++) {
+            if (this.totalPage.length == response.bill.totalPages) {
+              return;
+            }
+            this.totalPage.push(index + 1);
+          }
+        }
+        // console.log(this.totalPage);
       },
       (err: any) => {
         alert('Bạn chưa đăng nhập');
@@ -98,5 +108,18 @@ export class CheckoutAdminComponent {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${day}/${month}/${year} | ${hours}:${minutes}`;
+  }
+  onHandlePage(value: number) {
+    this.billSV.getAllBillPage(Number(value), this.token).subscribe(
+      (response: any) => {
+        this.dataBill = response.bill.docs;
+        console.log(response);
+        this.activeButtonPage = response.bill.page;
+        console.log(this.activeButtonPage);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
 }

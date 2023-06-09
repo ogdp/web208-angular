@@ -21,6 +21,13 @@ export class BillServiceService {
     const result = this.http.get(`${this.url}/bill`, config);
     return result;
   }
+  getAllBillPage(page: number, token: string) {
+    const config = {
+      headers: { Authorization: 'Bearer ' + token },
+    };
+    const result = this.http.get(`${this.url}/bill?_page=${page}`, config);
+    return result;
+  }
   updateStatusBill(id: string, token: string, body: object) {
     const config = {
       headers: { Authorization: 'Bearer ' + token },
