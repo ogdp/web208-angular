@@ -187,20 +187,28 @@
       <div class="pt-3">
         <div class="text-center w-full" aria-label="Page navigation example">
           <ul class="inline-flex items-center -space-x-px">
-            <ng-container *ngIf="totalPage.length > 0">
-              <li *ngFor="let item of totalPage; let i = index">
-                <button
-                  (click)="onHandlePage(item)"
-                  [ngClass]="
-                    activeButtonPage == item
-                      ? 'px-4 py-2 leading-tight text-gray-500 bg-black border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-                      : 'px-4 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-                  "
-                >
-                  {{ i + 1 }}
-                </button>
-              </li>
-            </ng-container>
+            <div *ngIf="nowPage !== null">
+              <button
+                *ngIf="prevPage !== null"
+                (click)="onHandlePage(prevPage)"
+                class="px-4 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                {{ prevPage }}
+              </button>
+              <button
+                (click)="onHandlePage(nowPage)"
+                class="px-4 py-2 leading-tight text-gray-500 bg-black border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                {{ nowPage }}
+              </button>
+              <button
+                *ngIf="nextPage !== null"
+                (click)="onHandlePage(nextPage)"
+                class="px-4 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                {{ nextPage }}
+              </button>
+            </div>
             <!-- <li>
               <a
                 href="#"

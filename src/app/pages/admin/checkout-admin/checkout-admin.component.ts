@@ -15,6 +15,9 @@ export class CheckoutAdminComponent {
   dataBill: IBill[] = [] || undefined;
   totalPage: number[] = [];
   activeButtonPage: number = 1;
+  prevPage: number | null = null;
+  nextPage: number | null = null;
+  nowPage: number | null = null;
   constructor(
     private billSV: BillServiceService,
     private params: ActivatedRoute,
@@ -29,15 +32,9 @@ export class CheckoutAdminComponent {
     this.billSV.getAllBill(this.token).subscribe(
       (response: any) => {
         this.dataBill = response.bill.docs;
-        if (response.bill.totalPages > 1) {
-          for (let index = 0; index < response.bill.totalPages; index++) {
-            if (this.totalPage.length == response.bill.totalPages) {
-              return;
-            }
-            this.totalPage.push(index + 1);
-          }
-        }
-        // console.log(this.totalPage);
+        this.prevPage = response.bill.prevPage;
+        this.nextPage = response.bill.nextPage;
+        this.nowPage = response.bill.page;
       },
       (err: any) => {
         alert('Bạn chưa đăng nhập');
@@ -113,9 +110,10 @@ export class CheckoutAdminComponent {
     this.billSV.getAllBillPage(Number(value), this.token).subscribe(
       (response: any) => {
         this.dataBill = response.bill.docs;
-        console.log(response);
+        this.prevPage = response.bill.prevPage;
+        this.nextPage = response.bill.nextPage;
+        this.nowPage = response.bill.page;
         this.activeButtonPage = response.bill.page;
-        console.log(this.activeButtonPage);
       },
       (err: any) => {
         console.log(err);
