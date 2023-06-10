@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 // Client
 import { HeaderComponent } from './components/client/header/header.component';
@@ -109,6 +110,7 @@ import { BillComponent } from './pages/client/bill/bill.component';
     FormsModule,
     CommonModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

@@ -12,6 +12,8 @@ import { UntypedFormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./list-product.component.css'],
 })
 export class ListProductComponent {
+  p: number = 1;
+  itemsPerPage:number = 6
   searchText: any;
   noSearch = true;
   searchResult: undefined | any;
