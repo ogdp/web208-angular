@@ -16,6 +16,8 @@ export class ListProductComponent {
   noSearch = true;
   searchResult: undefined | any;
   products: any;
+  p: number = 1;
+  itemsPerPage: number = 6;
   constructor(
     private product: ProductService,
     private formBuilder: UntypedFormBuilder,
