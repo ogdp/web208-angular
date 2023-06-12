@@ -11,7 +11,6 @@ const checkPermission = async (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     const isMatch = await Jwt.verify(token, "duc");
     const user = await User.findById(isMatch.id);
-
     if (user.role !== "admin") {
       return res.status(403).json({
         message: "Bạn không đủ quyền",
