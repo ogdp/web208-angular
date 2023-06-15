@@ -11,7 +11,7 @@ import dotenv from "dotenv";
 import uploadRouter from "./routers/upload";
 dotenv.config();
 
-const { URL_DB } = process.env;
+const URL_DB = process.env.URL_DB || 8080;
 
 const app = express();
 
