@@ -32,6 +32,37 @@ export const getAll = async (req, res) => {
     });
   }
 };
+export const getAllStatus = async (req, res) => {
+  try {
+    const {
+      _page = 1,
+      _order = "asc",
+      _sort = "createdAt",
+      _limit = 10,
+    } = req.query;
+    const options = {
+      page: _page,
+      limit: _limit,
+      sort: {
+        [_sort]: _order == "desc" ? 1 : -1,
+      },
+    };
+    const product = await Product.paginate({ status: true }, options);
+    if (!product) {
+      return res.status(400).json({
+        message: "Danh sách rỗng",
+      });
+    }
+    return res.status(200).json({
+      message: "Danh sách sản phẩm",
+      product,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+};
 export const get = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -135,21 +166,42 @@ export const remove = async (req, res) => {
 };
 export const search = async (req, res) => {
   try {
-    let productFind = await Product.find({
-      $or: [
-        {
-          name: {
-            $regex: req.params.key,
-            $options: "i",
+    const {
+      _page = 1,
+      _order = "asc",
+      _sort = "createdAt",
+      _limit = 10,
+    } = req.query;
+    const options = {
+      page: _page,
+      limit: _limit,
+      sort: {
+        [_sort]: _order == "desc" ? 1 : -1,
+      },
+    };
+    const product = await Product.paginate(
+      {
+        $or: [
+          {
+            name: {
+              $regex: req.params.key,
+              $options: "i",
+            },
+            status: true,
           },
-        },
-      ],
-    });
-    if (!productFind) {
+        ],
+      },
+      options
+    );
+    if (!product || product?.length === 0) {
+      return res.status(404).json({
+        message: "Không tìm thấy sản phẩm",
+        product,
+      });
     }
     return res.status(200).json({
-      message: "Kết quả tìm kiếm",
-      productFind,
+      message: "Danh sách sản phẩm",
+      product,
     });
   } catch (error) {
     return res.status(400).json({
