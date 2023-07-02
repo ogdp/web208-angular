@@ -74,9 +74,9 @@
             formControlName="categoryId"
           >
             <option
-              *ngFor="let icate of listCategory"
+              *ngFor="let icate of listCategory; let isFirst = first"
               value="{{ icate._id }}"
-              [selected]=""
+              [selected]="isFirst"
             >
               {{ icate.name }}
             </option>

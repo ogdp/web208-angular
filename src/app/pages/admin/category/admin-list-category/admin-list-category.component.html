@@ -64,7 +64,7 @@
               </thead>
               <tbody *ngIf="dataCategory !== undefined">
                 <ng-container *ngFor="let item of dataCategory; let i = index">
-                  <ng-container *ngIf="item._id !== '6477f7e15142b55388df1394'">
+                  <ng-container *ngIf="i !== 0">
                     <tr
                       class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >

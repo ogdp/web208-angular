@@ -7,8 +7,21 @@ export class ProductServiceService {
   url = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
-  getProduct() {
-    const result = this.http.get(`${this.url}/products`);
+  getProductQuantity(total: number, page: number) {
+    const result = this.http.get(
+      `${this.url}/products/status?_limit=${total}&&_page=${page}`
+    );
+    return result;
+  }
+  getProductStatus() {
+    const result = this.http.get(`${this.url}/products/status`);
+    return result;
+  }
+  getProduct(token: string) {
+    const config = {
+      headers: { Authorization: 'Bearer ' + token },
+    };
+    const result = this.http.get(`${this.url}/products`, config);
     return result;
   }
   getOneProduct(id: string) {
@@ -46,5 +59,27 @@ export class ProductServiceService {
       config
     );
     return result;
+  }
+  // searchProduct(key: string) {
+  //   return this.http.get(`${this.url}/products/search/${key}`);
+  // }
+  getProductsNew() {
+    return this.http.get(`${this.url}/products/status?_limit=4&_order=desc`);
+  }
+  getProductsPrice() {
+    return this.http.get(
+      `${this.url}/products/status?_limit=4&_order=desc&_sort=price`
+    );
+  }
+  // Pagination
+  API_pagination(
+    params: string,
+    type?: string | null,
+    page?: number,
+    on_limit?: number
+  ) {
+    return this.http.get(
+      `${this.url}/${params}?_limit=${on_limit}&_page=${page}`
+    );
   }
 }

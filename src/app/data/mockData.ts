@@ -1,7 +1,6 @@
 import { IBannerImg } from 'src/common/BannerImg';
 import { ICategory } from 'src/common/Category';
 import { IProduct } from 'src/common/Product';
-import { ProductService } from '../services/client/products/product.service';
 
 export const products: any = [
   {
@@ -82,7 +81,6 @@ export const products: any = [
     description: 'heheh',
     note: 'hihi',
   },
-  
 ];
 export const dataBanner: IBannerImg[] = [
   {
@@ -128,4 +126,3 @@ export const categories: ICategory[] = [
     name: 'H & M',
   },
 ];
-

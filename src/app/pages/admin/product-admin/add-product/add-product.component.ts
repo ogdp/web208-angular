@@ -6,6 +6,7 @@ import { UploadServiceService } from 'src/app/service/uploadImage/upload-service
 import { ProductServiceService } from 'src/app/service/product/product-service.service';
 import { Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/service/category/category-service.service';
+import { ICategory } from 'src/common/Category';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -14,7 +15,7 @@ import { CategoryServiceService } from 'src/app/service/category/category-servic
 export class AddProductComponent implements OnInit {
   isMatchSize: boolean = false;
   isLoadding: boolean = false;
-  listCategory: any;
+  listCategory?: ICategory[] | any;
   constructor(
     private titleService: Title,
     private uploadSV: UploadServiceService,
@@ -26,7 +27,7 @@ export class AddProductComponent implements OnInit {
     this.categorySV.getCategory().subscribe(
       (response: any) => {
         this.listCategory = response.category;
-        // console.log(this.listCategory);
+        this.addForm.get('categoryId')?.setValue(this.listCategory[0]._id);
       },
       (err: any) => {
         console.log(err);
@@ -67,9 +68,7 @@ export class AddProductComponent implements OnInit {
     status: new FormControl('true', [Validators.required]),
     description: new FormControl(''),
     note: new FormControl(''),
-    categoryId: new FormControl('6477f7e15142b55388df1394', [
-      Validators.required,
-    ]),
+    categoryId: new FormControl('', [Validators.required]),
   });
   // Khai báo hàm bắt sự kiện khi input thay đổi
   ngOnInit(): void {}

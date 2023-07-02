@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
 import { ActivatedRoute } from '@angular/router';
-import { products } from 'src/app/data/mockData';
-import { ProductService } from 'src/app/services/client/products/product.service';
 import { CartServiceService } from 'src/app/service/cart/cart-service.service';
+import { ProductServiceService } from 'src/app/service/product/product-service.service';
 @Component({
   selector: 'app-details-product',
   templateUrl: './details-product.component.html',
@@ -20,13 +18,13 @@ export class DetailsProductComponent implements OnInit {
   isLoadding: boolean = false;
   constructor(
     private route: ActivatedRoute,
-    private getProduct: ProductService,
+    private getProduct: ProductServiceService,
     private cartSV: CartServiceService
   ) {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
-    this.getProduct.getProduct(this.id).subscribe(
+    this.getProduct.getOneProduct(this.id).subscribe(
       (data: any) => {
         this.product = data.product;
         this.order_product = {

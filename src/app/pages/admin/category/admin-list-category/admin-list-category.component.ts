@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoryServiceService } from 'src/app/service/category/category-service.service';
 import { ProductServiceService } from 'src/app/service/product/product-service.service';
 import { ICategory } from 'src/common/Category';
+import { CateCheckName } from '../../../../lib/category';
 
 @Component({
   selector: 'app-admin-list-category',
@@ -35,7 +36,7 @@ export class AdminListCategoryComponent {
     const token = JSON.parse(String(localStorage.getItem('user'))).accessToken;
     const bodyMoveCateId = {
       categoryIdOld: id,
-      categoryIdNew: '6477f7e15142b55388df1394',
+      categoryIdNew: this.dataCategory[0]._id || null,
     };
     this.productSV.updateFollowCategoryId(bodyMoveCateId, token).subscribe(
       (response: any) => {
@@ -57,7 +58,11 @@ export class AdminListCategoryComponent {
       }
     );
   }
-  Cha(value: object) {
+  Cha(value: any) {
+    if (!CateCheckName(this.dataCategory, value?.name)) {
+      alert('Danh mục đã tồn tại');
+      return;
+    }
     const token = JSON.parse(String(localStorage.getItem('user'))).accessToken;
     this.categorySV.addCategory(value, token).subscribe(
       (response: any) => {

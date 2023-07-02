@@ -15,7 +15,6 @@ import { HomeComponent } from './pages/client/home/home.component';
 import { AuthComponent } from './pages/client/auth/auth.component';
 import { ListProductComponent } from './pages/client/product/list-product/list-product.component';
 import { DetailsProductComponent } from './pages/client/product/details-product/details-product.component';
-import { CardComponent } from './components/client/card/card.component';
 import { BannerComponent } from './components/client/banner/banner.component';
 import { SwiperModule } from 'swiper/angular';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -55,6 +54,7 @@ import { AdminListCategoryComponent } from './pages/admin/category/admin-list-ca
 import { AdminUpdateCategoryComponent } from './pages/admin/category/admin-update-category/admin-update-category.component';
 import { CheckoutDetailComponent } from './pages/admin/checkout-admin/checkout-detail/checkout-detail.component';
 import { BillComponent } from './pages/client/bill/bill.component';
+import { CardProductComponent } from './components/client/card-product/card-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +64,6 @@ import { BillComponent } from './pages/client/bill/bill.component';
     AuthComponent,
     ListProductComponent,
     DetailsProductComponent,
-    CardComponent,
     BannerComponent,
     NotFoundComponent,
     ProductsNewComponent,
@@ -100,6 +99,7 @@ import { BillComponent } from './pages/client/bill/bill.component';
     AdminUpdateCategoryComponent,
     CheckoutDetailComponent,
     BillComponent,
+    CardProductComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -32,9 +32,21 @@ export class ListProductAdminComponent {
     );
   }
   refreshData = () => {
-    this.productSV.getProduct().subscribe((data: any) => {
-      this.products = data.product.docs;
-    });
+    const checkLoged = localStorage.getItem('user');
+    if (
+      !localStorage.getItem('user') ||
+      localStorage.getItem('user') == '' ||
+      !JSON.parse(String(checkLoged)).accessToken
+    ) {
+      alert('Đăng nhập để tiếp tục');
+      window.location.reload();
+      return;
+    }
+    this.productSV
+      .getProduct(JSON.parse(String(checkLoged)).accessToken)
+      .subscribe((data: any) => {
+        this.products = data.product.docs;
+      });
   };
   onHandleRemoveProduct(id: string) {
     if (confirm('Bạn có chắc chắn xoá không ?') == false) return;

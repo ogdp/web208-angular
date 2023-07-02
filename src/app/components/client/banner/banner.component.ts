@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { dataBanner } from 'src/app/data/mockData';
+import { dataBanner } from '../../../data/mockData';
 import SwiperCore, {
   Autoplay,
   Navigation,

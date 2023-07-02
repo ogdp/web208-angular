@@ -61,9 +61,9 @@ const routes: Routes = [
     component: ClientLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'product', component: ListProductComponent },
-      { path: 'product/search/:key', component: ListProductComponent },
-      { path: 'product/:id', component: DetailsProductComponent },
+      { path: 'products', component: ListProductComponent },
+      { path: 'products/search/:key', component: ListProductComponent },
+      { path: 'products/:id', component: DetailsProductComponent },
       { path: 'account', component: AccountComponent },
       { path: 'my-bill', component: BillComponent },
       { path: 'checkout', component: CheckoutComponent },
