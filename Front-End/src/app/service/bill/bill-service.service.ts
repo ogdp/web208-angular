@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BillServiceService {
-  url = 'http://localhost:8080/api';
+  url = 'https://api-poly-framework-1.onrender.com/api';
   constructor(private http: HttpClient) {}
   addToBill(body: object, token: string) {
     const config = {

@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
 import User from "../models/auth";
-import Cart from "../models/cart";
 import Bill from "../models/bill";
-import Product from "../models/product";
 import Jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+const { JWT_KEY, JWT_TOKEN_TIME } = process.env;
 const checkPermission = async (req, res, next) => {
   try {
     if (!req.headers.authorization) {
@@ -12,7 +12,7 @@ const checkPermission = async (req, res, next) => {
       });
     }
     const token = req.headers.authorization.split(" ")[1];
-    const isMatch = await Jwt.verify(token, "duc");
+    const isMatch = await Jwt.verify(token, JWT_KEY);
     const user = await User.findById(isMatch.id);
     // Lấy id url
     const id_url = req.params.id;

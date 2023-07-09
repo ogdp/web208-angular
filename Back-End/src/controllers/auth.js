@@ -2,6 +2,9 @@ import User from "../models/auth";
 import { signinSchema, signupSchema } from "../schemas/auth";
 import Jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+dotenv.config();
+const { JWT_KEY, JWT_TOKEN_TIME } = process.env;
 export const signup = async (req, res) => {
   try {
     const { error } = await signupSchema.validate(req.body, {
@@ -59,7 +62,9 @@ export const signin = async (req, res) => {
       });
     }
     user.password = undefined;
-    const token = await Jwt.sign({ id: user.id }, "duc", { expiresIn: "1h" });
+    const token = await Jwt.sign({ id: user.id }, JWT_KEY, {
+      expiresIn: JWT_TOKEN_TIME,
+    });
     return res.status(200).json({
       message: "Đăng nhập thành công",
       accessToken: token,
@@ -74,7 +79,7 @@ export const signin = async (req, res) => {
 export const verifyToken = async (req, res) => {
   try {
     const token = req.params.id;
-    const isMatch = await Jwt.verify(token, "duc");
+    const isMatch = await Jwt.verify(token, JWT_KEY);
     const user = await User.findById(isMatch.id);
     // console.log(user);
     if (!user) {

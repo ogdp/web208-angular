@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
@@ -7,7 +8,7 @@ import { SigninServiceService } from 'src/app/service/auth/signin-service.servic
 })
 export class AdminLayoutComponent {
   checkPermission: boolean = false;
-  constructor(private signinSV: SigninServiceService) {
+  constructor(private signinSV: SigninServiceService, private router: Router) {
     const checkLoged = localStorage.getItem('user');
     if (
       !localStorage.getItem('user') ||
@@ -15,12 +16,14 @@ export class AdminLayoutComponent {
       !JSON.parse(String(checkLoged)).accessToken
     ) {
       this.checkPermission = false;
-      window.location.href = 'http://localhost:4200/auth';
+      // window.location.href = 'http://localhost:4200/auth';
+      // this.router.navigate(['/auth']);
+      this.router.navigateByUrl('/auth');
       alert('Bạn chưa đăng nhập');
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `http://localhost:8080/api/verifyToken/${
+      const url = `https://api-poly-framework-1.onrender.com/api/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.signinSV.verifyToken(url).subscribe(
@@ -30,7 +33,9 @@ export class AdminLayoutComponent {
           if (data.message !== 'account admin') {
             console.log('Khác admin');
             this.checkPermission = false;
-            window.location.href = 'http://localhost:4200';
+            // window.location.href = 'http://localhost:4200';
+            // this.router.navigate(['/']);
+            this.router.navigateByUrl('/');
             alert('Bạn không đủ quyền');
           } else {
             this.checkPermission = true;
@@ -41,7 +46,9 @@ export class AdminLayoutComponent {
         (error: any) => {
           // console.log('Khác admin');
           this.checkPermission = false;
-          window.location.href = 'http://localhost:4200';
+          // window.location.href = 'http://localhost:4200';
+          // this.router.navigate(['/']);
+          this.router.navigateByUrl('/');
           alert('Bạn không đủ quyền');
           try {
             throw error;

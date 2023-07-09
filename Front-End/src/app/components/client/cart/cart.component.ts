@@ -57,12 +57,13 @@ export class CartComponent {
       !JSON.parse(String(checkLoged)).accessToken
     ) {
       this.checkPermission = false;
-      window.location.href = 'http://localhost:4200/auth';
+      this.router.navigateByUrl('/auth');
+      // window.location.href = 'http://localhost:4200/auth';
       alert('Bạn chưa đăng nhập');
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `http://localhost:8080/api/verifyToken/${
+      const url = `https://api-poly-framework-1.onrender.com/api/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.signinSV.verifyToken(url).subscribe(
@@ -79,14 +80,16 @@ export class CartComponent {
             this.router.navigate(['/checkout']);
           } else {
             this.checkPermission = false;
-            window.location.href = 'http://localhost:4200/auth';
+            // window.location.href = 'http://localhost:4200/auth';
+            this.router.navigateByUrl('/auth');
             alert('Đăng nhập để thanh toán');
             return;
           }
         },
         (error: any) => {
           this.checkPermission = false;
-          window.location.href = 'http://localhost:4200';
+          // window.location.href = 'http://localhost:4200';
+          this.router.navigateByUrl('/');
           alert('Bạn không đủ quyền');
           try {
             throw error;

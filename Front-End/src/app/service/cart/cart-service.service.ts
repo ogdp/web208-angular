@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CartServiceService {
-  url = 'http://localhost:8080/api';
+  url = 'https://api-poly-framework-1.onrender.com/api';
   constructor(private http: HttpClient) {}
   addToCart(body: any) {
     return this.http.post(`${this.url}/cart`, body);

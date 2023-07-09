@@ -15,7 +15,8 @@ export class HeaderAdminComponent {
     localStorage.setItem('user', '');
     setTimeout(() => {
       // this.router.navigate(['/auth']);
-      window.location.href = 'http://localhost:4200/auth';
+      this.router.navigateByUrl('/auth');
+      // window.location.href = 'http://localhost:4200/auth';
     }, 1000);
   }
 }

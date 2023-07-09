@@ -2,21 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  
-  constructor(private http: HttpClient) { }
-  getUsers(token: string){
-    let url = 'http://localhost:8080/api/users';
+  constructor(private http: HttpClient) {}
+  getUsers(token: string) {
+    let url = 'https://api-poly-framework-1.onrender.com/api/users';
     const config = {
       headers: { Authorization: 'Bearer ' + token },
     };
-    return this.http.get(url,config);
+    return this.http.get(url, config);
   }
 
   updateUserRole(id: string, body: object, token: string) {
-    let url = 'http://localhost:8080/api/users';
+    let url = 'https://api-poly-framework-1.onrender.com/api/users';
     const config = {
       headers: { Authorization: 'Bearer ' + token },
     };
@@ -24,7 +23,7 @@ export class UserService {
   }
 
   updateUserPassword(id: string, body: object, token: string) {
-    let url = 'http://localhost:8080/api/users';
+    let url = 'https://api-poly-framework-1.onrender.com/api/users';
     const config = {
       headers: { Authorization: 'Bearer ' + token },
     };

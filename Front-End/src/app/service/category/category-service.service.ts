@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CategoryServiceService {
   constructor(private http: HttpClient) {}
-  url = 'http://localhost:8080/api';
+  url = 'https://api-poly-framework-1.onrender.com/api';
   getCategory() {
     return this.http.get(`${this.url}/categories`);
   }

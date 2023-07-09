@@ -50,8 +50,12 @@ export class AuthComponent implements OnInit {
   error_Email = ['*Email không được bỏ trống', '*Email không đúng định dạng'];
   erEmail: boolean = false;
   erPassword: boolean = false;
-  constructor(private signinSV: SigninServiceService,private signupSV: SignupServiceService, private router: Router) {}
-  
+  constructor(
+    private signinSV: SigninServiceService,
+    private signupSV: SignupServiceService,
+    private router: Router
+  ) {}
+
   signin() {
     if (this.signinForm.value.email == '') {
       this.erEmail = true;
@@ -67,7 +71,7 @@ export class AuthComponent implements OnInit {
     // console.log(this.signinForm.value);
     // console.log('Thành công');
 
-    const url = 'http://localhost:8080/api/signin';
+    const url = 'https://api-poly-framework-1.onrender.com/api/signin';
     this.signinSV.signinLogic(url, this.signinForm.value).subscribe(
       (data: any) => {
         this.notification = 1;
@@ -92,7 +96,6 @@ export class AuthComponent implements OnInit {
       }
     );
   }
-
 
   signupForm = new FormGroup(
     {
@@ -125,13 +128,6 @@ export class AuthComponent implements OnInit {
       validators: matchPassword,
     }
   );
-
-  
-     
-
-     
-    
-  
 
   get fullname() {
     return this.signupForm.get('fullname');
@@ -175,7 +171,6 @@ export class AuthComponent implements OnInit {
     '*Mật khẩu không được bỏ trống',
     '*Mật khẩu không khớp',
   ];
-  
 
   erFullname: boolean = false;
   erEmail_su: boolean = false;
@@ -216,9 +211,8 @@ export class AuthComponent implements OnInit {
     }
     console.log(this.signupForm.value);
     if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
-   
-    
-    const url = 'http://localhost:8080/api/signup';
+
+    const url = 'https://api-poly-framework-1.onrender.com/api/signup';
     const userNew = {
       name: this.signupForm.value.fullname,
       email: this.signupForm.value.email_su,
@@ -231,12 +225,12 @@ export class AuthComponent implements OnInit {
 
     this.signupSV.signupLogic(url, userNew).subscribe(
       (data: any) => {
-        console.log(data)
+        console.log(data);
         this.notification = 3;
-          setTimeout(() => {
-            this.notification = 0;
-            window.location.reload()
-          }, 1200);
+        setTimeout(() => {
+          this.notification = 0;
+          window.location.reload();
+        }, 1200);
       },
       (error: any) => {
         try {

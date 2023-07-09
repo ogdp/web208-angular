@@ -35,7 +35,7 @@ export class HeaderComponent {
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `http://localhost:8080/api/verifyToken/${
+      const url = `https://api-poly-framework-1.onrender.com/api/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.verifyToken.verifyToken(url).subscribe(

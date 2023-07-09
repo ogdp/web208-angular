@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProductServiceService {
-  url = 'http://localhost:8080/api';
+  url = 'https://api-poly-framework-1.onrender.com/api';
 
   constructor(private http: HttpClient) {}
   getProductQuantity(total: number, page: number) {

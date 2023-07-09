@@ -1,31 +1,22 @@
 import express from "express";
 import mongoose from "mongoose";
-import cors from "cors";
-import categoryRouter from "./routers/category";
-import productRouter from "./routers/product";
-import authRouter from "./routers/auth";
-import userRouter from "./routers/user";
-import cartRouter from "./routers/cart";
-import billRouter from "./routers/bill";
+import morgan from "morgan";
+import Router from "./routers/index";
 import dotenv from "dotenv";
-import uploadRouter from "./routers/upload";
+import cors from "cors";
 dotenv.config();
-
-const URL_DB = process.env.URL_DB || 8080;
-
 const app = express();
-
 app.use(express.json());
 app.use(cors());
+// Console log router request to terminal (Morgan)
+app.use(morgan("tiny"));
 
-app.use("/api", categoryRouter);
-app.use("/api", billRouter);
-app.use("/api", cartRouter);
-app.use("/api", productRouter);
-app.use("/api", authRouter);
-app.use("/api", userRouter);
-app.use("/api", uploadRouter);
+const { URL_DB, PORT } = process.env;
+
+// Navigation
+app.use("/api", Router);
 
 mongoose.connect(`${URL_DB}`);
 
+app.listen(PORT, (err, res) => console.log("Listening on port => " + PORT));
 export const viteNodeApp = app;
