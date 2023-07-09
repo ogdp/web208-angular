@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryServiceService {
-  constructor(private http: HttpClient) {}
-  url = 'https://api-poly-framework-1.onrender.com/api';
+  url: string | undefined;
+  constructor(private http: HttpClient) {
+    this.url = environment.API;
+  }
   getCategory() {
     return this.http.get(`${this.url}/categories`);
   }

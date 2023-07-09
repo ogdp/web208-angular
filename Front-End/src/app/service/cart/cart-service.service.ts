@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class CartServiceService {
-  url = 'https://api-poly-framework-1.onrender.com/api';
-  constructor(private http: HttpClient) {}
+  // url = 'https://api-poly-framework-1.onrender.com/api';
+  url: string | undefined;
+  constructor(private http: HttpClient) {
+    this.url = environment.API;
+  }
   addToCart(body: any) {
     return this.http.post(`${this.url}/cart`, body);
   }

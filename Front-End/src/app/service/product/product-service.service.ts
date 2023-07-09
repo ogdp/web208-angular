@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductServiceService {
-  url = 'https://api-poly-framework-1.onrender.com/api';
-
-  constructor(private http: HttpClient) {}
+  url: string | undefined;
+  constructor(private http: HttpClient) {
+    this.url = environment.API;
+  }
   getProductQuantity(total: number, page: number) {
     const result = this.http.get(
       `${this.url}/products/status?_limit=${total}&&_page=${page}`
