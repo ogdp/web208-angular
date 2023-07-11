@@ -66,7 +66,7 @@ export class CartComponent {
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `${URL}/verifyToken/${
+      const url = `${this.URL}/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.signinSV.verifyToken(url).subscribe(

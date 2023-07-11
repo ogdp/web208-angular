@@ -74,7 +74,7 @@ export class AuthComponent implements OnInit {
     // console.log(this.signinForm.value);
     // console.log('Thành công');
 
-    const url = `${URL}/signin`;
+    const url = `${this.URL}/signin`;
     this.signinSV.signinLogic(url, this.signinForm.value).subscribe(
       (data: any) => {
         this.notification = 1;
@@ -215,7 +215,7 @@ export class AuthComponent implements OnInit {
     console.log(this.signupForm.value);
     if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
 
-    const url = `${URL}/signup`;
+    const url = `${this.URL}/signup`;
     const userNew = {
       name: this.signupForm.value.fullname,
       email: this.signupForm.value.email_su,

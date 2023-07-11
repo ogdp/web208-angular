@@ -38,7 +38,7 @@ export class HeaderComponent {
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `${URL}/verifyToken/${
+      const url = `${this.URL}/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.verifyToken.verifyToken(url).subscribe(
