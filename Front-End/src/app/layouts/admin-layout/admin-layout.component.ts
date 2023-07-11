@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.css'],
 })
 export class AdminLayoutComponent {
+  URL: string = '';
   checkPermission: boolean = false;
   constructor(private signinSV: SigninServiceService, private router: Router) {
+    this.URL = environment.API;
     const checkLoged = localStorage.getItem('user');
     if (
       !localStorage.getItem('user') ||
@@ -23,7 +26,7 @@ export class AdminLayoutComponent {
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `https://api-poly-framework-1.onrender.com/api/verifyToken/${
+      const url = `${URL}/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.signinSV.verifyToken(url).subscribe(

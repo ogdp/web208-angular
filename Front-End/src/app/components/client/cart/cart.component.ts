@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
 import { CartServiceService } from 'src/app/service/cart/cart-service.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,6 +10,7 @@ import { CartServiceService } from 'src/app/service/cart/cart-service.service';
 })
 export class CartComponent {
   @Input() receivedData: any;
+  URL: string = '';
   sumPrice: number = 0;
   public listCart: any;
   checkPermission = false;
@@ -24,7 +25,9 @@ export class CartComponent {
     private cartSV: CartServiceService,
     private signinSV: SigninServiceService,
     private router: Router
-  ) {}
+  ) {
+    this.URL = environment.API;
+  }
   removeCart(id: string) {
     this.cartSV.removeCart(id).subscribe(
       (response: any) => {
@@ -63,7 +66,7 @@ export class CartComponent {
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `https://api-poly-framework-1.onrender.com/api/verifyToken/${
+      const url = `${URL}/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.signinSV.verifyToken(url).subscribe(

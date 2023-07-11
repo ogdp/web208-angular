@@ -12,7 +12,7 @@ import { matchPassword } from './matchpassword.validator';
 import { SigninServiceService } from 'src/app/service/auth/signin-service.service';
 import { SignupServiceService } from 'src/app/service/auth/signup-service.service';
 import { Router } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -22,6 +22,7 @@ export class AuthComponent implements OnInit {
   isChecked: boolean = false;
   isMatch: boolean = false;
   notification: number = 0;
+  URL: string = '';
   showSignup() {
     this.isMatch = !this.isMatch;
     // console.log(this.isMatch);
@@ -54,7 +55,9 @@ export class AuthComponent implements OnInit {
     private signinSV: SigninServiceService,
     private signupSV: SignupServiceService,
     private router: Router
-  ) {}
+  ) {
+    this.URL = environment.API;
+  }
 
   signin() {
     if (this.signinForm.value.email == '') {
@@ -71,7 +74,7 @@ export class AuthComponent implements OnInit {
     // console.log(this.signinForm.value);
     // console.log('Thành công');
 
-    const url = 'https://api-poly-framework-1.onrender.com/api/signin';
+    const url = `${URL}/signin`;
     this.signinSV.signinLogic(url, this.signinForm.value).subscribe(
       (data: any) => {
         this.notification = 1;
@@ -212,7 +215,7 @@ export class AuthComponent implements OnInit {
     console.log(this.signupForm.value);
     if (this.signupForm.status !== 'VALID') return console.log('Form lỗi nhé');
 
-    const url = 'https://api-poly-framework-1.onrender.com/api/signup';
+    const url = `${URL}/signup`;
     const userNew = {
       name: this.signupForm.value.fullname,
       email: this.signupForm.value.email_su,

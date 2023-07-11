@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BillServiceService {
-  // url = 'https://api-poly-framework-1.onrender.com/api';
   url: string | undefined;
   constructor(private http: HttpClient) {
     this.url = environment.API;

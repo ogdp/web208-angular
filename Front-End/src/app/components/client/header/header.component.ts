@@ -4,6 +4,7 @@ import { SigninServiceService } from 'src/app/service/auth/signin-service.servic
 import { Router } from '@angular/router';
 import { CartServiceService } from 'src/app/service/cart/cart-service.service';
 import axios from 'axios';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,6 +16,7 @@ export class HeaderComponent {
   isMathGuest: boolean = false;
   notification: number = 0;
   user: any;
+  URL: string = '';
   public cartData: any = '';
   isLoadding: boolean = false;
   menuMobile(event1: any) {
@@ -25,6 +27,7 @@ export class HeaderComponent {
     private router: Router,
     private cartSV: CartServiceService
   ) {
+    this.URL = environment.API;
     const checkLoged = localStorage.getItem('user');
     if (
       !localStorage.getItem('user') ||
@@ -35,7 +38,7 @@ export class HeaderComponent {
       return;
     }
     if (JSON.parse(String(checkLoged)).accessToken) {
-      const url = `https://api-poly-framework-1.onrender.com/api/verifyToken/${
+      const url = `${URL}/verifyToken/${
         JSON.parse(String(checkLoged)).accessToken
       }`;
       this.verifyToken.verifyToken(url).subscribe(
